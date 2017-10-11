@@ -11,7 +11,7 @@
 :page-description: Learn how to consume a RESTful web service
 :page-tags: ['REST', 'Client', 'Java', 'JAX-RS', 'JSON-P']
 :page-permalink: /guides/{projectid}
-:common-includes: ../guides-common/
+:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
 = Consuming a RESTful web service
 
