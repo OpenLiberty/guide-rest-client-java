@@ -313,7 +313,7 @@ Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
 ----
 
 
-== Good work! You're done!
+== Great work! You're done!
 
 You have just accessed a simple RESTful web service and consumed its resources using JSON-P and Jackson.
 
