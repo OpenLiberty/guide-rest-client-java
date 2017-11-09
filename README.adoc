@@ -8,7 +8,7 @@
 :projectid: rest-client-java
 :page-layout: guide
 :page-duration: 20 minutes
-:page-date: 2017-09-28
+:page-date: 2017-10-04
 :page-description: Learn how to consume a RESTful web service
 :page-tags: ['REST', 'Client', 'Java', 'JAX-RS', 'JSON-P']
 :page-permalink: /guides/{projectid}
