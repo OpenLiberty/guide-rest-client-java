@@ -289,7 +289,7 @@ include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRe
 If the server is still running from the previous steps, stop it first using the Maven `liberty:stop-server` goal:
 
 ```
-mvn liberty:stort-server
+mvn liberty:stop-server
 ```
 
 Then, verify that the tests pass using the `verify` goal:
