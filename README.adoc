@@ -295,7 +295,7 @@ mvn liberty:stort-server
 Then, verify that the tests pass using the `verify` goal:
 
 ```
-mvn very
+mvn verify
 ```
 
 It may take some time before build is complete. If the tests pass, you will see a similar output:
