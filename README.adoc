@@ -218,7 +218,7 @@ Artist[] artists = response.readEntity(Artist[].class);
 Write the `getTotalAlbums` method in the `ArtistResource` class. This method will return the total
 number of albums present in the JSON for a particular artist and -1 if this artist does not exist.
 
-`start/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java`:
+Create `getTotalAlbums()` in `start/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java`:
 
 [source, java, indent=0]
 ----
