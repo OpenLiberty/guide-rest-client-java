@@ -67,8 +67,11 @@ include::{common-includes}/gitclone.adoc[]
 
 // Starting the service
 
-If you want to start the REST service, run the Maven `install` and `liberty:start-server` goals from
-the `start` directory:
+Before you begin the implementation, start the provided REST service so that the artist JSON is
+available to you.
+
+To start the REST service, run the Maven `install` and `liberty:start-server` goals from the `start`
+directory:
 
 ```
 mvn clean install liberty:start-server
