@@ -9,7 +9,7 @@
 :page-layout: guide
 :page-duration: 20 minutes
 :page-releasedate: 2017-10-04
-:page-description: Learn how to consume a RESTful web service
+:page-description: Explore how to access a simple RESTful web service and consume its resources in Java.
 :page-tags: ['REST', 'Client', 'Java', 'JAX-RS', 'JSON-P']
 :page-related-guides: ['rest-intro', 'rest-client-angularjs']
 :page-permalink: /guides/{projectid}
