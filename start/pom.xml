@@ -20,7 +20,7 @@
         <packaging.type>usr</packaging.type>
     </properties>
 
-    <dependencies>
+     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -39,6 +39,7 @@
             <version>3.1.11</version>
             <scope>provided</scope>
         </dependency>
+        <!-- JSON-P RI -->
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.json</artifactId>
@@ -57,6 +58,7 @@
             <version>1.0.10</version>
             <scope>provided</scope>
         </dependency>
+        <!-- JSON-P API -->
         <dependency>
             <groupId>javax.json</groupId>
             <artifactId>javax.json-api</artifactId>
@@ -69,10 +71,18 @@
             <version>1.0.10</version>
             <scope>provided</scope>
         </dependency>
+        <!-- JSON-B API -->
         <dependency>
-            <groupId>com.fasterxml.jackson.jaxrs</groupId>
-            <artifactId>jackson-jaxrs-json-provider</artifactId>
-            <version>2.9.1</version>
+            <groupId>javax.json.bind</groupId>
+            <artifactId>javax.json.bind-api</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>yasson</artifactId>
+            <version>1.0.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

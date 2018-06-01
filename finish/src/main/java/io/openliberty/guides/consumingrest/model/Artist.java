@@ -12,31 +12,30 @@
  // end::comment[]
 package io.openliberty.guides.consumingrest.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.json.bind.annotation.JsonbCreator;
+import javax.json.bind.annotation.JsonbProperty;
+import javax.json.bind.annotation.JsonbTransient;
 
 public class Artist {
     
-    @JsonProperty("name") private String name;
-    @JsonProperty("albums") private Album albums[];
+    public String name;
+    public Album albums[];
     
     // does not map to anything
-    @JsonIgnore private boolean legendary = true;
+    @JsonbTransient
+    public boolean legendary = true;
     
-    public String getName() {
-        return name;
+    public Artist() {
+    	//default constructor can be defined
     }
     
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    public Album[] getAlbums() {
-        return albums;
-    }
-    
-    public void setAlbums(Album[] albums) {
-        this.albums = albums;
+    @JsonbCreator
+    public Artist(
+    		@JsonbProperty("name") String name, 
+    		@JsonbProperty("albums") Album albums[]) {
+    	//or custom constructor can be used
+    	this.name = name;
+    	this.albums = albums;
     }
     
     @Override

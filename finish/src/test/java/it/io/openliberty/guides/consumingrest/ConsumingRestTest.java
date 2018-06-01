@@ -14,6 +14,8 @@ package it.io.openliberty.guides.consumingrest;
 
 import static org.junit.Assert.assertEquals;
 
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
@@ -23,9 +25,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import io.openliberty.guides.consumingrest.model.Artist;
+
 public class ConsumingRestTest {
     
     private static String port;
+    private static String baseUrl;
     private static String targetUrl;
     
     private Client client;
@@ -35,21 +40,43 @@ public class ConsumingRestTest {
     @BeforeClass
     public static void oneTimeSetup() {
         port = System.getProperty("liberty.test.port");
-        targetUrl = "http://localhost:" + port + "/artists/total/";
+        baseUrl = "http://localhost:" + port + "/artists/";
+        targetUrl = baseUrl + "total/";
     }
     
     @Before
     public void setup() {
         client = ClientBuilder.newClient();
     }
-    // end::setup[]
     
     @After
     public void teardown() {
         client.close();
     }
+    // end::setup[]
 
     // tag::tests[]
+    // tag::testArtistDeserialization[]
+    @Test
+    public void testArtistDeserialization() {
+    	response = client.target(baseUrl + "jsonString").request().get();
+    	this.assertResponse(baseUrl + "jsonString", response);
+    	
+    	Jsonb jsonb = JsonbBuilder.create();
+    	
+    	String expectedString = "{\"name\":\"foo\",\"albums\":"
+    			+ "[{\"title\":\"album_one\",\"artist\":\"foo\",\"ntracks\":12}]}";
+    	Artist expected = jsonb.fromJson(expectedString, Artist.class);
+    	
+    	String actualString = response.readEntity(String.class);
+		Artist[] actual = jsonb.fromJson(actualString, Artist[].class);
+    	
+    	assertEquals("Expected names of artists does not match", expected.name, actual[0].name);
+    	
+    	response.close();
+    }
+    // end::testArtistDeserialization[]
+    
     // tag::testArtistCount[]
     @Test
     public void testArtistCount() {

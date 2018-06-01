@@ -12,36 +12,32 @@
  // end::comment[]
 package io.openliberty.guides.consumingrest.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.json.bind.annotation.JsonbCreator;
+import javax.json.bind.annotation.JsonbProperty;
 
 public class Album {
 
-    @JsonProperty("title") private String title;
-    @JsonProperty("artist") private String artistName;
-    @JsonProperty("ntracks") private int totalTracks;
+    public String title; 
     
-    public String getTitle() {
-        return title;
+    @JsonbProperty("artist")
+    public String artistName;
+    
+    @JsonbProperty("ntracks") 
+    public int totalTracks;
+    
+    public Album() {
+    	//default constructor can be defined
     }
     
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    
-    public String getArtistName() {
-        return artistName;
-    }
-
-    public void setArtistName(String artistName) {
-        this.artistName = artistName;
-    }
-
-    public int getTotalTracks() {
-        return totalTracks;
-    }
-
-    public void setTotalTracks(int totalTracks) {
-        this.totalTracks = totalTracks;
+    @JsonbCreator
+    public Album(
+    		@JsonbProperty("title") String title, 
+    		@JsonbProperty("artist") String artistName, 
+    		@JsonbProperty("ntracks") int totalTracks) {
+    	//or custom constructor can be used
+    	this.title = title;
+    	this.artistName = artistName;
+    	this.totalTracks = totalTracks;
     }
 
     @Override

@@ -13,6 +13,8 @@
 package io.openliberty.guides.consumingrest.service;
 
 import javax.json.JsonArray;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -33,8 +35,22 @@ public class ArtistResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public JsonArray getArtists() {
-        return Reader.getArtists();
+    	return Reader.getArtists();
     }
+    
+    // tag::getJsonString[]
+    @GET
+    @Path("jsonString")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getJsonString() {
+    	Jsonb jsonb = JsonbBuilder.create();
+    	
+    	Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString() + "artists");
+    	String result = jsonb.toJson(artists);
+    	
+    	return result;
+    }
+    // end::getJsonString[]
     
     // tag::getTotalArtists[]
     @GET
@@ -50,10 +66,10 @@ public class ArtistResource {
     @Path("total/{artist}")
     @Produces(MediaType.TEXT_PLAIN)
     public int getTotalAlbums(@PathParam("artist") String artist) {
-        Artist[] artists = Consumer.consumeWithJackson(uriInfo.getBaseUri().toString() + "artists");
+        Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString() + "artists");
         for (int i = 0; i < artists.length; i++) {
-            if (artists[i].getName().equals(artist)) {
-                return artists[i].getAlbums().length;
+            if (artists[i].name.equals(artist)) {
+            	return artists[i].albums.length;
             }
         }
         return -1;
