@@ -124,17 +124,17 @@ find it useful to deserialize a JSON message with only certain properties, speci
 property names, or have a class with a custom constructor. In these cases,
 annotations are necessary and recommended:
 
-* The `@JsonProperty` annotation is used to map JSON keys to class instance members and vice versa.
+* The `@JsonbProperty` annotation is used to map JSON keys to class instance members and vice versa.
 Without the use of this annotation, JSON-B will attempt to do POJO mapping, matching the keys in
 the JSON to the class instance members by name. If these names do not match, then getters and setters
 are matched to JSON keys and the instance members are set explicitly. If the getter and setter
 signatures do not match any key names, then deserialization fails. Note that the `Artist` POJO,
 does not require this annotation since all instance members match the JSON keys by name.
 
-* The `@JsonbCreator` and `@JsonProperty` annotations are used to annotate a custom constructor.
+* The `@JsonbCreator` and `@JsonbProperty` annotations are used to annotate a custom constructor.
 This is required for proper parameter substitution when a custom constructor is used.
 
-* The `@JsonTransient` annotation is used to define an object property that does not map to any JSON
+* The `@JsonbTransient` annotation is used to define an object property that does not map to any JSON
 property. While the use of this annotation is good practice, it is only necessary for serialization.
 
 For more information on customization with JSON-B please see the
@@ -162,7 +162,7 @@ JSON-B is a Java API that is used to serialize Java objects to JSON messages and
 To include the JSON-B provider in your project, add the following dependency to your `pom.xml`,
 which has been done for you:
 
-[source, xml]
+[source, xml, role="no_copy"]
 ----
 <dependency>
    <groupId>javax.json.bind</groupId>
@@ -182,7 +182,7 @@ This method makes a `GET` request to the running artist service and retrieves th
 
 To bind the JSON into an `Artist` array, use the `Artist[]` entity type in the `readEntity` call:
 
-[source, java, indent = 0]
+[source, java, indent = 0, role="no_copy"]
 ----
 Artist[] artists = response.readEntity(Artist[].class);
 ----

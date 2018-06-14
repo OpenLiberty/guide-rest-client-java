@@ -28,51 +28,50 @@ import io.openliberty.guides.consumingrest.Consumer;
 
 @Path("artists")
 public class ArtistResource {
-    
+
     @Context
     UriInfo uriInfo;
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public JsonArray getArtists() {
     	return Reader.getArtists();
     }
-    
+
     // tag::getJsonString[]
     @GET
     @Path("jsonString")
     @Produces(MediaType.TEXT_PLAIN)
     public String getJsonString() {
-    	Jsonb jsonb = JsonbBuilder.create();
-    	
-    	Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString() + "artists");
-    	String result = jsonb.toJson(artists);
-    	
-    	return result;
+      Jsonb jsonb = JsonbBuilder.create();
+
+      Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString() + "artists");
+      String result = jsonb.toJson(artists);
+
+      return result;
     }
     // end::getJsonString[]
-    
+
     // tag::getTotalArtists[]
     @GET
     @Path("total")
     @Produces(MediaType.TEXT_PLAIN)
     public int getTotalArtists() {
-        return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString() + "artists").length;
+      return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString() + "artists").length;
     }
     // end::getTotalArtists[]
-    
     // tag::getTotalAlbums[]
     @GET
     @Path("total/{artist}")
     @Produces(MediaType.TEXT_PLAIN)
     public int getTotalAlbums(@PathParam("artist") String artist) {
-        Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString() + "artists");
-        for (int i = 0; i < artists.length; i++) {
-            if (artists[i].name.equals(artist)) {
-            	return artists[i].albums.length;
-            }
+      Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString() + "artists");
+      for (int i = 0; i < artists.length; i++) {
+        if (artists[i].name.equals(artist)) {
+          return artists[i].albums.length;
         }
-        return -1;
+      }
+      return -1;
     }
     // end::getTotalAlbums[]
 
