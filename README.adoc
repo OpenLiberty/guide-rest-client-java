@@ -86,7 +86,6 @@ When the server is running, you can find your service at:
 // =================================================================================================
 // Guide
 // =================================================================================================
-
 == POJOs
 
 To deserialize a JSON message, start with creating Plain Old Java Objects (POJOs) that represent what
@@ -111,6 +110,19 @@ include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Artist.j
 ----
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.java[tags=!comment]
 ----
+
+== Differences between JSON-B and JSON-P
+
+With JSON-B you *directly* serialize and deserialize POJOs. This API gives you a
+variety of options for working with JSON resources.
+
+In contrast, you need to use helper methods with JSON-P to process the JSON response.
+This tactic is more straightforward, but it can be cumbersome with more complex classes.
+
+JSON-B is built on top of the existing JSON-P API. JSON-B can do everything that JSON-P can do
+and allows for more customization for serializing and deserializing. For
+more information on JSON-B and how to serialize POJOs into JSON strings please refer to the
+http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide].
 
 === Using JSON-B
 
@@ -268,7 +280,7 @@ For your test classes to have access to JSON-B, add the following dependency to 
 </dependency>
 ----
 
-Write the `testArtistDeserialization` test case.  This test checks that Artist instances created from
+Write the `testArtistDeserialization` test case. This test checks that `Artist` instances created from
 the REST data and those that are hardcoded perform the same.
 
 [source, java, indent = 0]
@@ -297,7 +309,7 @@ include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRe
 === Testing the processing with JSON-P
 
 Write the `testArtistCount` test case. This test checks that deserialization with JSON-P was done correctly
-and that the correct number of artist is returned.
+and that the correct number of artists is returned.
 
 [source, java, indent = 0]
 ----
@@ -341,25 +353,6 @@ Results :
 Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
 ----
-
-== Conclusions
-
-This guide solely focused on deserialization of JSON resources.  JSON-B provides the
-ability to *directly* serialize and deserialize POJOs.  This powerful API gives
-developers many options for working with JSON resources.
-
-In contrast, you may have noticed that the JSON-P implementation of this guide required
-the use of helper methods to process the JSON response.  This tactic is more
-straightforward, but can be cumbersome with more complex classes.
-
-After seeing these two ways to consume the returned JSON resources (JSON-B and JSON-P)
-from a RESTful web service you may be asking yourself, "Which way is better?"
-
-JSON-B was built on top of the existing JSON-P API.  It can do everything that JSON-P can
-and allows for more customization for serializing and deserializing.  We would recommend,
-if you have not already, to try using JSON-B for your next project.  If you want
-more information on JSON-B and how to serialize POJOs into JSON strings please refer to the
-http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide].
 
 == Great work! You're done!
 
