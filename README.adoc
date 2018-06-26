@@ -113,7 +113,7 @@ include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.ja
 
 == Differences between JSON-B and JSON-P
 
-With JSON-B you *directly* serialize and deserialize POJOs. This API gives you a
+With JSON-B you directly serialize and deserialize POJOs. This API gives you a
 variety of options for working with JSON resources.
 
 In contrast, you need to use helper methods with JSON-P to process the JSON response.
@@ -121,7 +121,7 @@ This tactic is more straightforward, but it can be cumbersome with more complex 
 
 JSON-B is built on top of the existing JSON-P API. JSON-B can do everything that JSON-P can do
 and allows for more customization for serializing and deserializing. For
-more information on JSON-B and how to serialize POJOs into JSON strings please refer to the
+more information on JSON-B and how to serialize POJOs into JSON strings, refer to the
 http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide].
 
 === Using JSON-B
