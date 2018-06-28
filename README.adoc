@@ -25,11 +25,11 @@ Explore how to access a simple RESTful web service and consume its resources in 
 
 == What you'll learn
 
-You will learn how to access a REST service, serialize a java object containing a
-list of artists and their albums, and deserialize the returned JSON resources using
-two different approaches. The first approach consists of using JSON-B (binding) API
-to convert JSON messages into Java objects directly.  The second approach consists of
-using the JSON-P (JSON with Padding) API to process the JSON.
+You will learn how to access a REST service, serialize a Java object that contains a
+list of artists and their albums, and use two different approaches to deserialize
+the returned JSON resources. The first approach consists of using the JSON-B API
+to directly convert JSON messages into Java objects.  The second approach consists of
+using the JSON-P API to process the JSON.
 
 The REST service that provides the artists and albums resources has already been written
 for you and is accessible at:
@@ -86,7 +86,6 @@ When the server is running, you can find your service at:
 // =================================================================================================
 // Guide
 // =================================================================================================
-
 == POJOs
 
 To deserialize a JSON message, start with creating Plain Old Java Objects (POJOs) that represent what
@@ -112,32 +111,44 @@ include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Artist.j
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.java[tags=!comment]
 ----
 
+== Differences between JSON-B and JSON-P
+
+With JSON-B you directly serialize and deserialize POJOs. This API gives you a
+variety of options for working with JSON resources.
+
+In contrast, you need to use helper methods with JSON-P to process the JSON response.
+This tactic is more straightforward, but it can be cumbersome with more complex classes.
+
+JSON-B is built on top of the existing JSON-P API. JSON-B can do everything that JSON-P can do
+and allows for more customization for serializing and deserializing. For
+more information on JSON-B and how to serialize POJOs into JSON strings, refer to the
+http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide].
+
 === Using JSON-B
 
-JSON-B is a new feature introduced with Java EE 8 and strengthens Java's support for JSON.
-This guide previously used Jackson for JSON binding.  JSON-B requires, by default, a
-public default no-arguments constructor for deserialization.
+JSON-B is a feature introduced with Java EE 8 and strengthens Java support for JSON.
+By default, JSON-B requires a public default no-argument constructor for deserialization.
 
-The JSON-B engine includes a set of default mapping rules which can be run without
-any customization annotations or custom configuration. There are instances where you may
-find it useful to deserialize a JSON message with only certain properties, specific
-property names, or have a class with a custom constructor. In these cases,
+The JSON-B engine includes a set of default mapping rules, which can be run without
+any customization annotations or custom configuration. In some instances, you might
+find it useful to deserialize a JSON message with only certain fields, specific
+field names, or classes with custom constructors. In these cases,
 annotations are necessary and recommended:
 
-* The `@JsonProperty` annotation is used to map JSON keys to class instance members and vice versa.
+* The `@JsonbProperty` annotation to map JSON keys to class instance members and vice versa.
 Without the use of this annotation, JSON-B will attempt to do POJO mapping, matching the keys in
 the JSON to the class instance members by name. If these names do not match, then getters and setters
 are matched to JSON keys and the instance members are set explicitly. If the getter and setter
 signatures do not match any key names, then deserialization fails. Note that the `Artist` POJO,
 does not require this annotation since all instance members match the JSON keys by name.
 
-* The `@JsonbCreator` and `@JsonProperty` annotations are used to annotate a custom constructor.
-This is required for proper parameter substitution when a custom constructor is used.
+* The `@JsonbCreator` and `@JsonbProperty` annotations to annotate a custom constructor.
+This annotation is required for proper parameter substitution when a custom constructor is used.
 
-* The `@JsonTransient` annotation is used to define an object property that does not map to any JSON
+* The `@JsonbTransient` annotation to define an object property that does not map to a JSON
 property. While the use of this annotation is good practice, it is only necessary for serialization.
 
-For more information on customization with JSON-B please see the
+For more information on customization with JSON-B, see the
 http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide].
 
 // =================================================================================================
@@ -159,10 +170,10 @@ include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[
 
 JSON-B is a Java API that is used to serialize Java objects to JSON messages and vice versa.
 
-To include the JSON-B provider in your project, add the following dependency to your `pom.xml`,
-which has been done for you:
+To include the JSON-B provider in your project, add the following dependency to your `pom.xml`
+file, which is already done for you:
 
-[source, xml]
+[source, xml, role="no_copy"]
 ----
 <dependency>
    <groupId>javax.json.bind</groupId>
@@ -171,7 +182,7 @@ which has been done for you:
 </dependency>
 ----
 
-Write the method for consuming the REST service using JSON-B in the `Consumer` class:
+Use JSON-B in the `Consumer` class to write the method for consuming the REST service:
 
 [source, java, indent=0]
 ----
@@ -182,15 +193,15 @@ This method makes a `GET` request to the running artist service and retrieves th
 
 To bind the JSON into an `Artist` array, use the `Artist[]` entity type in the `readEntity` call:
 
-[source, java, indent = 0]
+[source, java, indent = 0, role="no_copy"]
 ----
 Artist[] artists = response.readEntity(Artist[].class);
 ----
 
 Write the `getJsonString` and `getTotalAlbums` methods in the `ArtistResource` class. The `getTotalAlbums`
-method will use JSON-B to return the total number of albums present in the JSON for a particular artist
-and -1 if this artist does not exist using JSON-B.  The `getJsonString` method will return the JSON as
-a string that we will use later for testing.
+method uses JSON-B to return the total number of albums present in the JSON for a particular artist. The
+method returns -1 if this artist does not exist. The `getJsonString` method returns the JSON as
+a string that will be used later for testing.
 
 `start/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java`:
 
@@ -209,8 +220,8 @@ Write the method for consuming the REST service using JSON-P in the `Consumer` c
 include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=consumeWithJsonp]
 ----
 
-Write the `collectArtists` and `collectAlbums` helpers. These methods will parse that JSON and
-collect its objects into individual POJOs.  Notice that we are able to use our custom constructors
+Write the `collectArtists` and `collectAlbums` helpers. These methods will parse the JSON and
+collect its objects into individual POJOs.  Notice that the you can use the custom constructors
 to create instances of `Artist` and `Album`:
 
 [source, java, indent=0]
@@ -228,11 +239,9 @@ approach to return the total number of artists present in the JSON.
 include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[tags=getTotalArtists]
 ----
 
-It is worth noting that in this project the methods that we created in the `Consumer`
-class could be written directly in the `ArtistResource` class.  However, if you are
-consuming a REST resource from a third party service it is best practice to separate
-your GET and PULL requests from your data consumption.
-
+The methods that you created in the `Consumer` class can be written directly in the
+`ArtistResource` class. However, if you are consuming a REST resource from a third
+party service, you can separate your GET and PULL requests from your data consumption.
 
 // =================================================================================================
 // Testing deserialization
@@ -258,8 +267,8 @@ them via the `System.getProperty` call in the
 https://openliberty.io/guides/microprofile-intro.html[MicroProfile guide].
 
 === Testing the binding process
-In order for your test classes to have access to JSON-B you must add the following dependency to your `pom.xml`,
-which has been done for you:
+For your test classes to have access to JSON-B, add the following dependency to your
+`pom.xml` file, which is already done for you:
 
 [source, xml]
 ----
@@ -271,7 +280,7 @@ which has been done for you:
 </dependency>
 ----
 
-Write the `testArtistDeserialization` test case.  This test checks that Artist instances created from
+Write the `testArtistDeserialization` test case. This test checks that `Artist` instances created from
 the REST data and those that are hardcoded perform the same.
 
 [source, java, indent = 0]
@@ -300,7 +309,7 @@ include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRe
 === Testing the processing with JSON-P
 
 Write the `testArtistCount` test case. This test checks that deserialization with JSON-P was done correctly
-and that the correct number of artist is returned.
+and that the correct number of artists is returned.
 
 [source, java, indent = 0]
 ----
@@ -344,25 +353,6 @@ Results :
 Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
 ----
-
-== Conclusions
-
-This guide solely focused on deserialization of JSON resources.  JSON-B provides the
-ability to *directly* serialize and deserialize POJOs.  This powerful API gives
-developers many options for working with JSON resources.
-
-In contrast, you may have noticed that the JSON-P implementation of this guide required
-the use of helper methods to process the JSON response.  This tactic is more
-straightforward, but can be cumbersome with more complex classes.
-
-After seeing these two ways to consume the returned JSON resources (JSON-B and JSON-P)
-from a RESTful web service you may be asking yourself, "Which way is better?"
-
-JSON-B was built on top of the existing JSON-P API.  It can do everything that JSON-P can
-and allows for more customization for serializing and deserializing.  We would recommend,
-if you have not already, to try using JSON-B for your next project.  If you want
-more information on JSON-B and how to serialize POJOs into JSON strings please refer to the
-http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide].
 
 == Great work! You're done!
 
