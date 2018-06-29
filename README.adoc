@@ -17,6 +17,9 @@
 :source-highlighter: prettify
 = Consuming a RESTful web service
 
+[.hidden]
+NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
+
 Explore how to access a simple RESTful web service and consume its resources in Java.
 
 
