@@ -20,19 +20,19 @@ public class Artist {
     public String name;
     public Album albums[];
 
-    // does not map to anything
+    //does not map to anything
     @JsonbTransient
     public boolean legendary = true;
-    
+
+    //default constructor can be defined
     public Artist() {
-    	//default constructor can be defined
     }
 
     @JsonbCreator
+    //or custom constructor can be used
     public Artist(
         @JsonbProperty("name") String name,
         @JsonbProperty("albums") Album albums[]) {
-    	//or custom constructor can be used
       this.name = name;
       this.albums = albums;
     }
@@ -41,5 +41,4 @@ public class Artist {
     public String toString() {
       return name + " wrote " + albums.length + " albums";
     }
-
 }

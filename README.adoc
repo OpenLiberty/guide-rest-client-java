@@ -128,7 +128,8 @@ http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide].
 === Using JSON-B
 
 JSON-B is a feature introduced with Java EE 8 and strengthens Java support for JSON.
-By default, JSON-B requires a public default no-argument constructor for deserialization.
+JSON-B requires a POJO to have a public default no-argument constructor for deserialization
+and binding to work properly.
 
 The JSON-B engine includes a set of default mapping rules, which can be run without
 any customization annotations or custom configuration. In some instances, you might

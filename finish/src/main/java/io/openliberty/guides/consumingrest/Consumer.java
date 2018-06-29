@@ -82,4 +82,5 @@ public class Consumer {
     }
     // end::collectAlbums[]
     // end::class[]
+    
 }
