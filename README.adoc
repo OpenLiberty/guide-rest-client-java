@@ -17,7 +17,8 @@
 :source-highlighter: prettify
 = Consuming a RESTful web service
 
-Explore how to access a simple RESTful web service and consume its resources in Java.
+Explore how to access a simple RESTful web service and consume its resources in Java
+using JSON-B and JSON-P.
 
 // =================================================================================================
 // Introduction
