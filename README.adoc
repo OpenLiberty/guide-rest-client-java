@@ -140,8 +140,8 @@ annotations are necessary and recommended:
 Without the use of this annotation, JSON-B will attempt to do POJO mapping, matching the keys in
 the JSON to the class instance members by name. If these names do not match, then getters and setters
 are matched to JSON keys and the instance members are set explicitly. If the getter and setter
-signatures do not match any key names, then deserialization fails. Note that the `Artist` POJO,
-does not require this annotation since all instance members match the JSON keys by name.
+signatures do not match any key names, then deserialization fails. The Artist POJO
+does not require this annotation because all instance members match the JSON keys by name.
 
 * The `@JsonbCreator` and `@JsonbProperty` annotations to annotate a custom constructor.
 This annotation is required for proper parameter substitution when a custom constructor is used.
@@ -242,7 +242,7 @@ include::finish/src/main/java/io/openliberty/guides/consumingrest/service/Artist
 
 The methods that you created in the `Consumer` class can be written directly in the
 `ArtistResource` class. However, if you are consuming a REST resource from a third
-party service, you can separate your GET and PULL requests from your data consumption.
+party service, you can separate your `GET` and `POST` requests from your data consumption.
 
 // =================================================================================================
 // Testing deserialization
@@ -262,10 +262,6 @@ to do the same but for each individual test case.
 ----
 include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=**;!comment;!tests]
 ----
-
-You can find more detailed explanations on how to define your own system properties and how to access
-them via the `System.getProperty` call in the
-https://openliberty.io/guides/microprofile-intro.html[MicroProfile guide].
 
 === Testing the binding process
 For your test classes to have access to JSON-B, add the following dependency to your
