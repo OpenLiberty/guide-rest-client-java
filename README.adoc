@@ -161,7 +161,7 @@ http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide].
 
 Write a simple `Consumer` class that consumes the artist JSON using both JSON-B and JSON-P.
 
-`src/test/java/io/openliberty/guides/consumingrest/Consumer.java`:
+`src/main/java/io/openliberty/guides/consumingrest/Consumer.java`:
 
 [source, java, indent=0]
 ----
@@ -186,7 +186,7 @@ file, which is already done for you:
 
 Add a method that uses JSON-B to consume the REST service in the `Consumer` class:
 
-`src/test/java/io/openliberty/guides/consumingrest/Consumer.java`
+`src/main/java/io/openliberty/guides/consumingrest/Consumer.java`
 
 [source, java, indent=0]
 ----
