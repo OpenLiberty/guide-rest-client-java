@@ -16,7 +16,6 @@ import javax.json.bind.annotation.JsonbCreator;
 import javax.json.bind.annotation.JsonbProperty;
 
 public class Album {
-
     public String title;
 
     @JsonbProperty("artist")
@@ -33,18 +32,17 @@ public class Album {
     //or custom constructor can be used
     public Album(
       @JsonbProperty("title") String title,
-    	@JsonbProperty("artist") String artistName,
-    	@JsonbProperty("ntracks") int totalTracks) {
-
-    	this.title = title;
-    	this.artistName = artistName;
-    	this.totalTracks = totalTracks;
+      @JsonbProperty("artist") String artistName,
+      @JsonbProperty("ntracks") int totalTracks) {
+        
+      this.title = title;
+      this.artistName = artistName;
+      this.totalTracks = totalTracks;
     }
 
     @Override
     public String toString() {
-        return "Album titled " + title + " by " + artistName + " contains "
-          + totalTracks + " tracks";
+      return "Album titled " + title + " by " + artistName +
+        " contains " + totalTracks + " tracks";
     }
-
 }

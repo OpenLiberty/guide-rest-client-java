@@ -26,6 +26,7 @@ public class Artist {
 
     //default constructor can be defined
     public Artist() {
+
     }
 
     @JsonbCreator

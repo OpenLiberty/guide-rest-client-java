@@ -17,11 +17,10 @@ import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbTransient;
 
 public class Artist {
-
     public String name;
     public Album albums[];
 
-    // does not map to anything
+    //does not map to anything
     @JsonbTransient
     public boolean legendary = true;
 
@@ -33,16 +32,15 @@ public class Artist {
     @JsonbCreator
     //or custom constructor can be used
     public Artist(
-    	@JsonbProperty("name") String name,
-    	@JsonbProperty("albums") Album albums[]) {
+      @JsonbProperty("name") String name,
+      @JsonbProperty("albums") Album albums[]) {
 
-    	this.name = name;
-    	this.albums = albums;
+      this.name = name;
+      this.albums = albums;
     }
 
     @Override
     public String toString() {
-        return name + " wrote " + albums.length + " albums";
+      return name + " wrote " + albums.length + " albums";
     }
-
 }
