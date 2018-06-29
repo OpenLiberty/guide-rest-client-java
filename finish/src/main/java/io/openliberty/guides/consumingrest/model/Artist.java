@@ -31,8 +31,9 @@ public class Artist {
     @JsonbCreator
     //or custom constructor can be used
     public Artist(
-        @JsonbProperty("name") String name,
-        @JsonbProperty("albums") Album albums[]) {
+      @JsonbProperty("name") String name,
+      @JsonbProperty("albums") Album albums[]) {
+
       this.name = name;
       this.albums = albums;
     }

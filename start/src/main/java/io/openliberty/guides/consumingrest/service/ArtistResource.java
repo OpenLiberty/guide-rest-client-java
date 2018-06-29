@@ -22,20 +22,20 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
 import io.openliberty.guides.consumingrest.model.Artist;
-//import io.openliberty.guides.consumingrest.Consumer;
+import io.openliberty.guides.consumingrest.Consumer;
 
 @Path("artists")
 public class ArtistResource {
-    
+
     @Context
     UriInfo uriInfo;
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public JsonArray getArtists() {
         return Reader.getArtists();
     }
-    
+
     //Add additional methods here
 
 }
