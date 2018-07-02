@@ -13,6 +13,8 @@
 package io.openliberty.guides.consumingrest.service;
 
 import javax.json.JsonArray;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -26,38 +28,56 @@ import io.openliberty.guides.consumingrest.Consumer;
 
 @Path("artists")
 public class ArtistResource {
-    
+
     @Context
     UriInfo uriInfo;
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public JsonArray getArtists() {
-        return Reader.getArtists();
+    	return Reader.getArtists();
     }
-    
-    // tag::getTotalArtists[]
+
+    // tag::getJsonString[]
     @GET
-    @Path("total")
+    @Path("jsonString")
     @Produces(MediaType.TEXT_PLAIN)
-    public int getTotalArtists() {
-        return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString() + "artists").length;
+    public String getJsonString() {
+      Jsonb jsonb = JsonbBuilder.create();
+
+      Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString() +
+        "artists");
+      String result = jsonb.toJson(artists);
+
+      return result;
     }
-    // end::getTotalArtists[]
-    
+    // end::getJsonString[]
+
     // tag::getTotalAlbums[]
     @GET
     @Path("total/{artist}")
     @Produces(MediaType.TEXT_PLAIN)
     public int getTotalAlbums(@PathParam("artist") String artist) {
-        Artist[] artists = Consumer.consumeWithJackson(uriInfo.getBaseUri().toString() + "artists");
-        for (int i = 0; i < artists.length; i++) {
-            if (artists[i].getName().equals(artist)) {
-                return artists[i].getAlbums().length;
-            }
+      Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString()
+        + "artists");
+
+      for (int i = 0; i < artists.length; i++) {
+        if (artists[i].name.equals(artist)) {
+          return artists[i].albums.length;
         }
-        return -1;
+      }
+      return -1;
     }
     // end::getTotalAlbums[]
+
+    // tag::getTotalArtists[]
+    @GET
+    @Path("total")
+    @Produces(MediaType.TEXT_PLAIN)
+    public int getTotalArtists() {
+      return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString() +
+        "artists").length;
+    }
+    // end::getTotalArtists[]
 
 }

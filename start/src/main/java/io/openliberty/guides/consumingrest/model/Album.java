@@ -12,41 +12,37 @@
  // end::comment[]
 package io.openliberty.guides.consumingrest.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.json.bind.annotation.JsonbCreator;
+import javax.json.bind.annotation.JsonbProperty;
 
 public class Album {
+    public String title;
 
-    @JsonProperty("title") private String title;
-    @JsonProperty("artist") private String artistName;
-    @JsonProperty("ntracks") private int totalTracks;
-    
-    public String getTitle() {
-        return title;
-    }
-    
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    
-    public String getArtistName() {
-        return artistName;
+    @JsonbProperty("artist")
+    public String artistName;
+
+    @JsonbProperty("ntracks")
+    public int totalTracks;
+
+    //default constructor can be defined
+    public Album() {
     }
 
-    public void setArtistName(String artistName) {
-        this.artistName = artistName;
-    }
-
-    public int getTotalTracks() {
-        return totalTracks;
-    }
-
-    public void setTotalTracks(int totalTracks) {
-        this.totalTracks = totalTracks;
+    @JsonbCreator
+    //or custom constructor can be used
+    public Album(
+      @JsonbProperty("title") String title,
+      @JsonbProperty("artist") String artistName,
+      @JsonbProperty("ntracks") int totalTracks) {
+        
+      this.title = title;
+      this.artistName = artistName;
+      this.totalTracks = totalTracks;
     }
 
     @Override
     public String toString() {
-        return "Album titled " + title + " by " + artistName + " contains " + totalTracks + " tracks";
+      return "Album titled " + title + " by " + artistName +
+        " contains " + totalTracks + " tracks";
     }
-
 }
