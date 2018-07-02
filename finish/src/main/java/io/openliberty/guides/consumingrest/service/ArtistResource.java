@@ -52,15 +52,6 @@ public class ArtistResource {
       return result;
     }
     // end::getJsonString[]
-    // tag::getTotalArtists[]
-    @GET
-    @Path("total")
-    @Produces(MediaType.TEXT_PLAIN)
-    public int getTotalArtists() {
-      return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString() +
-        "artists").length;
-    }
-    // end::getTotalArtists[]
     // tag::getTotalAlbums[]
     @GET
     @Path("total/{artist}")
@@ -77,5 +68,14 @@ public class ArtistResource {
       return -1;
     }
     // end::getTotalAlbums[]
+    // tag::getTotalArtists[]
+    @GET
+    @Path("total")
+    @Produces(MediaType.TEXT_PLAIN)
+    public int getTotalArtists() {
+      return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString() +
+        "artists").length;
+    }
+    // end::getTotalArtists[]
 
 }

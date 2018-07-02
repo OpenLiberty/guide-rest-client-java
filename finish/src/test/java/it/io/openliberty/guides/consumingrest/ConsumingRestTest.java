@@ -35,6 +35,7 @@ public class ConsumingRestTest {
 
     private Client client;
     private Response response;
+    
     // tag::setup[]
     @BeforeClass
     public static void oneTimeSetup() {
@@ -53,7 +54,7 @@ public class ConsumingRestTest {
       client.close();
     }
     // end::setup[]
-    
+
     // tag::tests[]
     // tag::testArtistDeserialization[]
     @Test

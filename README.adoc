@@ -83,7 +83,6 @@ When the server is running, you can find your service at:
 
 * `http://localhost:9080/artists`
 
-
 // =================================================================================================
 // Guide
 // =================================================================================================
@@ -98,16 +97,16 @@ they have written. The `Album` object represents a single object within the albu
 contains three instance members `title`, `artist`, and `ntracks`, which map to the album title, the
 artist who wrote the album, and the number of tracks the album contains.
 
-`start/src/main/java/io/openliberty/guides/consumingrest/model/Artist.java`:
+`src/main/java/io/openliberty/guides/consumingrest/model/Artist.java`:
 
-[source, java, indent=0]
+[source, java, indent=0, role="no_copy"]
 ----
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Artist.java[tags=!comment]
 ----
 
-`start/src/main/java/io/openliberty/guides/consumingrest/model/Album.java`:
+`src/main/java/io/openliberty/guides/consumingrest/model/Album.java`:
 
-[source, java, indent=0]
+[source, java, indent=0, role="no_copy"]
 ----
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.java[tags=!comment]
 ----
@@ -121,9 +120,7 @@ In contrast, you need to use helper methods with JSON-P to process the JSON resp
 This tactic is more straightforward, but it can be cumbersome with more complex classes.
 
 JSON-B is built on top of the existing JSON-P API. JSON-B can do everything that JSON-P can do
-and allows for more customization for serializing and deserializing. For
-more information on JSON-B and how to serialize POJOs into JSON strings, refer to the
-http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide].
+and allows for more customization for serializing and deserializing.
 
 === Using JSON-B
 
@@ -186,7 +183,7 @@ file, which is already done for you:
 
 Add a method that uses JSON-B to consume the REST service in the `Consumer` class:
 
-`src/main/java/io/openliberty/guides/consumingrest/Consumer.java`
+`src/main/java/io/openliberty/guides/consumingrest/Consumer.java`:
 
 [source, java, indent=0]
 ----
@@ -202,29 +199,18 @@ To bind the JSON into an `Artist` array, use the `Artist[]` entity type in the `
 Artist[] artists = response.readEntity(Artist[].class);
 ----
 
-Write the `getJsonString` and `getTotalAlbums` methods in the `ArtistResource` class. The `getTotalAlbums`
-method uses JSON-B to return the total number of albums present in the JSON for a particular artist. The
-method returns -1 if this artist does not exist. The `getJsonString` method returns the JSON as
-a string that will be used later for testing.
-
-`start/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java`:
-
-[source, java, indent=0]
-----
-include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[tags=getJsonString]
-include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[tags=getTotalAlbums]
-----
-
 === Processing JSON using JSON-P
 
-Write the method for consuming the REST service using JSON-P in the `Consumer` class:
+Add a method for consuming the REST service using JSON-P in the `Consumer` class:
+
+`src/main/java/io/openliberty/guides/consumingrest/Consumer.java`:
 
 [source, java, indent=0]
 ----
 include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=consumeWithJsonp]
 ----
 
-Write the `collectArtists` and `collectAlbums` helpers. These methods will parse the JSON and
+Add the `collectArtists` and `collectAlbums` helper methods. These methods will parse the JSON and
 collect its objects into individual POJOs.  Notice that the you can use the custom constructors
 to create instances of `Artist` and `Album`:
 
@@ -233,19 +219,34 @@ to create instances of `Artist` and `Album`:
 include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=collectArtists;collectAlbums]
 ----
 
-Write the `getTotalArtists` method in the `ArtistResource` class. This method will use the JSON-P
-approach to return the total number of artists present in the JSON.
+== Creating additional resources
 
-`start/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java`:
+Now that you can consume a JSON resource you can put that data to use.
+Copy the `ArtistResource` class below and replace the `ArtistResource` class in
+the `start` directory.
+
+`src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java`:
 
 [source, java, indent=0]
 ----
-include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[tags=getTotalArtists]
+include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[tags=!comment]
 ----
 
-The methods that you created in the `Consumer` class can be written directly in the
+* The `getArtists` method provides the raw JSON data service that you accessed at the
+beginning of this guide.
+
+* The `getJsonString` method uses JSON-B to return the JSON as a string that will
+be used later for testing.
+
+* The `getTotalAlbums` method uses JSON-B to return the total number of albums present
+in the JSON for a particular artist. The method returns -1 if this artist does not exist.
+
+* The `getTotalArtists` method uses JSON-P to return the total number of artists
+present in the JSON.
+
+The methods that you created in the `Consumer` class could be written directly in the
 `ArtistResource` class. However, if you are consuming a REST resource from a third
-party service, you can separate your `GET` and `POST` requests from your data consumption.
+party service, you should separate your `GET` and `POST` requests from your data consumption.
 
 // =================================================================================================
 // Testing deserialization
@@ -253,7 +254,7 @@ party service, you can separate your `GET` and `POST` requests from your data co
 
 == Testing deserialization
 
-Create a test class, `start/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java`.
+Create a test class, `src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java`.
 
 Maven finds and executes all tests under `it/` and each test method must be marked with the `@Test` annotation.
 
@@ -337,8 +338,7 @@ mvn liberty:stop-server
 mvn clean install
 ----
 
-It might take some time before the tests are executed. If the tests pass, you see the following
-output:
+If the tests pass, you see the following output:
 
 [source, role="no_copy"]
 ----
