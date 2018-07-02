@@ -8,7 +8,7 @@
 :projectid: rest-client-java
 :page-layout: guide
 :page-duration: 25 minutes
-:page-releasedate: 2018-06-29
+:page-releasedate: 2018-07-02
 :page-description: Learn how to consume a RESTful web service in Java using JSON-B and JSON-P
 :page-tags: ['REST', 'Client', 'Java', 'JAX-RS', 'JSON-P', 'JSON-B']
 :page-related-guides: ['rest-intro', 'rest-client-angularjs']
@@ -115,7 +115,7 @@ You can view the Album POJO by navigating to the
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.java[tags=!comment]
 ----
 
-== Introducing JSON-B
+== Introducing JSON-B and JSON-P
 
 JSON-B is a feature introduced with Java EE 8 and strengthens Java support for JSON.
 With JSON-B you directly serialize and deserialize POJOs. This API gives you a
