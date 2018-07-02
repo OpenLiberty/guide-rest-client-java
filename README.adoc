@@ -88,6 +88,8 @@ When the server is running, you can find your service at:
 // =================================================================================================
 == POJOs
 
+Now, navigate to the `start` directory to begin.
+
 To deserialize a JSON message, start with creating Plain Old Java Objects (POJOs) that represent what
 is in the JSON and whose instance members map to the keys in the JSON.
 
@@ -97,14 +99,16 @@ they have written. The `Album` object represents a single object within the albu
 contains three instance members `title`, `artist`, and `ntracks`, which map to the album title, the
 artist who wrote the album, and the number of tracks the album contains.
 
-`src/main/java/io/openliberty/guides/consumingrest/model/Artist.java`:
+You can view the Artist POJO by navigating to the
+`src/main/java/io/openliberty/guides/consumingrest/model/Artist.java` file:
 
 [source, java, indent=0, role="no_copy"]
 ----
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Artist.java[tags=!comment]
 ----
 
-`src/main/java/io/openliberty/guides/consumingrest/model/Album.java`:
+You can view the Album POJO by navigating to the
+`src/main/java/io/openliberty/guides/consumingrest/model/Album.java` file:
 
 [source, java, indent=0, role="no_copy"]
 ----
