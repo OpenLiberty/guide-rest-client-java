@@ -52,6 +52,7 @@ public class ArtistResource {
       return result;
     }
     // end::getJsonString[]
+
     // tag::getTotalAlbums[]
     @GET
     @Path("total/{artist}")
@@ -68,6 +69,7 @@ public class ArtistResource {
       return -1;
     }
     // end::getTotalAlbums[]
+
     // tag::getTotalArtists[]
     @GET
     @Path("total")

@@ -86,7 +86,7 @@ When the server is running, you can find your service at:
 // =================================================================================================
 // Guide
 // =================================================================================================
-== POJOs
+== Creating POJOs
 
 Now, navigate to the `start` directory to begin.
 
@@ -115,8 +115,9 @@ You can view the Album POJO by navigating to the
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.java[tags=!comment]
 ----
 
-== Differences between JSON-B and JSON-P
+== Introducing JSON-B
 
+JSON-B is a feature introduced with Java EE 8 and strengthens Java support for JSON.
 With JSON-B you directly serialize and deserialize POJOs. This API gives you a
 variety of options for working with JSON resources.
 
@@ -128,7 +129,6 @@ and allows for more customization for serializing and deserializing.
 
 === Using JSON-B
 
-JSON-B is a feature introduced with Java EE 8 and strengthens Java support for JSON.
 JSON-B requires a POJO to have a public default no-argument constructor for deserialization
 and binding to work properly.
 
@@ -223,7 +223,7 @@ to create instances of `Artist` and `Album`:
 include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=collectArtists;collectAlbums]
 ----
 
-== Creating additional resources
+== Creating additional REST resources
 
 Now that you can consume a JSON resource you can put that data to use.
 Copy the `ArtistResource` class below and replace the `ArtistResource` class in
