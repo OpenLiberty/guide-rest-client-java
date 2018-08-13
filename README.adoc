@@ -176,15 +176,16 @@ include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[
 
 JSON-B is a Java API that is used to serialize Java objects to JSON messages and vice versa.
 
-To include the JSON-B provider in your project, add the following dependency to your `pom.xml`
+Open Liberty's `jsonb-1.0` feature on Maven Central includes the JSON-B provider through transitive dependencies. To include the JSON-B provider in your project, add the following dependency to your `pom.xml`
 file, which is already done for you:
 
 [source, xml, role="no_copy"]
 ----
 <dependency>
-   <groupId>javax.json.bind</groupId>
-   <artifactId>javax.json.bind-api</artifactId>
-   <version>1.0</version>
+   <groupId>io.openliberty.features</groupId>
+   <artifactId>jsonb-1.0</artifactId>
+   <type>esa</type>
+   <scope>provided</scope>
 </dependency>
 ----
 
