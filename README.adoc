@@ -334,21 +334,10 @@ Write the `assertResponse` helper method that asserts that the response code you
 include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=assertResponse]
 ----
 
-=== Running the tests
-
-To rebuild and run the tests, navigate to the `start` directory and run `mvn clean install` from the
-command line.
-
-[source, role="no_copy"]
-----
-# If server is still running from previous steps, stop it first
-mvn liberty:stop-server
-
-# Then execute
-mvn clean install
-----
-
-If the tests pass, you see the following output:
+// =================================================================================================
+// Running the Tests
+// =================================================================================================
+include::{common-includes}/mvnverify.adoc[]
 
 [source, role="no_copy"]
 ----
