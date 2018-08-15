@@ -86,6 +86,8 @@ When the server is running, you can find your service at:
 
 * `http://localhost:9080/artists`
 
+include::{common-includes}/trywhatyoubuild-end.adoc[]
+
 // =================================================================================================
 // Guide
 // =================================================================================================
