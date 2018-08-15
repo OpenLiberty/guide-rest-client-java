@@ -86,6 +86,13 @@ When the server is running, you can find your service at:
 
 * `http://localhost:9080/artists`
 
+When you are done checking out your service, stop the Open Liberty server.  You must
+stop your running Open Liberty server before you re-install it next time.
+
+```
+mvn liberty:stop-server
+```
+
 // =================================================================================================
 // Guide
 // =================================================================================================
