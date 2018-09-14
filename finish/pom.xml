@@ -122,7 +122,7 @@
                 <configuration>
                     <assemblyArtifact>
                         <groupId>io.openliberty</groupId>
-                        <artifactId>openliberty-kernel</artifactId>
+                        <artifactId>openliberty-runtime</artifactId>
                         <version>RELEASE</version>
                         <type>zip</type>
                     </assemblyArtifact>
@@ -141,18 +141,6 @@
                         <goals>
                             <goal>install-server</goal>
                         </goals>
-                    </execution>
-                    <execution>
-                        <id>install-feature</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>install-feature</goal>
-                        </goals>
-                        <configuration>
-                            <features>
-                                <acceptLicense>true</acceptLicense>
-                            </features>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>install-app</id>
