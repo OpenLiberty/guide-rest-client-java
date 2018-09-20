@@ -9,6 +9,7 @@
 :page-layout: guide
 :page-duration: 25 minutes
 :page-releasedate: 2018-07-02
+:page-guide-category: microprofile
 :page-description: Learn how to consume a RESTful web service in Java using JSON-B and JSON-P
 :page-tags: ['REST', 'Client', 'Java', 'JAX-RS', 'JSON-P', 'JSON-B']
 :page-related-guides: ['rest-intro', 'rest-client-angularjs']
