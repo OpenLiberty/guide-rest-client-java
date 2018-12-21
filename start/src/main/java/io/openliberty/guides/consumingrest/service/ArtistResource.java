@@ -13,6 +13,8 @@
 package io.openliberty.guides.consumingrest.service;
 
 import javax.json.JsonArray;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -26,14 +28,14 @@ import io.openliberty.guides.consumingrest.model.Artist;
 
 @Path("artists")
 public class ArtistResource {
-    
+
     @Context
     UriInfo uriInfo;
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public JsonArray getArtists() {
-        return Reader.getArtists();
+    	return Reader.getArtists();
     }
     
     //Add additional methods here

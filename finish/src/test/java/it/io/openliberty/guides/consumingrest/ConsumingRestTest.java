@@ -1,6 +1,6 @@
 // tag::comment[]
 /*******************************************************************************
- * Copyright (c) 2017 IBM Corporation and others.
+ * Copyright (c) 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -53,7 +53,7 @@ public class ConsumingRestTest {
       client.close();
     }
     // end::setup[]
-    
+
     // tag::tests[]
     // tag::testArtistDeserialization[]
     @Test
@@ -76,23 +76,9 @@ public class ConsumingRestTest {
     }
     // end::testArtistDeserialization[]
 
-    // tag::testArtistCount[]
-    @Test
-    public void testArtistCount() {
-      response = client.target(targetUrl).request().get();
-      this.assertResponse(targetUrl, response);
-
-      int expected = 3;
-      int actual = response.readEntity(int.class);
-      assertEquals("Expected number of artists does not match", expected, actual);
-
-      response.close();
-    }
-    // end::testArtistCount[]
-
     // tag::testAlbumCount[]
     @Test
-    public void testAlbumCount() {
+    public void testJsonBAlbumCount() {
       String[] artists = {"dj", "bar", "foo"};
       for (int i = 0; i < artists.length; i++) {
         response = client.target(targetUrl + artists[i]).request().get();
@@ -109,7 +95,7 @@ public class ConsumingRestTest {
 
     // tag::testAlbumCountForUnknownArtist[]
     @Test
-    public void testAlbumCountForUnknownArtist() {
+    public void testJsonBAlbumCountForUnknownArtist() {
       response = client.target(targetUrl + "unknown-artist").request().get();
 
       int expected = -1;
@@ -119,6 +105,20 @@ public class ConsumingRestTest {
       response.close();
     }
     // end::testAlbumCountForUnknownArtist[]
+
+    // tag::testArtistCount[]
+    @Test
+    public void testJsonPArtistCount() {
+      response = client.target(targetUrl).request().get();
+      this.assertResponse(targetUrl, response);
+
+      int expected = 3;
+      int actual = response.readEntity(int.class);
+      assertEquals("Expected number of artists does not match", expected, actual);
+
+      response.close();
+    }
+    // end::testArtistCount[]
 
     /**
      * Asserts that the given URL has the correct (200) response code.

@@ -1,4 +1,4 @@
-// Copyright (c) 2017 IBM Corporation and others.
+// Copyright (c) 2017, 2018 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -8,16 +8,24 @@
 :projectid: rest-client-java
 :page-layout: guide
 :page-duration: 25 minutes
-:page-releasedate: 2018-06-01
-:page-description: Learn how to consume a RESTful web service
-:page-tags: ['REST', 'Client', 'Java', 'JAX-RS', 'JSON-P', 'JSON-B']
+:page-releasedate: 2018-07-02
+:page-guide-category: microprofile
+:page-essential: false
+:page-description: Explore how to access a simple RESTful web service and consume its resources in Java.
+:page-tags: ['REST', 'Client', 'Java', 'JAX-RS', 'JSON-P', 'JSON-B', 'MicroProfile', 'Java EE']
 :page-related-guides: ['rest-intro', 'rest-client-angularjs']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
+:page-seo-title: Consuming a RESTful web service
+:page-seo-description: How to consume a RESTful web service in Java using JSON-B and JSON-P
 = Consuming a RESTful web service
 
-Explore how to access a simple RESTful web service and consume its resources in Java.
+[.hidden]
+NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
+
+Explore how to access a simple RESTful web service and consume its resources in Java
+using JSON-B and JSON-P.
 
 // =================================================================================================
 // Introduction
@@ -69,24 +77,26 @@ include::{common-includes}/gitclone.adoc[]
 
 == Starting the service
 
-If you want to start the REST service, run the Maven `install` and `liberty:start-server` goals from
+This guide is already setup with a general application. As you progress through the guide
+you will make updates to the code directly, and then push updates to the server
+so you can see the results.
+
+To start the REST service, run the Maven `install` and `liberty:start-server` goals from
 the `start` directory:
 
-[source, role="no_copy"]
-----
+```
 mvn clean install
 mvn liberty:start-server
-----
+```
 
-When the server is running, you can find your service at:
+When the server is running, you can find your service at http://localhost:9080/artists
 
-* `http://localhost:9080/artists`
-
+include::{common-includes}/trywhatyoubuild-end.adoc[]
 
 // =================================================================================================
 // Guide
 // =================================================================================================
-== POJOs
+== Creating POJOs
 
 To deserialize a JSON message, start with creating Plain Old Java Objects (POJOs) that represent what
 is in the JSON and whose instance members map to the keys in the JSON.
@@ -97,37 +107,38 @@ they have written. The `Album` object represents a single object within the albu
 contains three instance members `title`, `artist`, and `ntracks`, which map to the album title, the
 artist who wrote the album, and the number of tracks the album contains.
 
-`start/src/main/java/io/openliberty/guides/consumingrest/model/Artist.java`:
+You can view the Artist POJO by navigating to the
+`src/main/java/io/openliberty/guides/consumingrest/model/Artist.java` file:
 
-[source, java, indent=0]
+[source, java, indent=0, role="no_copy"]
 ----
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Artist.java[tags=!comment]
 ----
 
-`start/src/main/java/io/openliberty/guides/consumingrest/model/Album.java`:
+You can view the Album POJO by navigating to the
+`src/main/java/io/openliberty/guides/consumingrest/model/Album.java` file:
 
-[source, java, indent=0]
+[source, java, indent=0, role="no_copy"]
 ----
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.java[tags=!comment]
 ----
 
-== Differences between JSON-B and JSON-P
+== Introducing JSON-B and JSON-P
 
+JSON-B is a feature introduced with Java EE 8 and strengthens Java support for JSON.
 With JSON-B you directly serialize and deserialize POJOs. This API gives you a
 variety of options for working with JSON resources.
 
-In contrast, you need to use helper methods with JSON-P to process the JSON response.
+In contrast, you need to use helper methods with JSON-P to process a JSON response.
 This tactic is more straightforward, but it can be cumbersome with more complex classes.
 
 JSON-B is built on top of the existing JSON-P API. JSON-B can do everything that JSON-P can do
-and allows for more customization for serializing and deserializing. For
-more information on JSON-B and how to serialize POJOs into JSON strings, refer to the
-http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide].
+and allows for more customization for serializing and deserializing.
 
 === Using JSON-B
 
-JSON-B is a feature introduced with Java EE 8 and strengthens Java support for JSON.
-By default, JSON-B requires a public default no-argument constructor for deserialization.
+JSON-B requires a POJO to have a public default no-argument constructor for deserialization
+and binding to work properly.
 
 The JSON-B engine includes a set of default mapping rules, which can be run without
 any customization annotations or custom configuration. In some instances, you might
@@ -139,11 +150,11 @@ annotations are necessary and recommended:
 Without the use of this annotation, JSON-B will attempt to do POJO mapping, matching the keys in
 the JSON to the class instance members by name. If these names do not match, then getters and setters
 are matched to JSON keys and the instance members are set explicitly. If the getter and setter
-signatures do not match any key names, then deserialization fails. Note that the `Artist` POJO,
-does not require this annotation since all instance members match the JSON keys by name.
+signatures do not match any key names, then deserialization fails. The Artist POJO
+does not require this annotation because all instance members match the JSON keys by name.
 
 * The `@JsonbCreator` and `@JsonbProperty` annotations to annotate a custom constructor.
-This annotation is required for proper parameter substitution when a custom constructor is used.
+These annotations are required for proper parameter substitution when a custom constructor is used.
 
 * The `@JsonbTransient` annotation to define an object property that does not map to a JSON
 property. While the use of this annotation is good practice, it is only necessary for serialization.
@@ -157,91 +168,83 @@ http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide].
 
 == Consuming the REST resource
 
-Write a simple `Consumer` class that consumes the artist JSON using both JSON-B and JSON-P.
-
-`start/src/test/java/io/openliberty/guides/consumingrest/Consumer.java`:
+The `Artist` and `Album` POJOs are ready for deserialization. To consume the JSON response
+from your REST service, create the `Consumer` class in the
+`src/main/java/io/openliberty/guides/consumingrest/Consumer.java` file:
 
 [source, java, indent=0]
 ----
-include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=!comment;!class]
+include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=!comment;]
 ----
+
+Next, recompile the application:
+```
+mvn compile
+
+```
 
 === Processing JSON using JSON-B
 
 JSON-B is a Java API that is used to serialize Java objects to JSON messages and vice versa.
 
+Open Liberty's JSON-B feature on Maven Central includes the JSON-B provider through transitive dependencies.
 To include the JSON-B provider in your project, add the following dependency to your `pom.xml`
 file, which is already done for you:
 
 [source, xml, role="no_copy"]
 ----
 <dependency>
-   <groupId>javax.json.bind</groupId>
-   <artifactId>javax.json.bind-api</artifactId>
-   <version>1.0</version>
+   <groupId>io.openliberty.features</groupId>
+   <artifactId>jsonb-1.0</artifactId>
+   <type>esa</type>
+   <scope>provided</scope>
 </dependency>
 ----
 
-Use JSON-B in the `Consumer` class to write the method for consuming the REST service:
-
-[source, java, indent=0]
-----
-include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=consumeWithJsonb]
-----
-
-This method makes a `GET` request to the running artist service and retrieves the JSON.
-
-To bind the JSON into an `Artist` array, use the `Artist[]` entity type in the `readEntity` call:
-
-[source, java, indent = 0, role="no_copy"]
-----
-Artist[] artists = response.readEntity(Artist[].class);
-----
-
-Write the `getJsonString` and `getTotalAlbums` methods in the `ArtistResource` class. The `getTotalAlbums`
-method uses JSON-B to return the total number of albums present in the JSON for a particular artist. The
-method returns -1 if this artist does not exist. The `getJsonString` method returns the JSON as
-a string that will be used later for testing.
-
-`start/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java`:
-
-[source, java, indent=0]
-----
-include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[tags=getJsonString]
-include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[tags=getTotalAlbums]
-----
+The `consumeWithJsonb` method in the `Consumer` class makes a `GET` request to the
+running artist service and retrieves the JSON. Then binds the JSON into an `Artist`
+array, use the `Artist[]` entity type in the `readEntity` call.
 
 === Processing JSON using JSON-P
 
-Write the method for consuming the REST service using JSON-P in the `Consumer` class:
+The `consumeWithJsonp` method makes in the `Consumer` class makes a `GET` request
+to the running artist service and retrieves the JSON. This method then uses the
+`collectArtists` and `collectAlbums` helper methods. These helper methods will
+parse the JSON and collect its objects into individual POJOs.  Notice that you can
+use the custom constructors to create instances of `Artist` and `Album`.
+
+== Creating additional REST resources
+
+Now that you can consume a JSON resource you can put that data to use.
+Copy the `ArtistResource` class below and replace the `ArtistResource` class in
+the `src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java` file:
 
 [source, java, indent=0]
 ----
-include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=consumeWithJsonp]
+include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[tags=!comment]
 ----
 
-Write the `collectArtists` and `collectAlbums` helpers. These methods will parse the JSON and
-collect its objects into individual POJOs.  Notice that the you can use the custom constructors
-to create instances of `Artist` and `Album`:
+* The `getArtists` method provides the raw JSON data service that you accessed at the
+beginning of this guide.
 
-[source, java, indent=0]
-----
-include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=collectArtists;collectAlbums]
-----
+* The `getJsonString` method uses JSON-B to return the JSON as a string that will
+be used later for testing.
 
-Write the `getTotalArtists` method in the `ArtistResource` class. This method will use the JSON-P
-approach to return the total number of artists present in the JSON.
+* The `getTotalAlbums` method uses JSON-B to return the total number of albums present
+in the JSON for a particular artist. The method returns -1 if this artist does not exist.
 
-`start/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java`:
+* The `getTotalArtists` method uses JSON-P to return the total number of artists
+present in the JSON.
 
-[source, java, indent=0]
-----
-include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[tags=getTotalArtists]
-----
-
-The methods that you created in the `Consumer` class can be written directly in the
+The methods that you wrote in the `Consumer` class could be written directly in the
 `ArtistResource` class. However, if you are consuming a REST resource from a third
-party service, you can separate your GET and PULL requests from your data consumption.
+party service, you should separate your `GET`/`POST` requests from your data consumption.
+
+Next, recompile the application:
+```
+mvn compile
+
+```
 
 // =================================================================================================
 // Testing deserialization
@@ -249,7 +252,13 @@ party service, you can separate your GET and PULL requests from your data consum
 
 == Testing deserialization
 
-Create a test class, `start/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java`.
+Create the `ConsumingRestTest` class in the
+`src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java` file:
+
+[source, java, indent=0]
+----
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=!comment]
+----
 
 Maven finds and executes all tests under `it/` and each test method must be marked with the `@Test` annotation.
 
@@ -257,14 +266,11 @@ You can use the `@BeforeClass` and `@AfterClass` annotations to perform any one 
 tasks before and after all of your tests execute, as well as the `@Before` and `@After` annotations
 to do the same but for each individual test case.
 
-[source, java]
-----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=**;!comment;!tests]
-----
+Next, recompile the application:
+```
+mvn compile
 
-You can find more detailed explanations on how to define your own system properties and how to access
-them via the `System.getProperty` call in the
-https://openliberty.io/guides/microprofile-intro.html[MicroProfile guide].
+```
 
 === Testing the binding process
 For your test classes to have access to JSON-B, add the following dependency to your
@@ -280,65 +286,33 @@ For your test classes to have access to JSON-B, add the following dependency to 
 </dependency>
 ----
 
-Write the `testArtistDeserialization` test case. This test checks that `Artist` instances created from
+The `testArtistDeserialization` test case checks that `Artist` instances created from
 the REST data and those that are hardcoded perform the same.
 
-[source, java, indent = 0]
-----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=testArtistDeserialization]
-----
+The `assertResponse` helper method ensures that the response code you receive is valid (200).
 
-=== Testing the processing with JSON-B
+=== Processing with JSON-B test
 
-Write the `testAlbumCount` test case. This test checks that deserialization with JSON-B was done correctly
+The `testJsonBAlbumCount` and `testJsonBAlbumCountForUnknownArtist` tests both use the `total/{artist}`
+endpoint which invokes JSON-B.
+
+The `testJsonBAlbumCount` test case checks that deserialization with JSON-B was done correctly
 and that the correct number of albums is returned for each artist in the JSON.
 
-[source, java, indent = 0]
-----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=testAlbumCount]
-----
+The `testJsonBAlbumCountForUnknownArtist` test case is similar to `testJsonBAlbumCount`
+but instead checks an artist that does not exist in the JSON and ensures that a
+value of '-1' is returned.
 
-Write the `testAlbumCountForUnknownArtist` test case. This test case is similar to `testAlbumCount`
-but instead checks an artist that does not exist in the JSON.
+=== Processing with JSON-P test
 
-[source, java, indent = 0]
-----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=testAlbumCountForUnknownArtist]
-----
+The `testJsonPArtistCount` test uses the `total` endpoint which invokes JSON-P. This test
+checks that deserialization with JSON-P was done correctly and that the correct number
+of artists is returned.
 
-=== Testing the processing with JSON-P
-
-Write the `testArtistCount` test case. This test checks that deserialization with JSON-P was done correctly
-and that the correct number of artists is returned.
-
-[source, java, indent = 0]
-----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=testArtistCount]
-----
-
-Write the `assertResponse` helper method that asserts that the response code you receive is valid (200):
-
-[source, java, indent = 0]
-----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=assertResponse]
-----
-
-=== Running the tests
-
-To rebuild and run the tests, navigate to the `start` directory and run `mvn clean install` from the
-command line.
-
-[source, role="no_copy"]
-----
-# If server is still running from previous steps, stop it first
-mvn liberty:stop-server
-
-# Then execute
-mvn clean install
-----
-
-It might take some time before the tests are executed. If the tests pass, you see the following
-output:
+// =================================================================================================
+// Running the Tests
+// =================================================================================================
+include::{common-includes}/mvnverify.adoc[]
 
 [source, role="no_copy"]
 ----

@@ -1,6 +1,6 @@
 // tag::comment[]
 /*******************************************************************************
- * Copyright (c) 2017 IBM Corporation and others.
+ * Copyright (c) 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -45,27 +45,22 @@ public class ArtistResource {
     public String getJsonString() {
       Jsonb jsonb = JsonbBuilder.create();
 
-      Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString() + "artists");
+      Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString() +
+        "artists");
       String result = jsonb.toJson(artists);
 
       return result;
     }
     // end::getJsonString[]
 
-    // tag::getTotalArtists[]
-    @GET
-    @Path("total")
-    @Produces(MediaType.TEXT_PLAIN)
-    public int getTotalArtists() {
-      return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString() + "artists").length;
-    }
-    // end::getTotalArtists[]
     // tag::getTotalAlbums[]
     @GET
     @Path("total/{artist}")
     @Produces(MediaType.TEXT_PLAIN)
     public int getTotalAlbums(@PathParam("artist") String artist) {
-      Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString() + "artists");
+      Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString()
+        + "artists");
+
       for (int i = 0; i < artists.length; i++) {
         if (artists[i].name.equals(artist)) {
           return artists[i].albums.length;
@@ -74,5 +69,15 @@ public class ArtistResource {
       return -1;
     }
     // end::getTotalAlbums[]
+
+    // tag::getTotalArtists[]
+    @GET
+    @Path("total")
+    @Produces(MediaType.TEXT_PLAIN)
+    public int getTotalArtists() {
+      return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString() +
+        "artists").length;
+    }
+    // end::getTotalArtists[]
 
 }
