@@ -189,7 +189,7 @@ mvn compile
 === Processing JSON using JSON-B
 
 pom.xml
-[source, java, linenums, role='code_column']
+[source, xml, linenums, role='code_column']
 ----
 include::/finish/pom.xml[tags=!comment;]
 ----
@@ -213,6 +213,7 @@ use the custom constructors to create instances of `Artist` and `Album`.
 
 == Creating additional REST resources
 
+ArtistResource.java
 [source, java, linenums, role='code_column']
 ----
 include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[tags=!comment]
