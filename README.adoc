@@ -12,7 +12,7 @@
 :page-guide-category: microprofile
 :page-essential: false
 :page-description: Explore how to access a simple RESTful web service and consume its resources in Java.
-:page-tags: [MicroProfile', 'Java EE']
+:page-tags: ['MicroProfile', 'Java EE']
 :page-related-guides: ['rest-intro', 'rest-client-angularjs']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
@@ -68,7 +68,7 @@ https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service].
 // =================================================================================================
 // Getting Started
 // =================================================================================================
-[role='command']
+[role=command]
 include::{common-includes}/gitclone.adoc[]
 
 
@@ -166,9 +166,20 @@ http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide].
 
 == Consuming the REST resource
 
+Artist.java
+[source, java, linenums, role='code_column']
+----
+include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Artist.java[tags=!comment]
+----
+
+Album.java
+[source, java, linenums, role='code_column']
+----
+include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.java[tags=!comment]
+----
+
 The [hotspot=13-46 file=0]`Artist` and [hotspot=13-48 file=1]`Album` POJOs are ready for deserialization. 
 Next, we'll learn to consume the JSON response from your REST service.
-
 
 [role="code_command hotspot=13-85" subs="quotes"]
 ----
@@ -179,7 +190,7 @@ Create the `Consumer` class
 Consumer.java
 [source, java, linenums, role='code_column']
 ----
-include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=!comment;]
+include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=!comment]
 ----
 
 Next, recompile the application:
@@ -189,23 +200,33 @@ mvn compile
 ----
 
 === Processing JSON using JSON-B
+Consumer.java
+[source, java, linenums, role='code_column']
+----
+include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=!comment]
+----
 
 pom.xml
 [source, xml, linenums, role='code_column']
 ----
-include::/finish/pom.xml[tags=!comment;]
+include::finish/pom.xml[tags=!comment]
 ----
 
 JSON-B is a Java API that is used to serialize Java objects to JSON messages and vice versa.
 
 Open Liberty's JSON-B feature on Maven Central includes the JSON-B provider through transitive dependencies.
-The JSON-B provider has been added as a dependency in your [hotspot=81-86]`pom.xml`
+The JSON-B provider has been added as a dependency in your [hotspot=81-86 file=1]`pom.xml`
 
-The [hotspot=30-40]`consumeWithJsonb` method in the [hotspot=27-85]`Consumer` class makes a [hotspot=33]`GET` request to the
+The [hotspot=30-40 file=0]`consumeWithJsonb` method in the [hotspot=27-85 file=0]`Consumer` class makes a [hotspot=33 file=0]`GET` request to the
 running artist service and retrieves the JSON. Then binds the JSON into an `Artist`
-array, use the [hotspot=34]`Artist[]` entity type in the [hotspot=34]`readEntity` call.
+array, use the [hotspot=34 file=0]`Artist[]` entity type in the [hotspot=34 file=0]`readEntity` call.
 
 === Processing JSON using JSON-P
+Consumer.java
+[source, java, linenums, role='code_column']
+----
+include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=!comment]
+----
 
 The [hotspot=44-54]`consumeWithJsonp` method makes in the [hotspot=27-84]`Consumer` class makes a [hotspot=47]`GET` request
 to the running artist service and retrieves the JSON. This method then uses the
@@ -276,9 +297,9 @@ to do the same but for each individual test case.
 
 Next, recompile the application:
 [role=command]
--------------------------
+----
 mvn compile
--------------------------
+----
 
 === Testing the binding process
 For your test classes to have access to JSON-B, the following dependency has been added in your [hotspot=88-93]`pom.xml`
