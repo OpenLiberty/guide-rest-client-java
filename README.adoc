@@ -50,7 +50,7 @@ http://localhost:9080/artists
 Which responds with the following JSON:
 
 artists.json
-[source, json, role="no_copy", role='code_column']
+[source, json, linenums, role='code_column']
 ----
 include::finish/src/resources/artists.json[]
 ----
@@ -184,9 +184,9 @@ include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[
 
 Next, recompile the application:
 [role=command]
--------------------------
+----
 mvn compile
--------------------------
+----
 
 === Processing JSON using JSON-B
 
