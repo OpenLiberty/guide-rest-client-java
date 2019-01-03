@@ -338,7 +338,7 @@ endpoint which invokes JSON-B.
 The [hotspot=63-75]`testJsonBAlbumCount` test case checks that deserialization with JSON-B was done correctly
 and that the correct number of albums is returned for each artist in the JSON.
 
-The [hotspot=78-86]`testJsonBAlbumCountForUnknownArtist` test case is similar to [hotspot=81-93]`testJsonBAlbumCount`
+The [hotspot=78-86]`testJsonBAlbumCountForUnknownArtist` test case is similar to [hotspot=63-75]`testJsonBAlbumCount`
 but instead checks an artist that does not exist in the JSON and ensures that a
 value of '-1' is returned.
 
