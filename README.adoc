@@ -282,8 +282,6 @@ mvn compile
 // =================================================================================================
 
 == Testing deserialization
-
-
 ConsumingRestTest.java
 [source, java, linenums, role='code_column']
 ----
@@ -309,6 +307,12 @@ mvn compile
 ----
 
 === Testing the binding process
+ConsumingRestTest.java
+[source, java, linenums, role='code_column']
+----
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=!comment]
+----
+
 For your test classes to have access to JSON-B, the following dependency has been added in your [hotspot=88-93]`pom.xml`
 
 The [hotspot=44-60]`testArtistDeserialization` test case checks that `Artist` instances created from
@@ -317,6 +321,11 @@ the REST data and those that are hardcoded perform the same.
 The [hotspot=103-105]`assertResponse` helper method ensures that the response code you receive is valid (200).
 
 === Processing with JSON-B test
+ConsumingRestTest.java
+[source, java, linenums, role='code_column']
+----
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=!comment]
+----
 
 The [hotspot=63-75]`testJsonBAlbumCount` and [hotspot=78-86]`testJsonBAlbumCountForUnknownArtist` tests both use the `total/{artist}`
 endpoint which invokes JSON-B.
