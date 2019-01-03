@@ -320,10 +320,10 @@ include::finish/pom.xml[tags=!comment]
 
 For your test classes to have access to JSON-B, the following dependency has been added in your [hotspot=88-93 file=1]`pom.xml`
 
-The [hotspot=44-60 file=1]`testArtistDeserialization` test case checks that `Artist` instances created from
+The [hotspot=44-60 file=0]`testArtistDeserialization` test case checks that `Artist` instances created from
 the REST data and those that are hardcoded perform the same.
 
-The [hotspot=103-105 file=1]`assertResponse` helper method ensures that the response code you receive is valid (200).
+The [hotspot=103-105 file=0]`assertResponse` helper method ensures that the response code you receive is valid (200).
 
 === Processing with JSON-B test
 ConsumingRestTest.java
