@@ -278,16 +278,17 @@ mvn compile
 
 == Testing deserialization
 
-[role="code_command hotspot=30-132", subs="quotes"]
-----
-Create the `ConsumingRestTest` class 
-`src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java` 
-----
 
 ConsumingRestTest.java
 [source, java, linenums, role='code_column']
 ----
 include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=!comment]
+----
+
+[role="code_command hotspot=30-132", subs="quotes"]
+----
+Create the `ConsumingRestTest` class 
+`src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java` 
 ----
 
 Maven finds and executes all tests under `it/` and each test method must be marked with the [hotspot=59]`@Test` annotation.
