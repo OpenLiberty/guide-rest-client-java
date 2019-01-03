@@ -188,7 +188,7 @@ Next, we'll learn to consume the JSON response from your REST service.
 
 [role="code_command hotspot=15-63 file=2" subs="quotes"]
 ----
-Create the `Consumer` class
+Create the `Consumer` class.
 `src/main/java/io/openliberty/guides/consumingrest/Consumer.java`
 ----
 
@@ -229,7 +229,7 @@ include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[
 
 The [hotspot=28-38]`consumeWithJsonp` method makes in the [hotspot=15-63]`Consumer` class makes a [hotspot=31]`GET` request
 to the running artist service and retrieves the JSON. This method then uses the
-[hotspot=40-50]`collectArtists` and [hotspots=52-62]`collectAlbums` helper methods. These helper methods will
+[hotspot=40-50]`collectArtists` and [hotspot=52-62]`collectAlbums` helper methods. These helper methods will
 parse the JSON and collect its objects into individual POJOs. Notice that you can
 use the custom constructors to create instances of `Artist` and `Album`.
 
@@ -260,7 +260,7 @@ beginning of this guide.
 * The [hotspot=32-40 file=1]`getJsonString` method uses JSON-B to return the JSON as a string that will
 be used later for testing.
 
-* The [hotspot45-55 file=1]`getTotalAlbums` method uses JSON-B to return the total number of albums present
+* The [hotspot=45-55 file=1]`getTotalAlbums` method uses JSON-B to return the total number of albums present
 in the JSON for a particular artist. The method returns -1 if this artist does not exist.
 
 * The [hotspot=60-63 file=1]`getTotalArtists` method uses JSON-P to return the total number of artists
