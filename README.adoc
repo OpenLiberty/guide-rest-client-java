@@ -338,6 +338,11 @@ but instead checks an artist that does not exist in the JSON and ensures that a
 value of '-1' is returned.
 
 === Processing with JSON-P test
+ConsumingRestTest.java
+[source, java, linenums, role='code_column']
+----
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=!comment]
+----
 
 The [hotspot=89-98]`testJsonPArtistCount` test uses the `total` endpoint which invokes JSON-P. This test
 checks that deserialization with JSON-P was done correctly and that the correct number
