@@ -49,6 +49,7 @@ http://localhost:9080/artists
 
 Which responds with the following JSON:
 
+artists.json
 [source, json, role="no_copy", role='code_column']
 ----
 include::finish/src/resources/artists.json[]
@@ -67,7 +68,7 @@ https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service].
 // =================================================================================================
 // Getting Started
 // =================================================================================================
-[role='command']
+[role=command]
 include::{common-includes}/gitclone.adoc[]
 
 
@@ -92,7 +93,7 @@ mvn liberty:start-server
 
 When the server is running, you can find your service at http://localhost:9080/artists
 
-[role='command']
+[role=command]
 include::{common-includes}/trywhatyoubuild-end.adoc[]
 
 // =================================================================================================
@@ -106,6 +107,7 @@ Artist.java
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Artist.java[tags=!comment]
 ----
 
+Album.java
 [source, java, role="no_copy"]
 ----
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.java[tags=!comment]
@@ -307,7 +309,7 @@ of artists is returned.
 // =================================================================================================
 // Running the Tests
 // =================================================================================================
-[role='command']
+[role=command]
 include::{common-includes}/mvnverify.adoc[]
 
 [source, role="no_copy"]
