@@ -68,7 +68,7 @@ https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service].
 // =================================================================================================
 // Getting Started
 // =================================================================================================
-[role=command]
+[role='command']
 include::{common-includes}/gitclone.adoc[]
 
 
@@ -86,10 +86,10 @@ To start the REST service, run the Maven `install` and `liberty:start-server` go
 the `start` directory:
 
 [role=command]
--------------------------
+----
 mvn clean install
 mvn liberty:start-server
--------------------------
+----
 
 When the server is running, you can find your service at http://localhost:9080/artists
 
@@ -108,7 +108,7 @@ include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Artist.j
 ----
 
 Album.java
-[source, java, role="no_copy"]
+[source, java, linenums, role='code_column']
 ----
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.java[tags=!comment]
 ----
