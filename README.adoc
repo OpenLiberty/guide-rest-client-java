@@ -32,6 +32,11 @@ using JSON-B and JSON-P.
 // =================================================================================================
 
 == What you'll learn
+artists.json
+[source, json, linenums, role='code_column']
+----
+include::finish/src/resources/artists.json[]
+----
 
 You will learn how to access a REST service, serialize a Java object that contains a
 list of artists and their albums, and use two different approaches to deserialize
@@ -47,13 +52,7 @@ for you and is accessible at:
 http://localhost:9080/artists
 ----
 
-Which responds with the following JSON:
-
-artists.json
-[source, json, linenums, role='code_column']
-----
-include::finish/src/resources/artists.json[]
-----
+Which responds with the following [hotspot=1-32]`JSON`
 
 You will implement the following two endpoints using the two deserialization approaches:
 
@@ -313,12 +312,18 @@ ConsumingRestTest.java
 include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=!comment]
 ----
 
-For your test classes to have access to JSON-B, the following dependency has been added in your [hotspot=88-93]`pom.xml`
+pom.xml
+[source, xml, linenums, role='code_column']
+----
+include::finish/pom.xml[tags=!comment]
+----
 
-The [hotspot=44-60]`testArtistDeserialization` test case checks that `Artist` instances created from
+For your test classes to have access to JSON-B, the following dependency has been added in your [hotspot=88-93 file=1]`pom.xml`
+
+The [hotspot=44-60 file=1]`testArtistDeserialization` test case checks that `Artist` instances created from
 the REST data and those that are hardcoded perform the same.
 
-The [hotspot=103-105]`assertResponse` helper method ensures that the response code you receive is valid (200).
+The [hotspot=103-105 file=1]`assertResponse` helper method ensures that the response code you receive is valid (200).
 
 === Processing with JSON-B test
 ConsumingRestTest.java
