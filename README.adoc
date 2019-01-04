@@ -46,12 +46,7 @@ to directly convert JSON messages into Java objects.  The second approach consis
 using the JSON-P API to process the JSON.
 
 The REST service that provides the artists and albums resources has already been written
-for you and is accessible at:
-
-[source, role="no_copy"]
-----
-http://localhost:9080/artists
-----
+for you and is accessible at the following link when the server is running http://localhost:9080/artists
 
 Which responds with the following [hotspot=1-32]`JSON`
 
@@ -134,6 +129,11 @@ JSON-B is built on top of the existing JSON-P API. JSON-B can do everything that
 and allows for more customization for serializing and deserializing.
 
 === Using JSON-B
+Artist.java
+[source, java, linenums, role='code_column']
+----
+include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Artist.java[tags=!comment]
+----
 
 JSON-B requires a POJO to have a public default no-argument constructor for deserialization
 and binding to work properly.
@@ -144,17 +144,17 @@ find it useful to deserialize a JSON message with only certain fields, specific
 field names, or classes with custom constructors. In these cases,
 annotations are necessary and recommended:
 
-* The `@JsonbProperty` annotation to map JSON keys to class instance members and vice versa.
+* The [hotspot=23-24]`@JsonbProperty` annotation to map JSON keys to class instance members and vice versa.
 Without the use of this annotation, JSON-B will attempt to do POJO mapping, matching the keys in
 the JSON to the class instance members by name. If these names do not match, then getters and setters
 are matched to JSON keys and the instance members are set explicitly. If the getter and setter
 signatures do not match any key names, then deserialization fails. The Artist POJO
 does not require this annotation because all instance members match the JSON keys by name.
 
-* The `@JsonbCreator` and `@JsonbProperty` annotations to annotate a custom constructor.
+* The [hotspot=20]`@JsonbCreator` and [hotspot=23-24]`@JsonbProperty` annotations to annotate a custom constructor.
 These annotations are required for proper parameter substitution when a custom constructor is used.
 
-* The `@JsonbTransient` annotation to define an object property that does not map to a JSON
+* The [hotspot=12]`@JsonbTransient` annotation to define an object property that does not map to a JSON
 property. While the use of this annotation is good practice, it is only necessary for serialization.
 
 For more information on customization with JSON-B, see the
