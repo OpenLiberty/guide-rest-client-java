@@ -19,6 +19,7 @@
 :source-highlighter: prettify
 :page-seo-title: Consuming a RESTful web service
 :page-seo-description: How to consume a RESTful web service in Java using JSON-B and JSON-P
+:guide-author: Open Liberty
 = Consuming a RESTful web service
 
 [.hidden]
