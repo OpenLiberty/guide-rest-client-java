@@ -82,8 +82,7 @@ the `start` directory:
 
 [role=command]
 ----
-mvn clean install
-mvn liberty:start-server
+mvn install liberty:start-server
 ----
 
 When the server is running, you can find your service at http://localhost:9080/artists
