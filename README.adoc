@@ -188,7 +188,7 @@ Next, we'll learn to consume the JSON response from your REST service.
 
 [role="code_command hotspot=15-63 file=2" subs="quotes"]
 ----
-Create the `Consumer` class.
+#Create the `Consumer` class.#
 `src/main/java/io/openliberty/guides/consumingrest/Consumer.java`
 ----
 
@@ -250,7 +250,7 @@ Now that you can consume a JSON resource you can put that data to use.
 
 [role="code_command hotspot=18-65 file=1", subs="quotes"]
 ----
-Create the `ArtistResource` class
+#Create the `ArtistResource` class.#
 `src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java`
 ----
 
@@ -289,7 +289,7 @@ include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRe
 
 [role="code_command hotspot=18-106", subs="quotes"]
 ----
-Create the `ConsumingRestTest` class 
+#Create the `ConsumingRestTest` class.#
 `src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java` 
 ----
 
