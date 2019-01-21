@@ -2,6 +2,8 @@ language: java
 before_script:
 - unset _JAVA_OPTIONS
 - cd finish
+jdk:
+- openjdk11
 script:
 - mvn clean install
 - serverName=$(target/liberty/wlp/bin/server list | cut -d '.' -f2| tr -d '\n');
