@@ -110,9 +110,9 @@ include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.ja
 To deserialize a JSON message, start with creating Plain Old Java Objects (POJOs) that represent what
 is in the JSON and whose instance members map to the keys in the JSON.
 
-For the purpose of this guide, you are given two POJOs: [hotspot=7-34 file=0]`Artist` and [hotspot=6-36 file=1]`Album`. 
-The [hotspot=22-28 file=0]`Artist` object has two instance members [hotspot=23 file=0]`name` and [hotspot=24 file=0]`albums`, 
-which map to the artist name and the collection of the albums they have written. The [hotspot=21-29 file=1]`Album` object represents a 
+For the purpose of this guide, you are given two POJOs.
+The [hotspot=7-34 file=0]`Artist` object has two instance members [hotspot=23 file=0]`name` and [hotspot=24 file=0]`albums`, 
+which map to the artist name and the collection of the albums they have written. The [hotspot=6-36 file=1]`Album` object represents a 
 single object within the album collection, and contains three instance members [hotspot=22 file=1]`title`, [hotspot=23 file=1]`artist`, and [hotspot=24 file=1]`ntracks`, which map to the album title, the artist who wrote the album, and the number of tracks the album contains.
 
 == Introducing JSON-B and JSON-P
@@ -293,7 +293,7 @@ include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRe
 `src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java` 
 ----
 
-Maven finds and executes all tests under `it/` and each test method must be marked with the [hotspot=43]`@Test` annotation.
+Maven finds and executes all tests under `it/` and each test method must be marked with the [hotspot=43 hotspot=62 hotspot=77 hotspot=88]`@Test` annotation.
 
 You can use the [hotspot=26]`@BeforeClass` and `@AfterClass` annotations to perform any one time setup and teardown
 tasks before and after all of your tests execute, as well as the [hotspot=33]`@Before` and [hotspot=38]`@After` annotations
