@@ -186,7 +186,7 @@ include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[
 The [hotspot=7-34 file=0]`Artist` and [hotspot=6-36 file=1]`Album` POJOs are ready for deserialization. 
 Next, we'll learn to consume the JSON response from your REST service.
 
-[role="code_command hotspot=15-63 file=2" subs="quotes"]
+[role="code_command hotspot file=2" subs="quotes"]
 ----
 #Create the `Consumer` class.#
 `src/main/java/io/openliberty/guides/consumingrest/Consumer.java`
@@ -248,7 +248,7 @@ include::finish/src/main/java/io/openliberty/guides/consumingrest/service/Artist
 
 Now that you can consume a JSON resource you can put that data to use.
 
-[role="code_command hotspot=18-65 file=1", subs="quotes"]
+[role="code_command hotspot file=1", subs="quotes"]
 ----
 #Create the `ArtistResource` class.#
 `src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java`
@@ -287,7 +287,7 @@ ConsumingRestTest.java
 include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=!comment]
 ----
 
-[role="code_command hotspot=18-106", subs="quotes"]
+[role="code_command hotspot", subs="quotes"]
 ----
 #Create the `ConsumingRestTest` class.#
 `src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java` 
