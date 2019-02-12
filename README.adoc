@@ -46,7 +46,7 @@ to directly convert JSON messages into Java objects.  The second approach consis
 using the JSON-P API to process the JSON.
 
 The REST service that provides the artists and albums resources has already been written
-for you and is accessible at the following link when the server is running http://localhost:9080/artists[window="_blank"]
+for you and is accessible at the following link when the server is running http://localhost:9080/artists[http://localhost:9080/artists^]
 
 Which responds with the following [hotspot=1-32]`JSON`
 
@@ -85,7 +85,7 @@ the `start` directory:
 mvn install liberty:start-server
 ----
 
-When the server is running, you can find your service at http://localhost:9080/artists[window="_blank"]
+When the server is running, you can find your service at http://localhost:9080/artists[http://localhost:9080/artists^]
 
 [role=command]
 include::{common-includes}/trywhatyoubuild-end.adoc[]
