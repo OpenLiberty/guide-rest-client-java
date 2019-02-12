@@ -46,7 +46,7 @@ to directly convert JSON messages into Java objects.  The second approach consis
 using the JSON-P API to process the JSON.
 
 The REST service that provides the artists and albums resources has already been written
-for you and is accessible at the following link when the server is running http://localhost:9080/artists
+for you and is accessible at the following link when the server is running http://localhost:9080/artists[window="_blank"]
 
 Which responds with the following [hotspot=1-32]`JSON`
 
@@ -57,7 +57,7 @@ You will implement the following two endpoints using the two deserialization app
 for the particular artist
 
 If you are interested in learning more about REST services and how you can write them, read
-https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service].
+https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service^].
 
 
 // =================================================================================================
@@ -85,7 +85,7 @@ the `start` directory:
 mvn install liberty:start-server
 ----
 
-When the server is running, you can find your service at http://localhost:9080/artists
+When the server is running, you can find your service at http://localhost:9080/artists[window="_blank"]
 
 [role=command]
 include::{common-includes}/trywhatyoubuild-end.adoc[]
@@ -157,7 +157,7 @@ These annotations are required for proper parameter substitution when a custom c
 property. While the use of this annotation is good practice, it is only necessary for serialization.
 
 For more information on customization with JSON-B, see the
-http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide].
+http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide^].
 
 // =================================================================================================
 // Consuming REST resource
