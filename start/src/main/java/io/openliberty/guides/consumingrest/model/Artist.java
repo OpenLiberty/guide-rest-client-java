@@ -17,27 +17,6 @@ import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbTransient;
 
 public class Artist {
-<<<<<<< HEAD
-    
-    public String name;
-    public Album albums[];
-    
-    // does not map to anything
-    @JsonbTransient
-    public boolean legendary = true;
-    
-    public Artist() {
-    	//default constructor can be defined
-    }
-    
-    @JsonbCreator
-    public Artist(
-    		@JsonbProperty("name") String name, 
-    		@JsonbProperty("albums") Album albums[]) {
-    	//or custom constructor can be used
-    	this.name = name;
-    	this.albums = albums;
-=======
     public String name;
     public Album albums[];
 
@@ -58,7 +37,6 @@ public class Artist {
 
       this.name = name;
       this.albums = albums;
->>>>>>> master
     }
 
     @Override
