@@ -70,7 +70,8 @@ public class ConsumingRestTest {
       String actualString = response.readEntity(String.class);
 		  Artist[] actual = jsonb.fromJson(actualString, Artist[].class);
 
-      assertEquals("Expected names of artists does not match", expected.name, actual[0].name);
+      assertEquals("Expected names of artists does not match", expected.name, 
+      actual[0].name);
 
       response.close();
     }
