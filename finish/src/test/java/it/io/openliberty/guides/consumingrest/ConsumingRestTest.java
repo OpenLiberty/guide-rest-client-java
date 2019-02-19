@@ -71,7 +71,7 @@ public class ConsumingRestTest {
 		  Artist[] actual = jsonb.fromJson(actualString, Artist[].class);
 
       assertEquals("Expected names of artists does not match", expected.name, 
-      actual[0].name);
+        actual[0].name);
 
       response.close();
     }
