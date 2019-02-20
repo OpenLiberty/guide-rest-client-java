@@ -35,6 +35,7 @@ public class ConsumingRestTest {
 
     private Client client;
     private Response response;
+
     // tag::setup[]
     @BeforeClass
     public static void oneTimeSetup() {
