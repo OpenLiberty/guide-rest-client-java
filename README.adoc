@@ -293,10 +293,10 @@ include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRe
 `src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java` 
 ----
 
-Maven finds and executes all tests under `it/` and each test method must be marked with the [hotspot=43 hotspot=62 hotspot=77 hotspot=88]`@Test` annotation.
+Maven finds and executes all tests under `it/` and each test method must be marked with the [hotspot=44 hotspot=64 hotspot=79 hotspot=90]`@Test` annotation.
 
-You can use the [hotspot=26]`@BeforeClass` and `@AfterClass` annotations to perform any one time setup and teardown
-tasks before and after all of your tests execute, as well as the [hotspot=33]`@Before` and [hotspot=38]`@After` annotations
+You can use the [hotspot=27]`@BeforeClass` and `@AfterClass` annotations to perform any one time setup and teardown
+tasks before and after all of your tests execute, as well as the [hotspot=34]`@Before` and [hotspot=39]`@After` annotations
 to do the same but for each individual test case.
 
 Next, recompile the application:
@@ -320,10 +320,10 @@ include::finish/pom.xml[tags=!comment]
 
 For your test classes to have access to JSON-B, the [hotspot=89-94 file=1]`yasson` dependency has been added in your `pom.xml`.
 
-The [hotspot=44-60 file=0]`testArtistDeserialization` test case checks that `Artist` instances created from
+The [hotspot=45-61 file=0]`testArtistDeserialization` test case checks that `Artist` instances created from
 the REST data and those that are hardcoded perform the same.
 
-The [hotspot=103-105 file=0]`assertResponse` helper method ensures that the response code you receive is valid (200).
+The [hotspot=104-106 file=0]`assertResponse` helper method ensures that the response code you receive is valid (200).
 
 === Processing with JSON-B test
 ConsumingRestTest.java
@@ -332,13 +332,13 @@ ConsumingRestTest.java
 include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=!comment]
 ----
 
-The [hotspot=63-75]`testJsonBAlbumCount` and [hotspot=78-86]`testJsonBAlbumCountForUnknownArtist` tests both use the `total/{artist}`
+The [hotspot=64-76]`testJsonBAlbumCount` and [hotspot=79-87]`testJsonBAlbumCountForUnknownArtist` tests both use the `total/{artist}`
 endpoint which invokes JSON-B.
 
-The [hotspot=63-75]`testJsonBAlbumCount` test case checks that deserialization with JSON-B was done correctly
+The [hotspot=64-76]`testJsonBAlbumCount` test case checks that deserialization with JSON-B was done correctly
 and that the correct number of albums is returned for each artist in the JSON.
 
-The [hotspot=78-86]`testJsonBAlbumCountForUnknownArtist` test case is similar to [hotspot=63-75]`testJsonBAlbumCount`
+The [hotspot=79-87]`testJsonBAlbumCountForUnknownArtist` test case is similar to [hotspot=64-76]`testJsonBAlbumCount`
 but instead checks an artist that does not exist in the JSON and ensures that a
 value of '-1' is returned.
 
@@ -349,7 +349,7 @@ ConsumingRestTest.java
 include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=!comment]
 ----
 
-The [hotspot=89-98]`testJsonPArtistCount` test uses the `total` endpoint which invokes JSON-P. This test
+The [hotspot=90-99]`testJsonPArtistCount` test uses the `total` endpoint which invokes JSON-P. This test
 checks that deserialization with JSON-P was done correctly and that the correct number
 of artists is returned.
 
