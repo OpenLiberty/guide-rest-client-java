@@ -378,5 +378,5 @@ Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 You have just accessed a simple RESTful web service and consumed its resources using JSON-B and JSON-P in Open Liberty.
 
 
-include::https://raw.githubusercontent.com/OpenLiberty/guides-common/multipane/attribution.adoc[subs="attributes"]
+include::{common-includes}/attribution.adoc[subs="attributes"]
 
