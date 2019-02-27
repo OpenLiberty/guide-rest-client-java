@@ -2,6 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>net.wasdev.wlp.maven.parent</groupId>
+        <artifactId>liberty-maven-app-parent</artifactId>
+        <version>RELEASE</version>
+    </parent>
 
     <groupId>io.openliberty.guides</groupId>
     <artifactId>io.openliberty.guides.consumingrest</artifactId>
@@ -33,31 +39,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-rs-client</artifactId>
-            <version>3.1.11</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-rs-extension-providers</artifactId>
-            <version>3.1.11</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- JSON-P RI -->
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.json</artifactId>
-            <version>1.0.4</version>
-            <scope>test</scope>
-        </dependency>
         <!--  Open Liberty features -->
         <dependency>
             <groupId>io.openliberty.features</groupId>
@@ -65,6 +46,7 @@
             <type>esa</type>
             <scope>provided</scope>
         </dependency>
+        <!-- JSON-P API -->
         <dependency>
             <groupId>io.openliberty.features</groupId>
             <artifactId>jsonp-1.1</artifactId>
@@ -77,6 +59,33 @@
             <type>esa</type>
             <scope>provided</scope>
         </dependency>
+        <!-- For tests -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-client</artifactId>
+            <version>3.2.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-extension-providers</artifactId>
+            <version>3.2.6</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- JSON-P RI -->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
+            <version>1.0.4</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- JSON-B API -->
         <dependency>
             <groupId>org.eclipse</groupId>
             <artifactId>yasson</artifactId>
@@ -121,7 +130,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>3.0.0-M1</version>
                 <executions>
                     <execution>
                         <phase>test</phase>
@@ -139,7 +148,6 @@
             <plugin>
                 <groupId>net.wasdev.wlp.maven.plugins</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <version>2.6.1</version>
                 <configuration>
                     <assemblyArtifact>
                         <groupId>io.openliberty</groupId>
@@ -157,44 +165,12 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>install-liberty</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>install-server</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>install-app</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>install-apps</goal>
-                        </goals>
+                        <id>install-apps</id>
                         <configuration>
                             <looseApplication>true</looseApplication>
                             <stripVersion>true</stripVersion>
                             <installAppPackages>project</installAppPackages>
                         </configuration>
-                    </execution>
-                    <execution>
-                        <id>start-server</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>start-server</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>stop-server</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>stop-server</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>package-app</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>package-server</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -202,7 +178,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>3.0.0-M1</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>

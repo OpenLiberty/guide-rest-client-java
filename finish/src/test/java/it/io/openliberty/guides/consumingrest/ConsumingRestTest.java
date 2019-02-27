@@ -1,6 +1,6 @@
 // tag::comment[]
 /*******************************************************************************
- * Copyright (c) 2018 IBM Corporation and others.
+ * Copyright (c) 2018, 2019 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -71,7 +71,8 @@ public class ConsumingRestTest {
       String actualString = response.readEntity(String.class);
 		  Artist[] actual = jsonb.fromJson(actualString, Artist[].class);
 
-      assertEquals("Expected names of artists does not match", expected.name, actual[0].name);
+      assertEquals("Expected names of artists does not match", expected.name, 
+        actual[0].name);
 
       response.close();
     }
