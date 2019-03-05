@@ -111,9 +111,9 @@ To deserialize a JSON message, start with creating Plain Old Java Objects (POJOs
 is in the JSON and whose instance members map to the keys in the JSON.
 
 For the purpose of this guide, you are given two POJOs.
-The [hotspot=7-34 file=0]`Artist` object has two instance members [hotspot=23 file=0]`name` and [hotspot=24 file=0]`albums`, 
+The [hotspot=7-34 file=0]`Artist` object has two instance members [hotspot=8 file=0]`name` and [hotspot=9 file=0]`albums`, 
 which map to the artist name and the collection of the albums they have written. The [hotspot=6-36 file=1]`Album` object represents a 
-single object within the album collection, and contains three instance members [hotspot=22 file=1]`title`, [hotspot=23 file=1]`artist`, and [hotspot=24 file=1]`ntracks`, which map to the album title, the artist who wrote the album, and the number of tracks the album contains.
+single object within the album collection, and contains three instance members [hotspot=7 file=1]`title`, [hotspot=10 file=1]`artistName`, and [hotspot=13 file=1]`totalTracks`, which map to the album title, the artist who wrote the album, and the number of tracks the album contains.
 
 == Introducing JSON-B and JSON-P
 
@@ -156,8 +156,7 @@ These annotations are required for proper parameter substitution when a custom c
 * The [hotspot=12]`@JsonbTransient` annotation to define an object property that does not map to a JSON
 property. While the use of this annotation is good practice, it is only necessary for serialization.
 
-For more information on customization with JSON-B, see the
-http://json-b.net/users-guide.html[JSON Binding 1.0 Users Guide^].
+For more information on customization with JSON-B, see the http://json-b.net[official JSON-B site^].
 
 // =================================================================================================
 // Consuming REST resource
@@ -192,12 +191,6 @@ Next, we'll learn to consume the JSON response from your REST service.
 `src/main/java/io/openliberty/guides/consumingrest/Consumer.java`
 ----
 
-Next, recompile the application:
-[role=command]
-----
-mvn compile
-----
-
 === Processing JSON using JSON-B
 Consumer.java
 [source, java, linenums, role='code_column']
@@ -214,7 +207,7 @@ include::finish/pom.xml[tags=!comment]
 JSON-B is a Java API that is used to serialize Java objects to JSON messages and vice versa.
 
 Open Liberty's JSON-B feature on Maven Central includes the JSON-B provider through transitive dependencies.
-The [hotspot=89-94 file=1]JSON-B provider has been added as a dependency in your [hotspot file=1]`pom.xml`
+The [hotspot=89-94 file=1]`JSON-B provider` has been added as a dependency in your [hotspot file=1]`pom.xml`
 
 The [hotspot=16-26 file=0]`consumeWithJsonb` method in the [hotspot=15-63 file=0]`Consumer` class makes a [hotspot=19 file=0]`GET` request to the
 running artist service and retrieves the JSON. Then binds the JSON into an `Artist`
@@ -270,11 +263,17 @@ The methods that you wrote in the [hotspot=15-63 file-0]`Consumer` class could b
 [hotspot=18-65 file=1]`ArtistResource` class. However, if you are consuming a REST resource from a third
 party service, you should separate your `GET`/`POST` requests from your data consumption.
 
-Next, recompile the application:
+// =================================================================================================
+// Building and running the application
+// =================================================================================================
+
 [role=command]
--------------------------
-mvn compile
--------------------------
+include::{common-includes}/mvnbuild.adoc[]
+
+When the server is running, you can find your service at http://localhost:9080/artists[http://localhost:9080/artists^]
+
+[role=command]
+include::{common-includes}/mvncompile.adoc[]
 
 // =================================================================================================
 // Testing deserialization
@@ -298,12 +297,6 @@ Maven finds and executes all tests under `it/` and each test method must be mark
 You can use the [hotspot=27]`@BeforeClass` and `@AfterClass` annotations to perform any one time setup and teardown
 tasks before and after all of your tests execute, as well as the [hotspot=34]`@Before` and [hotspot=39]`@After` annotations
 to do the same but for each individual test case.
-
-Next, recompile the application:
-[role=command]
-----
-mvn compile
-----
 
 === Testing the binding process
 ConsumingRestTest.java
