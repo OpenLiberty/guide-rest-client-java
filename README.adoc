@@ -113,7 +113,7 @@ is in the JSON and whose instance members map to the keys in the JSON.
 For the purpose of this guide, you are given two POJOs.
 The [hotspot=7-34 file=0]`Artist` object has two instance members [hotspot=8 file=0]`name` and [hotspot=9 file=0]`albums`, 
 which map to the artist name and the collection of the albums they have written. The [hotspot=6-36 file=1]`Album` object represents a 
-single object within the album collection, and contains three instance members [hotspot=22 file=1]`title`, [hotspot=23 file=1]`artist`, and [hotspot=24 file=1]`ntracks`, which map to the album title, the artist who wrote the album, and the number of tracks the album contains.
+single object within the album collection, and contains three instance members [hotspot=7 file=1]`title`, [hotspot=10 file=1]`artistName`, and [hotspot=13 file=1]`totalTracks`, which map to the album title, the artist who wrote the album, and the number of tracks the album contains.
 
 == Introducing JSON-B and JSON-P
 
