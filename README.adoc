@@ -145,9 +145,18 @@ annotations are necessary and recommended:
 
 * The [hotspot=23-24]`@JsonbProperty` annotation to map JSON keys to class instance members and vice versa.
 Without the use of this annotation, JSON-B will attempt to do POJO mapping, matching the keys in
-the JSON to the class instance members by name. If these names do not match, then getters and setters
-are matched to JSON keys and the instance members are set explicitly. If the getter and setter
-signatures do not match any key names, then deserialization fails. The Artist POJO
+the JSON to the class instance members by name. 
+
+JSON-B will attempt to match the JSON key with a Java field or method
+annotated with `@JsonbProperty` where the value in the annotation exactly
+matches the JSON key.  If no annotation exists with the given JSON key, JSON-B will 
+attempt to find a matching field with the same name.  If a match cannot be found, 
+JSON-B will attempt to find a matching getter (for serialization) or setter 
+(for de-serialization) method whose property name matches the JSON key. If no matching 
+getter/setter method can be found, then serialization/de-serialization will fail
+with an exception.
+
+The Artist POJO
 does not require this annotation because all instance members match the JSON keys by name.
 
 * The [hotspot=20]`@JsonbCreator` and [hotspot=23-24]`@JsonbProperty` annotations to annotate a custom constructor.
