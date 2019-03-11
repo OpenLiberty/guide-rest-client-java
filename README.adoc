@@ -152,10 +152,8 @@ JSON-B will attempt to find a matching field with the same name. If a match cann
 JSON-B will attempt to find a matching getter (for serialization) or setter 
 (for de-serialization) method whose property name matches the JSON key. If no matching 
 getter/setter method can be found, then serialization/de-serialization will fail
-with an exception.
-
-The Artist POJO
-does not require this annotation because all instance members match the JSON keys by name.
+with an exception. The Artist POJO does not require this annotation because all instance 
+members match the JSON keys by name.
 
 * The [hotspot=20]`@JsonbCreator` and [hotspot=23-24]`@JsonbProperty` annotations to annotate a custom constructor.
 These annotations are required for proper parameter substitution when a custom constructor is used.
