@@ -41,9 +41,9 @@ include::finish/src/resources/artists.json[]
 
 You will learn how to access a REST service, serialize a Java object that contains a
 list of artists and their albums, and use two different approaches to deserialize
-the returned JSON resources. The first approach consists of using the JSON-B API
-to directly convert JSON messages into Java objects.  The second approach consists of
-using the JSON-P API to process the JSON.
+the returned JSON resources. The first approach consists of using the Java API for JSON Binding (JSON-B)
+to directly convert JSON messages into Java objects. The second approach consists of
+using the Java API for JSON Processing (JSON-P) to process the JSON.
 
 The REST service that provides the artists and albums resources has already been written
 for you and is accessible at the following link when the server is running http://localhost:9080/artists[http://localhost:9080/artists^]
