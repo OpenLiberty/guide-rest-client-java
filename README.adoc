@@ -147,8 +147,8 @@ annotations are necessary and recommended:
 Without the use of this annotation, JSON-B will attempt to do POJO mapping, matching the keys in
 the JSON to the class instance members by name. JSON-B will attempt to match the JSON key 
 with a Java field or method annotated with `@JsonbProperty` where the value in the 
-annotation exactly matches the JSON key.  If no annotation exists with the given JSON key, 
-JSON-B will attempt to find a matching field with the same name.  If a match cannot be found, 
+annotation exactly matches the JSON key. If no annotation exists with the given JSON key, 
+JSON-B will attempt to find a matching field with the same name. If a match cannot be found, 
 JSON-B will attempt to find a matching getter (for serialization) or setter 
 (for de-serialization) method whose property name matches the JSON key. If no matching 
 getter/setter method can be found, then serialization/de-serialization will fail
