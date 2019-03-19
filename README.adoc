@@ -214,7 +214,7 @@ JSON-B is a Java API that is used to serialize Java objects to JSON messages and
 Open Liberty's JSON-B feature on Maven Central includes the JSON-B provider through transitive dependencies.
 The [hotspot=89-94 file=1]`JSON-B provider` has been added as a dependency in your [hotspot file=1]`pom.xml`
 
-The [hotspot=16-26 file=0]`consumeWithJsonb` method in the [hotspot=15-63 file=0]`Consumer` class makes a [hotspot=19 file=0]`GET` request to the
+The [hotspot=16-26 file=0]`consumeWithJsonb()` method in the [hotspot=15-63 file=0]`Consumer` class makes a [hotspot=19 file=0]`GET` request to the
 running artist service and retrieves the JSON. Then binds the JSON into an `Artist`
 array, use the [hotspot=20 file=0]`Artist[]` entity type in the [hotspot=20 file=0]`readEntity` call.
 
@@ -225,7 +225,7 @@ Consumer.java
 include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=!comment]
 ----
 
-The [hotspot=28-38]`consumeWithJsonp` method makes in the [hotspot=15-63]`Consumer` class makes a [hotspot=31]`GET` request
+The [hotspot=28-38]`consumeWithJsonp()` method in the [hotspot=15-63]`Consumer` class makes a [hotspot=31]`GET` request
 to the running artist service and retrieves the JSON. This method then uses the
 [hotspot=40-50]`collectArtists` and [hotspot=52-62]`collectAlbums` helper methods. These helper methods will
 parse the JSON and collect its objects into individual POJOs. Notice that you can
@@ -252,16 +252,16 @@ Now that you can consume a JSON resource you can put that data to use.
 `src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java`
 ----
 
-* The [hotspot=25-27 file=1]`getArtists` method provides the raw JSON data service that you accessed at the
+* The [hotspot=25-27 file=1]`getArtists()` method provides the raw JSON data service that you accessed at the
 beginning of this guide.
 
-* The [hotspot=32-40 file=1]`getJsonString` method uses JSON-B to return the JSON as a string that will
+* The [hotspot=32-40 file=1]`getJsonString()` method uses JSON-B to return the JSON as a string that will
 be used later for testing.
 
-* The [hotspot=45-55 file=1]`getTotalAlbums` method uses JSON-B to return the total number of albums present
+* The [hotspot=45-55 file=1]`getTotalAlbums()` method uses JSON-B to return the total number of albums present
 in the JSON for a particular artist. The method returns -1 if this artist does not exist.
 
-* The [hotspot=60-63 file=1]`getTotalArtists` method uses JSON-P to return the total number of artists
+* The [hotspot=60-63 file=1]`getTotalArtists()` method uses JSON-P to return the total number of artists
 present in the JSON.
 
 The methods that you wrote in the [hotspot=15-63 file-0]`Consumer` class could be written directly in the
