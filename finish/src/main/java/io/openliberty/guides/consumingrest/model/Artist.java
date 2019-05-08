@@ -24,13 +24,11 @@ public class Artist {
     @JsonbTransient
     public boolean legendary = true;
 
-    // Default constructor
     public Artist() {
 
     }
 
     @JsonbCreator
-    // Custom constructor
     public Artist(
       @JsonbProperty("name") String name,
       @JsonbProperty("albums") Album albums[]) {

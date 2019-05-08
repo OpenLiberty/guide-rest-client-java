@@ -141,7 +141,7 @@ find it useful to deserialize a JSON message with only certain fields, specific
 field names, or classes with custom constructors. In these cases,
 annotations are necessary and recommended:
 
-* The [hotspot=23-24]`@JsonbProperty` annotation to map JSON keys to class instance members and vice versa.
+* The [hotspot=21-22]`@JsonbProperty` annotation to map JSON keys to class instance members and vice versa.
 Without the use of this annotation, JSON-B will attempt to do POJO mapping, matching the keys in
 the JSON to the class instance members by name. JSON-B will attempt to match the JSON key 
 with a Java field or method annotated with `@JsonbProperty` where the value in the
@@ -153,7 +153,7 @@ the JSON key. If no matching getter or setter method is found, serialization or
 de-serialization, respectively, fails with an exception. The Artist POJO does not require 
 this annotation because all instance members match the JSON keys by name.
 
-* The [hotspot=20]`@JsonbCreator` and [hotspot=23-24]`@JsonbProperty` annotations to annotate a custom constructor.
+* The [hotspot=19]`@JsonbCreator` and [hotspot=21-22]`@JsonbProperty` annotations to annotate a custom constructor.
 These annotations are required for proper parameter substitution when a custom constructor is used.
 
 * The [hotspot=12]`@JsonbTransient` annotation to define an object property that does not map to a JSON
