@@ -185,7 +185,7 @@ Consumer.java
 include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=!comment]
 ----
 
-The [hotspot=7-34 file=0]`Artist` and [hotspot=6-36 file=1]`Album` POJOs are ready for deserialization. 
+The [hotspot=7-34 file=0]`Artist` and [hotspot=6-34 file=1]`Album` POJOs are ready for deserialization. 
 Next, we'll learn to consume the JSON response from your REST service.
 
 [role="code_command hotspot file=2" subs="quotes"]
