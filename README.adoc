@@ -46,9 +46,7 @@ to directly convert JSON messages into Java objects. The second approach consist
 using the Java API for JSON Processing (JSON-P) to process the JSON.
 
 The REST service that provides the artists and albums resources has already been written
-for you and is accessible at the following link when the server is running http://localhost:9080/artists[http://localhost:9080/artists^]
-
-Which responds with the [hotspot]`artists.json`
+for you and is accessible at the following link when the server is running http://localhost:9080/artists[http://localhost:9080/artists^], which responds with the [hotspot]`artists.json`.
 
 You will implement the following two endpoints using the two deserialization approaches:
 
@@ -143,7 +141,7 @@ find it useful to deserialize a JSON message with only certain fields, specific
 field names, or classes with custom constructors. In these cases,
 annotations are necessary and recommended:
 
-* The [hotspot=23-24]`@JsonbProperty` annotation to map JSON keys to class instance members and vice versa.
+* The [hotspot=21-22]`@JsonbProperty` annotation to map JSON keys to class instance members and vice versa.
 Without the use of this annotation, JSON-B will attempt to do POJO mapping, matching the keys in
 the JSON to the class instance members by name. JSON-B will attempt to match the JSON key 
 with a Java field or method annotated with `@JsonbProperty` where the value in the
@@ -155,7 +153,7 @@ the JSON key. If no matching getter or setter method is found, serialization or
 de-serialization, respectively, fails with an exception. The Artist POJO does not require 
 this annotation because all instance members match the JSON keys by name.
 
-* The [hotspot=20]`@JsonbCreator` and [hotspot=23-24]`@JsonbProperty` annotations to annotate a custom constructor.
+* The [hotspot=19]`@JsonbCreator` and [hotspot=21-22]`@JsonbProperty` annotations to annotate a custom constructor.
 These annotations are required for proper parameter substitution when a custom constructor is used.
 
 * The [hotspot=12]`@JsonbTransient` annotation to define an object property that does not map to a JSON
@@ -187,7 +185,7 @@ Consumer.java
 include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[tags=!comment]
 ----
 
-The [hotspot=7-34 file=0]`Artist` and [hotspot=6-36 file=1]`Album` POJOs are ready for deserialization. 
+The [hotspot=7-34 file=0]`Artist` and [hotspot=6-34 file=1]`Album` POJOs are ready for deserialization. 
 Next, we'll learn to consume the JSON response from your REST service.
 
 [role="code_command hotspot file=2" subs="quotes"]

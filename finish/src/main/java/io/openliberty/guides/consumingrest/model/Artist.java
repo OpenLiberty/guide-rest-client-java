@@ -20,17 +20,15 @@ public class Artist {
     public String name;
     public Album albums[];
 
-    //does not map to anything
+    // Object property that does not map to a JSON
     @JsonbTransient
     public boolean legendary = true;
 
-    //default constructor can be defined
     public Artist() {
 
     }
 
     @JsonbCreator
-    //or custom constructor can be used
     public Artist(
       @JsonbProperty("name") String name,
       @JsonbProperty("albums") Album albums[]) {

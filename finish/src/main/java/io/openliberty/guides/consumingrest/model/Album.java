@@ -24,12 +24,10 @@ public class Album {
     @JsonbProperty("ntracks")
     public int totalTracks;
 
-    //default constructor can be defined
     public Album() {
     }
 
     @JsonbCreator
-    //or custom constructor can be used
     public Album(
       @JsonbProperty("title") String title,
       @JsonbProperty("artist") String artistName,
