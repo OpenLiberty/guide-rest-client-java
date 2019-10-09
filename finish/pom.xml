@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>io.openliberty.guides</groupId>
-    <artifactId>io.openliberty.guides.consumingrest</artifactId>
+    <artifactId>guide-rest-client-java</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -86,12 +86,14 @@
             <scope>test</scope>
         </dependency>
         <!-- JSON-B API -->
+        <!-- tag::JSON-B-provider[] -->
         <dependency>
             <groupId>org.eclipse</groupId>
             <artifactId>yasson</artifactId>
             <version>1.0.1</version>
             <scope>test</scope>
         </dependency>
+        <!-- end::JSON-B-provider[] -->
         <!-- Support for JDK 9 and above -->
         <dependency>
             <groupId>javax.xml.bind</groupId>

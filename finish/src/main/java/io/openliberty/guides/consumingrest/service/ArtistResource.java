@@ -27,6 +27,7 @@ import io.openliberty.guides.consumingrest.model.Artist;
 import io.openliberty.guides.consumingrest.Consumer;
 
 @Path("artists")
+// tag::ArtistResource[]
 public class ArtistResource {
 
     @Context
@@ -34,9 +35,11 @@ public class ArtistResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    // tag::getArtists[]
     public JsonArray getArtists() {
     	return Reader.getArtists();
     }
+    // end::getArtists[]
 
     // tag::getJsonString[]
     @GET
@@ -79,5 +82,5 @@ public class ArtistResource {
         "artists").length;
     }
     // end::getTotalArtists[]
-
 }
+// end::ArtistResource[]

@@ -23,15 +23,17 @@ import javax.ws.rs.core.Response;
 
 import io.openliberty.guides.consumingrest.model.Album;
 import io.openliberty.guides.consumingrest.model.Artist;
-
+// tag::Consumer[]
 public class Consumer {
-    // tag::class[]
     // tag::consumeWithJsonb[]
     public static Artist[] consumeWithJsonb(String targetUrl) {
       Client client = ClientBuilder.newClient();
-
+      // tag::get-1[]
       Response response = client.target(targetUrl).request().get();
+      // end::get-1[]
+      // tag::readEntity[]
       Artist[] artists = response.readEntity(Artist[].class);
+      // end::readEntity[]
 
       response.close();
       client.close();
@@ -43,8 +45,9 @@ public class Consumer {
     // tag::consumeWithJsonp[]
     public static Artist[] consumeWithJsonp(String targetUrl) {
       Client client = ClientBuilder.newClient();
-
+      // tag::get-2[]
       Response response = client.target(targetUrl).request().get();
+      // end::get-2[]
       JsonArray arr = response.readEntity(JsonArray.class);
 
       response.close();
@@ -81,5 +84,5 @@ public class Consumer {
       return albums.toArray(new Album[albums.size()]);
     }
     // end::collectAlbums[]
-    // end::class[]
 }
+// end::Consumer[]
