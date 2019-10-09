@@ -36,9 +36,9 @@ public class ConsumingRestTest {
     private Client client;
     private Response response;
 
-    // tag::setup[]
     // tag::BeforeClass[]
     @BeforeClass
+    // end::BeforeClass[]
     public static void oneTimeSetup() {
       port = System.getProperty("liberty.test.port");
       baseUrl = "http://localhost:" + port + "/artists/";
@@ -56,10 +56,9 @@ public class ConsumingRestTest {
     public void teardown() {
       client.close();
     }
-    // end::setup[]
     // tag::test-1[]
     @Test
-    // end::test-2[]
+    // end::test-1[]
     // tag::testArtistDeserialization[]
     public void testArtistDeserialization() {
       response = client.target(baseUrl + "jsonString").request().get();

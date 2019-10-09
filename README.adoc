@@ -214,7 +214,7 @@ The [hotspot=JSON-B-provider file=1]`JSON-B provider` has been added as a depend
 
 The [hotspot=consumeWithJsonb file=0]`consumeWithJsonb()` method in the [hotspot=Consumer file=0]`Consumer` class makes a [hotspot=get-1 file=0]`GET` request to the
 running artist service and retrieves the JSON. To bind the JSON into an `Artist`
-array, use the [hotspot=Artist file=0]`Artist[]` entity type in the [hotspot=readEntity file=0]`readEntity` call.
+array, use the [hotspot=readEntity file=0]`Artist[]` entity type in the [hotspot=readEntity file=0]`readEntity` call.
 
 === Processing JSON using JSON-P
 Consumer.java
@@ -314,7 +314,7 @@ pom.xml
 include::finish/pom.xml[]
 ----
 
-For your test classes to have access to JSON-B, the [hotspot=89-94 file=1]`yasson` dependency has been added in your `pom.xml`.
+For your test classes to have access to JSON-B, the [hotspot=JSON-B-provider file=1]`yasson` dependency has been added in your `pom.xml`.
 
 The [hotspot=testArtistDeserialization file=0]`testArtistDeserialization` test case checks that `Artist` instances created from
 the REST data and those that are hardcoded perform the same.

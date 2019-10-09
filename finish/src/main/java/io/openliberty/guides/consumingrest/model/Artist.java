@@ -15,15 +15,15 @@ package io.openliberty.guides.consumingrest.model;
 import javax.json.bind.annotation.JsonbCreator;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbTransient;
+
 // tag::Artist[]
 public class Artist {
     // tag::name[]
     public String name;
     // end::name[]
-    // tag::album[]
+    // tag::albums[]
     public Album albums[];
-    // end::album[]
-
+    // end::albums[]
     // Object property that does not map to a JSON
     // tag::JsonbTransient[]
     @JsonbTransient
@@ -33,6 +33,7 @@ public class Artist {
     public Artist() {
 
     }
+    
     // tag::JsonbCreator[]
     @JsonbCreator
     // end::JsonbCreator[]

@@ -14,6 +14,7 @@ package io.openliberty.guides.consumingrest.model;
 
 import javax.json.bind.annotation.JsonbCreator;
 import javax.json.bind.annotation.JsonbProperty;
+
 // tag::Album[]
 public class Album {
     // tag::title[]

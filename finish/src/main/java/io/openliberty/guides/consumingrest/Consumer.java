@@ -23,6 +23,7 @@ import javax.ws.rs.core.Response;
 
 import io.openliberty.guides.consumingrest.model.Album;
 import io.openliberty.guides.consumingrest.model.Artist;
+
 // tag::Consumer[]
 public class Consumer {
     // tag::consumeWithJsonb[]
