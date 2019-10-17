@@ -41,10 +41,10 @@ public class ArtistResource {
     }
     // end::getArtists[]
 
-    // tag::getJsonString[]
     @GET
     @Path("jsonString")
     @Produces(MediaType.TEXT_PLAIN)
+    // tag::getJsonString[]
     public String getJsonString() {
       Jsonb jsonb = JsonbBuilder.create();
 
@@ -56,10 +56,10 @@ public class ArtistResource {
     }
     // end::getJsonString[]
 
-    // tag::getTotalAlbums[]
     @GET
     @Path("total/{artist}")
     @Produces(MediaType.TEXT_PLAIN)
+    // tag::getTotalAlbums[]
     public int getTotalAlbums(@PathParam("artist") String artist) {
       Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString()
         + "artists");
@@ -73,10 +73,10 @@ public class ArtistResource {
     }
     // end::getTotalAlbums[]
 
-    // tag::getTotalArtists[]
     @GET
     @Path("total")
     @Produces(MediaType.TEXT_PLAIN)
+    // tag::getTotalArtists[]
     public int getTotalArtists() {
       return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString() +
         "artists").length;

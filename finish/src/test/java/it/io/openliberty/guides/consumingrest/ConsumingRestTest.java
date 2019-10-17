@@ -44,18 +44,21 @@ public class ConsumingRestTest {
       baseUrl = "http://localhost:" + port + "/artists/";
       targetUrl = baseUrl + "total/";
     }
+    
     // tag::Before[]
     @Before
     // end::Before[]
     public void setup() {
       client = ClientBuilder.newClient();
     }
+
     // tag::After[]
     @After
     // end::After[]
     public void teardown() {
       client.close();
     }
+
     // tag::test-1[]
     @Test
     // end::test-1[]
