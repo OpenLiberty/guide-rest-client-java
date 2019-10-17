@@ -53,12 +53,14 @@
             <type>esa</type>
             <scope>provided</scope>
         </dependency>
+        <!-- tag::JSON-B-provider[] -->
         <dependency>
             <groupId>io.openliberty.features</groupId>
             <artifactId>jsonb-1.0</artifactId>
             <type>esa</type>
             <scope>provided</scope>
         </dependency>
+        <!-- end::JSON-B-provider[] -->
         <!-- For tests -->
         <dependency>
             <groupId>junit</groupId>
@@ -79,14 +81,12 @@
             <scope>test</scope>
         </dependency>
         <!-- JSON-P RI -->
-        <!-- tag::JSON-B-provider[] -->
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.json</artifactId>
             <version>1.0.4</version>
             <scope>test</scope>
         </dependency>
-        <!-- end::JSON-B-provider[] -->
         <!-- JSON-B API -->
         <dependency>
             <groupId>org.eclipse</groupId>
