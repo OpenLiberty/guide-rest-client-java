@@ -109,7 +109,7 @@ To deserialize a JSON message, start with creating Plain Old Java Objects (POJOs
 is in the JSON and whose instance members map to the keys in the JSON.
 
 For the purpose of this guide, you are given two POJOs.
-The [hotspot=Artist file=0]`Artist` object has two instance members [hotspot=name file=0]`name` and [hotspot=Albumns file=0]`albums`, 
+The [hotspot=Artist file=0]`Artist` object has two instance members [hotspot=name file=0]`name` and [hotspot=Albums file=0]`albums`, 
 which map to the artist name and the collection of the albums they have written. The [hotspot=Album file=1]`Album` object represents a 
 single object within the album collection, and contains three instance members [hotspot=title file=1]`title`, [hotspot=artistName file=1]`artistName`, and [hotspot=totalTracks file=1]`totalTracks`, which map to the album title, the artist who wrote the album, and the number of tracks the album contains.
 
