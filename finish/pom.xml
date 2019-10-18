@@ -88,14 +88,14 @@
             <scope>test</scope>
         </dependency>
         <!-- JSON-B API -->
-        <!-- Yasson[] -->
+        <!-- tag::Yasson[] -->
         <dependency>
             <groupId>org.eclipse</groupId>
             <artifactId>yasson</artifactId>
             <version>1.0.1</version>
             <scope>test</scope>
         </dependency>
-        <!-- Yasson[] -->
+        <!-- end::Yasson[] -->
         <!-- Support for JDK 9 and above -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
