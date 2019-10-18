@@ -314,7 +314,7 @@ pom.xml
 include::finish/pom.xml[]
 ----
 
-For your test classes to have access to JSON-B, the [hotspot=JSON-B-provider file=1]`yasson` dependency has been added in your `pom.xml`.
+For your test classes to have access to JSON-B, the [hotspot=Yasson file=1]`yasson` dependency has been added in your `pom.xml`.
 
 The [hotspot=testArtistDeserialization file=0]`testArtistDeserialization` test case checks that `Artist` instances created from
 the REST data and those that are hardcoded perform the same.
