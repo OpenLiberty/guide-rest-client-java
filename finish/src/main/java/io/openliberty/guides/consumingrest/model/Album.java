@@ -15,14 +15,21 @@ package io.openliberty.guides.consumingrest.model;
 import javax.json.bind.annotation.JsonbCreator;
 import javax.json.bind.annotation.JsonbProperty;
 
+// tag::Album[]
 public class Album {
+    // tag::title[]
     public String title;
+    // end::title[]
 
     @JsonbProperty("artist")
+    // tag::artistName[]
     public String artistName;
+    // end::artistName[]
 
     @JsonbProperty("ntracks")
+    // tag::totalTracks[]
     public int totalTracks;
+    // end::totalTracks[]
 
     public Album() {
     }
@@ -44,3 +51,4 @@ public class Album {
         " contains " + totalTracks + " tracks";
     }
 }
+// end::Album[]

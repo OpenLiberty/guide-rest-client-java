@@ -27,6 +27,7 @@ import io.openliberty.guides.consumingrest.model.Artist;
 import io.openliberty.guides.consumingrest.Consumer;
 
 @Path("artists")
+// tag::ArtistResource[]
 public class ArtistResource {
 
     @Context
@@ -34,14 +35,16 @@ public class ArtistResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    // tag::getArtists[]
     public JsonArray getArtists() {
     	return Reader.getArtists();
     }
+    // end::getArtists[]
 
-    // tag::getJsonString[]
     @GET
     @Path("jsonString")
     @Produces(MediaType.TEXT_PLAIN)
+    // tag::getJsonString[]
     public String getJsonString() {
       Jsonb jsonb = JsonbBuilder.create();
 
@@ -53,10 +56,10 @@ public class ArtistResource {
     }
     // end::getJsonString[]
 
-    // tag::getTotalAlbums[]
     @GET
     @Path("total/{artist}")
     @Produces(MediaType.TEXT_PLAIN)
+    // tag::getTotalAlbums[]
     public int getTotalAlbums(@PathParam("artist") String artist) {
       Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString()
         + "artists");
@@ -70,14 +73,14 @@ public class ArtistResource {
     }
     // end::getTotalAlbums[]
 
-    // tag::getTotalArtists[]
     @GET
     @Path("total")
     @Produces(MediaType.TEXT_PLAIN)
+    // tag::getTotalArtists[]
     public int getTotalArtists() {
       return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString() +
         "artists").length;
     }
     // end::getTotalArtists[]
-
 }
+// end::ArtistResource[]

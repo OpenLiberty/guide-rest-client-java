@@ -36,28 +36,33 @@ public class ConsumingRestTest {
     private Client client;
     private Response response;
 
-    // tag::setup[]
+    // tag::BeforeClass[]
     @BeforeClass
+    // end::BeforeClass[]
     public static void oneTimeSetup() {
       port = System.getProperty("liberty.test.port");
       baseUrl = "http://localhost:" + port + "/artists/";
       targetUrl = baseUrl + "total/";
     }
-
+    
+    // tag::Before[]
     @Before
+    // end::Before[]
     public void setup() {
       client = ClientBuilder.newClient();
     }
 
+    // tag::After[]
     @After
+    // end::After[]
     public void teardown() {
       client.close();
     }
-    // end::setup[]
 
-    // tag::tests[]
-    // tag::testArtistDeserialization[]
+    // tag::test-1[]
     @Test
+    // end::test-1[]
+    // tag::testArtistDeserialization[]
     public void testArtistDeserialization() {
       response = client.target(baseUrl + "jsonString").request().get();
       this.assertResponse(baseUrl + "jsonString", response);
@@ -78,8 +83,10 @@ public class ConsumingRestTest {
     }
     // end::testArtistDeserialization[]
 
-    // tag::testAlbumCount[]
+    // tag::test-2[]
     @Test
+    // end::test-2[]
+    // tag::testJsonBAlbumCount[]
     public void testJsonBAlbumCount() {
       String[] artists = {"dj", "bar", "foo"};
       for (int i = 0; i < artists.length; i++) {
@@ -93,10 +100,13 @@ public class ConsumingRestTest {
         response.close();
       }
     }
-    // end::testAlbumCount[]
+    // end::testJsonBAlbumCount[]
 
     // tag::testAlbumCountForUnknownArtist[]
+    // tag::test-3[] 
     @Test
+    // end::test-3[]
+    // tag::testJsonBAlbumCountForUnknownArtist[]
     public void testJsonBAlbumCountForUnknownArtist() {
       response = client.target(targetUrl + "unknown-artist").request().get();
 
@@ -106,10 +116,12 @@ public class ConsumingRestTest {
 
       response.close();
     }
-    // end::testAlbumCountForUnknownArtist[]
+    // end::testJsonBAlbumCountForUnknownArtist[]
 
-    // tag::testArtistCount[]
+    // tag::test-4[]
     @Test
+    // end::test-4[]
+    // tag::testJsonPArtistCount[]
     public void testJsonPArtistCount() {
       response = client.target(targetUrl).request().get();
       this.assertResponse(targetUrl, response);
@@ -120,7 +132,7 @@ public class ConsumingRestTest {
 
       response.close();
     }
-    // end::testArtistCount[]
+    // end::testJsonPArtistCount[]
 
     /**
      * Asserts that the given URL has the correct (200) response code.
