@@ -71,22 +71,21 @@ include::{common-includes}/gitclone.adoc[]
 
 == Starting the service
 
+Navigate to the `start` directory to begin.
+
 This guide is already setup with a general application. As you progress through the guide
-you will make updates to the code directly, and then push updates to the server
-so you can see the results.
+you will make updates to the code directly, and use development mode so that the Open Liberty server 
+automatically reloads the configuration without restarting, so you can see the results.
 
-To start the REST service, run the Maven `install` and `liberty:start-server` goals from
-the `start` directory:
+Start Open Liberty in development mode, which starts the Open Liberty server and listens for file changes:
 
 [role=command]
 ----
-mvn install liberty:start-server
+mvn liberty:dev
 ----
 
-When the server is running, you can find your service at http://localhost:9080/artists[http://localhost:9080/artists^]
+When the server is running, you can find your REST service at http://localhost:9080/artists[http://localhost:9080/artists^]
 
-[role=command]
-include::{common-includes}/trywhatyoubuild-end.adoc[]
 
 // =================================================================================================
 // Guide
