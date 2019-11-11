@@ -209,7 +209,7 @@ include::finish/pom.xml[tags=!comment]
 JSON-B is a Java API that is used to serialize Java objects to JSON messages and vice versa.
 
 Open Liberty's JSON-B feature on Maven Central includes the JSON-B provider through transitive dependencies.
-The [hotspot=89-94 file=1]`JSON-B provider` has been added as a dependency in your [hotspot file=1]`pom.xml`
+The [hotspot=62-67 file=1]`JSON-B provider` has been added as a dependency in your [hotspot file=1]`pom.xml`
 
 The [hotspot=16-26 file=0]`consumeWithJsonb()` method in the [hotspot=15-63 file=0]`Consumer` class makes a [hotspot=19 file=0]`GET` request to the
 running artist service and retrieves the JSON. To bind the JSON into an `Artist`
@@ -269,29 +269,29 @@ party service, you should separate your `GET`/`POST` requests from your data con
 // Building and running the application
 // =================================================================================================
 
-[role=command]
-include::{common-includes}/mvnbuild.adoc[]
+== Building and running the application
+
+The Open Liberty server was started in development mode at the beginning of the guide and all the changes were automatically picked up.
+
+Your application has been built, and a `.war` file has been created in the target directory. Open Liberty was configured and installed into the `target/liberty/wlp` directory.
 
 When the server is running, you can find your service at http://localhost:9080/artists[http://localhost:9080/artists^]
-
-[role=command]
-include::{common-includes}/mvncompile.adoc[]
 
 // =================================================================================================
 // Testing deserialization
 // =================================================================================================
 
 == Testing deserialization
-ConsumingRestTest.java
+ConsumingRestIT.java
 [source, java, linenums, role='code_column']
 ----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=!comment]
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[tags=!comment]
 ----
 
 [role="code_command hotspot", subs="quotes"]
 ----
-#Create the `ConsumingRestTest` class.#
-`src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java` 
+#Create the `ConsumingRestIT` class.#
+`src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java` 
 ----
 
 Maven finds and executes all tests under `it/` and each test method must be marked with the [hotspot=44 hotspot=64 hotspot=79 hotspot=90]`@Test` annotation.
@@ -301,10 +301,10 @@ tasks before and after all of your tests execute, as well as the [hotspot=34]`@B
 to do the same but for each individual test case.
 
 === Testing the binding process
-ConsumingRestTest.java
+ConsumingRestIT.java
 [source, java, linenums, role='code_column']
 ----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=!comment]
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[tags=!comment]
 ----
 
 pom.xml
@@ -313,7 +313,7 @@ pom.xml
 include::finish/pom.xml[tags=!comment]
 ----
 
-For your test classes to have access to JSON-B, the [hotspot=89-94 file=1]`yasson` dependency has been added in your `pom.xml`.
+For your test classes to have access to JSON-B, the [hotspot=62-67 file=1]`yasson` dependency has been added in your [hotspot file=1]`pom.xml`.
 
 The [hotspot=45-62 file=0]`testArtistDeserialization` test case checks that `Artist` instances created from
 the REST data and those that are hardcoded perform the same.
@@ -321,10 +321,10 @@ the REST data and those that are hardcoded perform the same.
 The [hotspot=105-107 file=0]`assertResponse` helper method ensures that the response code you receive is valid (200).
 
 === Processing with JSON-B test
-ConsumingRestTest.java
+ConsumingRestIT.java
 [source, java, linenums, role='code_column']
 ----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=!comment]
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[tags=!comment]
 ----
 
 The [hotspot=65-77]`testJsonBAlbumCount` and [hotspot=80-88]`testJsonBAlbumCountForUnknownArtist` tests both use the `total/{artist}`
@@ -335,13 +335,13 @@ and that the correct number of albums is returned for each artist in the JSON.
 
 The [hotspot=80-88]`testJsonBAlbumCountForUnknownArtist` test case is similar to [hotspot=65-77]`testJsonBAlbumCount`
 but instead checks an artist that does not exist in the JSON and ensures that a
-value of '-1' is returned.
+value of `-1` is returned.
 
 === Processing with JSON-P test
-ConsumingRestTest.java
+ConsumingRestIT.java
 [source, java, linenums, role='code_column']
 ----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[tags=!comment]
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[tags=!comment]
 ----
 
 The [hotspot=91-100]`testJsonPArtistCount` test uses the `total` endpoint which invokes JSON-P. This test
@@ -351,22 +351,29 @@ of artists is returned.
 // =================================================================================================
 // Running the Tests
 // =================================================================================================
-[role=command]
-include::{common-includes}/mvnverify.adoc[]
+
+=== Running the tests
+
+Since you started Open Liberty in development mode at the start of the guide, press the `enter/return` key to run the tests.
+
+If the tests pass, you see a similar output to the following example:
 
 [source, role="no_copy"]
 ----
 -------------------------------------------------------
  T E S T S
 -------------------------------------------------------
-Running it.io.openliberty.guides.consumingrest.ConsumingRestTest
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.59 sec - in it.io.openliberty.guides.consumingrest.ConsumingRestTest
+Running it.io.openliberty.guides.consumingrest.ConsumingRestIT
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.59 sec - in it.io.openliberty.guides.consumingrest.ConsumingRestIT
 
 Results :
 
 Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
 ----
+
+When you are done checking out the service, exit development mode by typing `q` in the shell session where you ran the server, 
+and then press the `enter/return` key.
 
 == Great work! You're done!
 
