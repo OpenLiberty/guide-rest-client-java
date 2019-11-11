@@ -27,7 +27,7 @@ import org.junit.Test;
 
 import io.openliberty.guides.consumingrest.model.Artist;
 
-public class ConsumingRestTest {
+public class ConsumingRestIT {
 
     private static String port;
     private static String baseUrl;
@@ -39,7 +39,7 @@ public class ConsumingRestTest {
     // tag::setup[]
     @BeforeClass
     public static void oneTimeSetup() {
-      port = System.getProperty("liberty.test.port");
+      port = System.getProperty("http.port");
       baseUrl = "http://localhost:" + port + "/artists/";
       targetUrl = baseUrl + "total/";
     }
