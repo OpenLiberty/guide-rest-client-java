@@ -209,7 +209,7 @@ include::finish/pom.xml[]
 JSON-B is a Java API that is used to serialize Java objects to JSON messages and vice versa.
 
 Open Liberty's JSON-B feature on Maven Central includes the JSON-B provider through transitive dependencies.
-The [hotspot=JSON-B-provider file=1]`jsonb-1.0 feature` is included in the MicroProfile dependency that is specified in your [hotspot file=1]`pom.xml` file. 
+The `jsonb-1.0` feature is included in the MicroProfile dependency that is specified in your [hotspot file=1]`pom.xml` file. 
 Look for the dependency with the [hotspot=microprofile file=1]`microprofile` artifact ID. 
 
 The [hotspot=consumeWithJsonb file=0]`consumeWithJsonb()` method in the [hotspot=Consumer file=0]`Consumer` class makes a [hotspot=get-1 file=0]`GET` request to the
