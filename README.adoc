@@ -276,7 +276,10 @@ The Open Liberty server was started in development mode at the beginning of the 
 
 Your application has been built, and a `.war` file has been created in the target directory. Open Liberty was configured and installed into the `target/liberty/wlp` directory.
 
-When the server is running, you can find your service at http://localhost:9080/artists[http://localhost:9080/artists^]
+When the server is running, you can find your service at http://localhost:9080/artists[http://localhost:9080/artists^].
+
+You can now access the endpoints at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists,
+and at `\http://localhost:9080/artists/total/<artist>` to see a particular artist's total number of albums. 
 
 // =================================================================================================
 // Testing deserialization
