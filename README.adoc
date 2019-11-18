@@ -353,7 +353,7 @@ of artists is returned.
 
 === Rebuild your WAR file
 
-If you satisfy your application, run the Maven `package` goal to rebuild the WAR file in the `target` directory:
+If you are satisfied with your application, run the Maven `package` goal to rebuild the WAR file in the `target` directory:
 
 [role=command]
 ----
