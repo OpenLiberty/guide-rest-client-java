@@ -74,8 +74,7 @@ include::{common-includes}/gitclone.adoc[]
 Navigate to the `start` directory to begin.
 
 This guide is already setup with a general application. As you progress through the guide
-you will make updates to the code directly, and use development mode so that the Open Liberty server 
-automatically reloads the configuration without restarting, so you can see the results.
+you will make updates to the code directly and automatically see the results using development mode.
 
 Start Open Liberty in development mode, which starts the Open Liberty server and listens for file changes:
 
@@ -84,7 +83,7 @@ Start Open Liberty in development mode, which starts the Open Liberty server and
 mvn liberty:dev
 ----
 
-When the server is running, you can find your REST service at http://localhost:9080/artists[http://localhost:9080/artists^]
+When the server is running, you can find your service at http://localhost:9080/artists[http://localhost:9080/artists^]
 
 
 // =================================================================================================
@@ -209,7 +208,7 @@ include::finish/pom.xml[]
 JSON-B is a Java API that is used to serialize Java objects to JSON messages and vice versa.
 
 Open Liberty's JSON-B feature on Maven Central includes the JSON-B provider through transitive dependencies.
-The `jsonb-1.0` feature is included in the MicroProfile dependency that is specified in your [hotspot file=1]`pom.xml` file. 
+The JSON-B APIs are provided by the MicroProfile dependency in your [hotspot file=1]`pom.xml` file. 
 Look for the dependency with the [hotspot=microprofile file=1]`microprofile` artifact ID. 
 
 The [hotspot=consumeWithJsonb file=0]`consumeWithJsonb()` method in the [hotspot=Consumer file=0]`Consumer` class makes a [hotspot=get-1 file=0]`GET` request to the
@@ -276,7 +275,7 @@ The Open Liberty server was started in development mode at the beginning of the 
 
 Your application has been built, and a `.war` file has been created in the target directory. Open Liberty was configured and installed into the `target/liberty/wlp` directory.
 
-When the server is running, you can find your service at http://localhost:9080/artists[http://localhost:9080/artists^].
+You can find your service at http://localhost:9080/artists[http://localhost:9080/artists^].
 
 You can now access the endpoints at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists,
 and at `\http://localhost:9080/artists/total/<artist>` to see a particular artist's total number of albums. 
@@ -298,7 +297,7 @@ include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRe
 `src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java` 
 ----
 
-Maven finds and executes all tests under `it/` and each test method must be marked with the [hotspot=test-1 hotspot=test-2 hotspot=test-3 hotspot=test-4]`@Test` annotation.
+Maven finds and executes all tests under `src/test/java/it/` and each test method must be marked with the [hotspot=test-1 hotspot=test-2 hotspot=test-3 hotspot=test-4]`@Test` annotation.
 
 You can use the [hotspot=BeforeAll]`@BeforeAll` and `@AfterAll` annotations to perform any one time setup and teardown
 tasks before and after all of your tests execute, as well as the [hotspot=BeforeEach]`@BeforeEach` and [hotspot=AfterEach]`@AfterEach` annotations
@@ -351,6 +350,15 @@ include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRe
 The [hotspot=testJsonPArtistCount]`testJsonPArtistCount` test uses the `total` endpoint which invokes JSON-P. This test
 checks that deserialization with JSON-P was done correctly and that the correct number
 of artists is returned.
+
+=== Rebuild your WAR file
+
+If you satisfy your application, run the Maven `package` goal to rebuild the WAR file in the `target` directory:
+
+[role=command]
+----
+mvn package
+----
 
 // =================================================================================================
 // Running the Tests
