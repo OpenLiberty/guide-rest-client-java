@@ -101,8 +101,6 @@
                 <configuration>
                     <systemPropertyVariables>
                         <http.port>${liberty.var.default.http.port}</http.port>
-                        <running.bluemix>${running.bluemix}</running.bluemix>
-                        <cf.context.root>${cf.context.root}</cf.context.root>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
