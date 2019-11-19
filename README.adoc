@@ -266,14 +266,12 @@ The methods that you wrote in the [hotspot=Consumer file-0]`Consumer` class coul
 party service, you should separate your `GET`/`POST` requests from your data consumption.
 
 // =================================================================================================
-// Building and running the application
+// Running the application
 // =================================================================================================
 
-== Building and running the application
+== Running the application
 
 The Open Liberty server was started in development mode at the beginning of the guide and all the changes were automatically picked up.
-
-Your application has been built, and a `.war` file has been created in the target directory. Open Liberty was configured and installed into the `target/liberty/wlp` directory.
 
 You can find your service at http://localhost:9080/artists[http://localhost:9080/artists^].
 
@@ -351,15 +349,6 @@ The [hotspot=testJsonPArtistCount]`testJsonPArtistCount` test uses the `total` e
 checks that deserialization with JSON-P was done correctly and that the correct number
 of artists is returned.
 
-=== Rebuild your WAR file
-
-If you are satisfied with your application, run the Maven `package` goal to rebuild the WAR file in the `target` directory:
-
-[role=command]
-----
-mvn package
-----
-
 // =================================================================================================
 // Running the Tests
 // =================================================================================================
@@ -386,6 +375,15 @@ Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
 When you are done checking out the service, exit development mode by typing `q` in the shell session where you ran the server, 
 and then press the `enter/return` key.
+
+== Building the application
+
+If you are satisfied with your application, run the Maven `package` goal to build the WAR file in the `target` directory:
+
+[role=command]
+----
+mvn package
+----
 
 == Great work! You're done!
 
