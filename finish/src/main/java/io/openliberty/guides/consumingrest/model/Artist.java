@@ -24,6 +24,7 @@ public class Artist {
     // tag::Albums[]
     public Album albums[];
     // end::Albums[]
+    
     // Object property that does not map to a JSON
     // tag::JsonbTransient[]
     @JsonbTransient

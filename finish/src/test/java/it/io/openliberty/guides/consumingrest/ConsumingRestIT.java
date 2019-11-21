@@ -12,7 +12,7 @@
  // end::comment[]
 package it.io.openliberty.guides.consumingrest;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
@@ -20,14 +20,14 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import io.openliberty.guides.consumingrest.model.Artist;
 
-public class ConsumingRestTest {
+public class ConsumingRestIT {
 
     private static String port;
     private static String baseUrl;
@@ -36,25 +36,25 @@ public class ConsumingRestTest {
     private Client client;
     private Response response;
 
-    // tag::BeforeClass[]
-    @BeforeClass
-    // end::BeforeClass[]
+    // tag::BeforeAll[]
+    @BeforeAll
+    // end::BeforeAll[]
     public static void oneTimeSetup() {
-      port = System.getProperty("liberty.test.port");
+      port = System.getProperty("http.port");
       baseUrl = "http://localhost:" + port + "/artists/";
       targetUrl = baseUrl + "total/";
     }
-    
-    // tag::Before[]
-    @Before
-    // end::Before[]
+
+    // tag::BeforeEach[]
+    @BeforeEach
+    // end::BeforeEach[]
     public void setup() {
       client = ClientBuilder.newClient();
     }
 
-    // tag::After[]
-    @After
-    // end::After[]
+    // tag::AfterEach[]
+    @AfterEach
+    // end::AfterEach[]
     public void teardown() {
       client.close();
     }
@@ -76,8 +76,8 @@ public class ConsumingRestTest {
       String actualString = response.readEntity(String.class);
 		  Artist[] actual = jsonb.fromJson(actualString, Artist[].class);
 
-      assertEquals("Expected names of artists does not match", expected.name, 
-        actual[0].name);
+      assertEquals(expected.name, actual[0].name, 
+        "Expected names of artists does not match");
 
       response.close();
     }
@@ -95,7 +95,7 @@ public class ConsumingRestTest {
 
         int expected = i;
         int actual = response.readEntity(int.class);
-        assertEquals("Album count for " + artists[i] + " does not match", expected, actual);
+        assertEquals(expected, actual, "Album count for " + artists[i] + " does not match");
 
         response.close();
       }
@@ -112,7 +112,7 @@ public class ConsumingRestTest {
 
       int expected = -1;
       int actual = response.readEntity(int.class);
-      assertEquals("Unknown artist must have -1 albums", expected, actual);
+      assertEquals(expected, actual, "Unknown artist must have -1 albums");
 
       response.close();
     }
@@ -128,7 +128,7 @@ public class ConsumingRestTest {
 
       int expected = 3;
       int actual = response.readEntity(int.class);
-      assertEquals("Expected number of artists does not match", expected, actual);
+      assertEquals(expected, actual, "Expected number of artists does not match");
 
       response.close();
     }
@@ -139,7 +139,7 @@ public class ConsumingRestTest {
      */
     // tag::assertResponse[]
     private void assertResponse(String url, Response response) {
-      assertEquals("Incorrect response code from " + url, 200, response.getStatus());
+      assertEquals(200, response.getStatus(), "Incorrect response code from " + url);
     }
     // end::assertResponse[]
     // end::tests[]

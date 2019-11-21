@@ -71,22 +71,20 @@ include::{common-includes}/gitclone.adoc[]
 
 == Starting the service
 
-This guide is already setup with a general application. As you progress through the guide
-you will make updates to the code directly, and then push updates to the server
-so you can see the results.
+Navigate to the `start` directory to begin.
 
-To start the REST service, run the Maven `install` and `liberty:start-server` goals from
-the `start` directory:
+This guide is already setup with a general application. As you progress through the guide,
+you will update the code directly and automatically see the results by using development mode.
+
+Start Open Liberty in development mode, which starts the Open Liberty server and listens for file changes:
 
 [role=command]
 ----
-mvn install liberty:start-server
+mvn liberty:dev
 ----
 
-When the server is running, you can find your service at http://localhost:9080/artists[http://localhost:9080/artists^]
+When the server is running, you can find your service at the http://localhost:9080/artists[http://localhost:9080/artists^] URL.
 
-[role=command]
-include::{common-includes}/trywhatyoubuild-end.adoc[]
 
 // =================================================================================================
 // Guide
@@ -210,7 +208,8 @@ include::finish/pom.xml[]
 JSON-B is a Java API that is used to serialize Java objects to JSON messages and vice versa.
 
 Open Liberty's JSON-B feature on Maven Central includes the JSON-B provider through transitive dependencies.
-The [hotspot=JSON-B-provider file=1]`jsonb-1.0 feature` has been added as a dependency in your [hotspot file=1]`pom.xml`
+The JSON-B APIs are provided by the MicroProfile dependency in your [hotspot file=1]`pom.xml` file. 
+Look for the dependency with the [hotspot=microprofile file=1]`microprofile` artifact ID. 
 
 The [hotspot=consumeWithJsonb file=0]`consumeWithJsonb()` method in the [hotspot=Consumer file=0]`Consumer` class makes a [hotspot=get-1 file=0]`GET` request to the
 running artist service and retrieves the JSON. To bind the JSON into an `Artist`
@@ -267,45 +266,47 @@ The methods that you wrote in the [hotspot=Consumer file-0]`Consumer` class coul
 party service, you should separate your `GET`/`POST` requests from your data consumption.
 
 // =================================================================================================
-// Building and running the application
+// Running the application
 // =================================================================================================
 
-[role=command]
-include::{common-includes}/mvnbuild.adoc[]
+== Running the application
 
-When the server is running, you can find your service at http://localhost:9080/artists[http://localhost:9080/artists^]
+The Open Liberty server was started in development mode at the beginning of the guide and all the changes were automatically picked up.
 
-[role=command]
-include::{common-includes}/mvncompile.adoc[]
+You can find your service at http://localhost:9080/artists[http://localhost:9080/artists^].
+
+Now, you can access the endpoint at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists,
+and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist's total number of albums. 
 
 // =================================================================================================
 // Testing deserialization
 // =================================================================================================
 
 == Testing deserialization
-ConsumingRestTest.java
+ConsumingRestIT.java
 [source, java, linenums, role='code_column hide_tags=comment']
 ----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[]
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[]
 ----
 
 [role="code_command hotspot", subs="quotes"]
 ----
-#Create the `ConsumingRestTest` class.#
-`src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java` 
+#Create the `ConsumingRestIT` class.#
+`src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java` 
 ----
 
-Maven finds and executes all tests under `it/` and each test method must be marked with the [hotspot=test-1 hotspot=test-2 hotspot=test-3 hotspot=test-4]`@Test` annotation.
+Maven finds and executes all tests under the `src/test/java/it/` directory, 
+and each test method must be marked with the [hotspot=test-1 hotspot=test-2 hotspot=test-3 hotspot=test-4]`@Test` annotation.
 
-You can use the [hotspot=BeforeClass]`@BeforeClass` and `@AfterClass` annotations to perform any one time setup and teardown
-tasks before and after all of your tests execute, as well as the [hotspot=Before]`@Before` and [hotspot=After]`@After` annotations
-to do the same but for each individual test case.
+You can use the [hotspot=BeforeAll]`@BeforeAll` and `@AfterAll` annotations to perform any one-time setup and teardown
+tasks before and after all of your tests run. You can also use the [hotspot=BeforeEach]`@BeforeEach` and [hotspot=AfterEach]`@AfterEach` annotations
+to perform setup and teardown tasks for individual test cases.
 
 === Testing the binding process
-ConsumingRestTest.java
+ConsumingRestIT.java
 [source, java, linenums, role='code_column hide_tags=comment']
 ----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[]
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[]
 ----
 
 pom.xml
@@ -314,7 +315,7 @@ pom.xml
 include::finish/pom.xml[]
 ----
 
-For your test classes to have access to JSON-B, the [hotspot=Yasson file=1]`yasson` dependency has been added in your `pom.xml`.
+The [hotspot=Yasson file=1]`yasson` dependency was added in your [hotspot file=1]`pom.xml` file so that your test classes have access to JSON-B.
 
 The [hotspot=testArtistDeserialization file=0]`testArtistDeserialization` test case checks that `Artist` instances created from
 the REST data and those that are hardcoded perform the same.
@@ -322,10 +323,10 @@ the REST data and those that are hardcoded perform the same.
 The [hotspot=assertResponse file=0]`assertResponse` helper method ensures that the response code you receive is valid (200).
 
 === Processing with JSON-B test
-ConsumingRestTest.java
+ConsumingRestIT.java
 [source, java, linenums, role='code_column hide_tags=comment']
 ----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[]
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[]
 ----
 
 The [hotspot=testJsonBAlbumCount]`testJsonBAlbumCount` and [hotspot=testJsonBAlbumCountForUnknownArtist]`testJsonBAlbumCountForUnknownArtist` tests both use the `total/{artist}`
@@ -336,13 +337,13 @@ and that the correct number of albums is returned for each artist in the JSON.
 
 The [hotspot=testJsonBAlbumCountForUnknownArtist]`testJsonBAlbumCountForUnknownArtist` test case is similar to [hotspot=testJsonBAlbumCount]`testJsonBAlbumCount`
 but instead checks an artist that does not exist in the JSON and ensures that a
-value of '-1' is returned.
+value of `-1` is returned.
 
 === Processing with JSON-P test
-ConsumingRestTest.java
+ConsumingRestIT.java
 [source, java, linenums, role='code_column hide_tags=comment']
 ----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestTest.java[]
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[]
 ----
 
 The [hotspot=testJsonPArtistCount]`testJsonPArtistCount` test uses the `total` endpoint which invokes JSON-P. This test
@@ -352,16 +353,20 @@ of artists is returned.
 // =================================================================================================
 // Running the Tests
 // =================================================================================================
-[role=command]
-include::{common-includes}/mvnverify.adoc[]
+
+=== Running the tests
+
+Since you started Open Liberty in development mode at the start of the guide, press the `enter/return` key to run the tests.
+
+If the tests pass, you see a similar output to the following example:
 
 [source, role="no_copy"]
 ----
 -------------------------------------------------------
  T E S T S
 -------------------------------------------------------
-Running it.io.openliberty.guides.consumingrest.ConsumingRestTest
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.59 sec - in it.io.openliberty.guides.consumingrest.ConsumingRestTest
+Running it.io.openliberty.guides.consumingrest.ConsumingRestIT
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.59 sec - in it.io.openliberty.guides.consumingrest.ConsumingRestIT
 
 Results :
 
@@ -369,9 +374,21 @@ Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
 ----
 
+When you are done checking out the service, exit development mode by typing `q` in the shell session where you ran the server, 
+and then press the `enter/return` key.
+
+== Building the application
+
+If you are satisfied with your application, run the Maven `package` goal to build the WAR file in the `target` directory:
+
+[role=command]
+----
+mvn package
+----
+
 == Great work! You're done!
 
-You have just accessed a simple RESTful web service and consumed its resources using JSON-B and JSON-P in Open Liberty.
+You just accessed a simple RESTful web service and consumed its resources by using JSON-B and JSON-P in Open Liberty.
 
 
 include::{common-includes}/attribution.adoc[subs="attributes"]
