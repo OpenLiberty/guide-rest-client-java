@@ -73,8 +73,8 @@ include::{common-includes}/gitclone.adoc[]
 
 Navigate to the `start` directory to begin.
 
-This guide is already setup with a general application. As you progress through the guide
-you will make updates to the code directly and automatically see the results using development mode.
+This guide is already setup with a general application. As you progress through the guide,
+you will update the code directly and automatically see the results by using development mode.
 
 Start Open Liberty in development mode, which starts the Open Liberty server and listens for file changes:
 
@@ -83,7 +83,7 @@ Start Open Liberty in development mode, which starts the Open Liberty server and
 mvn liberty:dev
 ----
 
-When the server is running, you can find your service at http://localhost:9080/artists[http://localhost:9080/artists^]
+When the server is running, you can find your service at the http://localhost:9080/artists[http://localhost:9080/artists^] URL.
 
 
 // =================================================================================================
@@ -275,8 +275,8 @@ The Open Liberty server was started in development mode at the beginning of the 
 
 You can find your service at http://localhost:9080/artists[http://localhost:9080/artists^].
 
-You can now access the endpoints at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists,
-and at `\http://localhost:9080/artists/total/<artist>` to see a particular artist's total number of albums. 
+Now, you can access the endpoint at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists,
+and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist's total number of albums. 
 
 // =================================================================================================
 // Testing deserialization
@@ -295,11 +295,12 @@ include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRe
 `src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java` 
 ----
 
-Maven finds and executes all tests under `src/test/java/it/` and each test method must be marked with the [hotspot=test-1 hotspot=test-2 hotspot=test-3 hotspot=test-4]`@Test` annotation.
+Maven finds and executes all tests under the `src/test/java/it/` directory, 
+and each test method must be marked with the [hotspot=test-1 hotspot=test-2 hotspot=test-3 hotspot=test-4]`@Test` annotation.
 
-You can use the [hotspot=BeforeAll]`@BeforeAll` and `@AfterAll` annotations to perform any one time setup and teardown
-tasks before and after all of your tests execute, as well as the [hotspot=BeforeEach]`@BeforeEach` and [hotspot=AfterEach]`@AfterEach` annotations
-to do the same but for each individual test case.
+You can use the [hotspot=BeforeAll]`@BeforeAll` and `@AfterAll` annotations to perform any one-time setup and teardown
+tasks before and after all of your tests run. You can also use the [hotspot=BeforeEach]`@BeforeEach` and [hotspot=AfterEach]`@AfterEach` annotations
+to perform setup and teardown tasks for individual test cases.
 
 === Testing the binding process
 ConsumingRestIT.java
@@ -314,7 +315,7 @@ pom.xml
 include::finish/pom.xml[]
 ----
 
-For your test classes to have access to JSON-B, the [hotspot=Yasson file=1]`yasson` dependency has been added in your [hotspot file=1]`pom.xml`.
+The [hotspot=Yasson file=1]`yasson` dependency was added in your [hotspot file=1]`pom.xml` file so that your test classes have access to JSON-B.
 
 The [hotspot=testArtistDeserialization file=0]`testArtistDeserialization` test case checks that `Artist` instances created from
 the REST data and those that are hardcoded perform the same.
@@ -387,7 +388,7 @@ mvn package
 
 == Great work! You're done!
 
-You have just accessed a simple RESTful web service and consumed its resources using JSON-B and JSON-P in Open Liberty.
+You just accessed a simple RESTful web service and consumed its resources by using JSON-B and JSON-P in Open Liberty.
 
 
 include::{common-includes}/attribution.adoc[subs="attributes"]
