@@ -18,7 +18,7 @@
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 :source-highlighter: prettify
 :page-seo-title: Consuming a RESTful Java web service
-:page-seo-description: A getting started tutorial with examples on how to access a RESTful Java web service and consume its resources using the Java API for JSON Binding (JSON-B) and the Java API for JSON Processing (JSON-P).
+:page-seo-description: A getting started tutorial with examples on how to access a RESTful Java microservice and consume its resources using the Java API for JSON Binding (JSON-B) and the Java API for JSON Processing (JSON-P).
 :guide-author: Open Liberty
 = Consuming a RESTful web service
 
