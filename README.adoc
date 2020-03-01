@@ -11,7 +11,7 @@
 :page-releasedate: 2018-07-02
 :page-guide-category: microprofile
 :page-essential: false
-:page-description: Explore how to access a simple RESTful web service and consume its resources in Java.
+:page-description: Explore how to access a simple RESTful web service and consume its resources in Java using JSON-B and JSON-P.
 :page-tags: ['MicroProfile', 'Java EE', 'Jakarta EE']
 :page-related-guides: ['rest-intro', 'rest-client-angularjs']
 :page-permalink: /guides/{projectid}
