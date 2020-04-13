@@ -1,4 +1,4 @@
-// Copyright (c) 2017, 2019 IBM Corporation and others.
+// Copyright (c) 2017, 2020 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -65,6 +65,16 @@ https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service^].
 include::{common-includes}/gitclone.adoc[]
 
 
+[role='command']
+include::{common-includes}/twyb-intro.adoc[]
+
+You can find your service at http://localhost:9080/artists.
+
+Now, you can access the endpoint at http://localhost:9080/artists/total to see the total number of artists, and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist’s total number of albums.
+
+[role='command']
+include::{common-includes}/twyb-end.adoc[]
+
 // =================================================================================================
 // Starting the service
 // =================================================================================================
@@ -84,7 +94,6 @@ mvn liberty:dev
 ----
 
 When the server is running, you can find your service at the http://localhost:9080/artists[http://localhost:9080/artists^] URL.
-
 
 // =================================================================================================
 // Guide
