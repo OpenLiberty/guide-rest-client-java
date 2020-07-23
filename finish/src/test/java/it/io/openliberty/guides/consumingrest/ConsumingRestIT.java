@@ -1,6 +1,6 @@
 // tag::comment[]
 /*******************************************************************************
- * Copyright (c) 2018, 2019 IBM Corporation and others.
+ * Copyright (c) 2018, 2020 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -59,9 +59,7 @@ public class ConsumingRestIT {
       client.close();
     }
 
-    // tag::test-1[]
     @Test
-    // end::test-1[]
     // tag::testArtistDeserialization[]
     public void testArtistDeserialization() {
       response = client.target(baseUrl + "jsonString").request().get();
@@ -83,9 +81,7 @@ public class ConsumingRestIT {
     }
     // end::testArtistDeserialization[]
 
-    // tag::test-2[]
     @Test
-    // end::test-2[]
     // tag::testJsonBAlbumCount[]
     public void testJsonBAlbumCount() {
       String[] artists = {"dj", "bar", "foo"};
@@ -103,9 +99,7 @@ public class ConsumingRestIT {
     // end::testJsonBAlbumCount[]
 
     // tag::testAlbumCountForUnknownArtist[]
-    // tag::test-3[] 
     @Test
-    // end::test-3[]
     // tag::testJsonBAlbumCountForUnknownArtist[]
     public void testJsonBAlbumCountForUnknownArtist() {
       response = client.target(targetUrl + "unknown-artist").request().get();
@@ -118,9 +112,7 @@ public class ConsumingRestIT {
     }
     // end::testJsonBAlbumCountForUnknownArtist[]
 
-    // tag::test-4[]
     @Test
-    // end::test-4[]
     // tag::testJsonPArtistCount[]
     public void testJsonPArtistCount() {
       response = client.target(targetUrl).request().get();

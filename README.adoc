@@ -33,6 +33,7 @@ using JSON-B and JSON-P.
 // =================================================================================================
 
 == What you'll learn
+
 artists.json
 [source, json, linenums, role='code_column']
 ----
@@ -120,19 +121,21 @@ The [hotspot=Artist file=0]`Artist` object has two instance members [hotspot=nam
 which map to the artist name and the collection of the albums they have written. The [hotspot=Album file=1]`Album` object represents a 
 single object within the album collection, and contains three instance members [hotspot=title file=1]`title`, [hotspot=artistName file=1]`artistName`, and [hotspot=totalTracks file=1]`totalTracks`, which map to the album title, the artist who wrote the album, and the number of tracks the album contains.
 
-== Introducing JSON-B and JSON-P
+== Introducing Java&trade APIs
 
-JSON-B is a feature introduced with Java EE 8 and strengthens Java support for JSON.
+JSON-B is a Java&trade API introduced with Java EE 8 and strengthens Java support for JSON.
 With JSON-B you directly serialize and deserialize POJOs. This API gives you a
 variety of options for working with JSON resources.
 
-In contrast, you need to use helper methods with JSON-P to process a JSON response.
-This tactic is more straightforward, but it can be cumbersome with more complex classes.
+In contrast, you need to use helper methods with JSON-P to process a JSON response. 
+JSON-P provides a Java&trade API for processing JSON-formatted data. This tactic is more 
+straightforward, but it can be cumbersome with more complex classes.
 
 JSON-B is built on top of the existing JSON-P API. JSON-B can do everything that JSON-P can do
 and allows for more customization for serializing and deserializing.
 
 === Using JSON-B
+
 Artist.java
 [source, java, linenums, role='code_column hide_tags=comment']
 ----
@@ -202,6 +205,7 @@ Next, we'll learn to consume the JSON response from your REST service.
 ----
 
 === Processing JSON using JSON-B
+
 Consumer.java
 [source, java, linenums, role='code_column hide_tags=comment']
 ----
@@ -225,6 +229,7 @@ running artist service and retrieves the JSON. To bind the JSON into an `Artist`
 array, use the [hotspot=readEntity file=0]`Artist[]` entity type in the [hotspot=readEntity file=0]`readEntity` call.
 
 === Processing JSON using JSON-P
+
 Consumer.java
 [source, java, linenums, role='code_column hide_tags=comment']
 ----
@@ -237,7 +242,8 @@ to the running artist service and retrieves the JSON. This method then uses the
 parse the JSON and collect its objects into individual POJOs. Notice that you can
 use the custom constructors to create instances of `Artist` and `Album`.
 
-== Creating additional REST resources
+== Creating artist REST resources
+
 Consumer.java
 [source, java, linenums, role='code_column hide_tags=comment']
 ----
@@ -271,8 +277,7 @@ in the JSON for a particular artist. The method returns -1 if this artist does n
 present in the JSON.
 
 The methods that you wrote in the [hotspot=Consumer file-0]`Consumer` class could be written directly in the
-[hotspot=ArtistResource file=1]`ArtistResource` class. However, if you are consuming a REST resource from a third
-party service, you should separate your `GET`/`POST` requests from your data consumption.
+[hotspot=ArtistResource file=1]`ArtistResource` class. However, if you are consuming a REST resource from a third party service, you should separate your `GET`/`POST` requests from your data consumption. This ensures your API seperates into logical resources.
 
 // =================================================================================================
 // Running the application
@@ -292,6 +297,7 @@ and you can access the endpoint at `\http://localhost:9080/artists/total/<artist
 // =================================================================================================
 
 == Testing deserialization
+
 ConsumingRestIT.java
 [source, java, linenums, role='code_column hide_tags=comment']
 ----
@@ -304,14 +310,12 @@ include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRe
 `src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java` 
 ----
 
-Maven finds and executes all tests under the `src/test/java/it/` directory, 
-and each test method must be marked with the [hotspot=test-1 hotspot=test-2 hotspot=test-3 hotspot=test-4]`@Test` annotation.
-
 You can use the [hotspot=BeforeAll]`@BeforeAll` and `@AfterAll` annotations to perform any one-time setup and teardown
 tasks before and after all of your tests run. You can also use the [hotspot=BeforeEach]`@BeforeEach` and [hotspot=AfterEach]`@AfterEach` annotations
 to perform setup and teardown tasks for individual test cases.
 
 === Testing the binding process
+
 ConsumingRestIT.java
 [source, java, linenums, role='code_column hide_tags=comment']
 ----
@@ -332,6 +336,7 @@ the REST data and those that are hardcoded perform the same.
 The [hotspot=assertResponse file=0]`assertResponse` helper method ensures that the response code you receive is valid (200).
 
 === Processing with JSON-B test
+
 ConsumingRestIT.java
 [source, java, linenums, role='code_column hide_tags=comment']
 ----
@@ -349,6 +354,7 @@ but instead checks an artist that does not exist in the JSON and ensures that a
 value of `-1` is returned.
 
 === Processing with JSON-P test
+
 ConsumingRestIT.java
 [source, java, linenums, role='code_column hide_tags=comment']
 ----
