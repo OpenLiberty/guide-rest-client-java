@@ -121,7 +121,7 @@ The [hotspot=Artist file=0]`Artist` object has two instance members [hotspot=nam
 which map to the artist name and the collection of the albums they have written. The [hotspot=Album file=1]`Album` object represents a 
 single object within the album collection, and contains three instance members [hotspot=title file=1]`title`, [hotspot=artistName file=1]`artistName`, and [hotspot=totalTracks file=1]`totalTracks`, which map to the album title, the artist who wrote the album, and the number of tracks the album contains.
 
-== Introducing Java&trade APIs
+== Introducing JSON-B and JSON-P
 
 JSON-B is a Java&trade API introduced with Java EE 8 and strengthens Java support for JSON.
 With JSON-B you directly serialize and deserialize POJOs. This API gives you a
@@ -276,8 +276,9 @@ in the JSON for a particular artist. The method returns -1 if this artist does n
 * The [hotspot=getTotalArtists file=1]`getTotalArtists()` method uses JSON-P to return the total number of artists
 present in the JSON.
 
-The methods that you wrote in the [hotspot=Consumer file-0]`Consumer` class could be written directly in the
-[hotspot=ArtistResource file=1]`ArtistResource` class. However, if you are consuming a REST resource from a third party service, you should separate your `GET`/`POST` requests from your data consumption. This ensures your API seperates into logical resources.
+The methods that you wrote in the [hotspot=Consumer file-0]`Consumer` class could be written directly in the [hotspot=ArtistResource file=1]`ArtistResource` class. 
+However, if you are consuming a REST resource from a third party service, you should separate your `GET`/`POST` requests from your data consumption. 
+This ensures your API seperates into logical resources.
 
 // =================================================================================================
 // Running the application
