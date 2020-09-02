@@ -123,15 +123,16 @@ single object within the album collection, and contains three instance members [
 
 == Introducing JSON-B and JSON-P
 
-JSON-B is a Java&trade API introduced with Java EE 8 and strengthens Java support for JSON.
+JSON-B is a standardized API introduced with Java EE 8 that strengthens Java support for JSON.
 With JSON-B you directly serialize and deserialize POJOs. This API gives you a
 variety of options for working with JSON resources.
 
 In contrast, you need to use helper methods with JSON-P to process a JSON response. 
-JSON-P provides a Java&trade API for processing JSON-formatted data. This tactic is more 
-straightforward, but it can be cumbersome with more complex classes.
+JSON-P provides a Java API for processing JSON-formatted data. 
+This tactic is more straightforward, but it can be cumbersome with more complex classes.
 
-JSON-B is built on top of the existing JSON-P API. JSON-B can do everything that JSON-P can do
+JSON-B is built on top of the existing JSON-P API. 
+JSON-B can do everything that JSON-P can do
 and allows for more customization for serializing and deserializing.
 
 === Using JSON-B
