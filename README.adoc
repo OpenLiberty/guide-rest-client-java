@@ -86,8 +86,8 @@ Navigate to the `start` directory to begin.
 [role=command]
 include::{common-includes}/devmode-start.adoc[]
 
-The starting application, on which you will build upon, has already been created for you. When the server is
-running, you can find it at the http://localhost:9080/artists[http://localhost:9080/artists^] URL.
+The starting application, on which you will build upon, has already been created for you. Once your server is
+ready, you can find it at http://localhost:9080/artists[http://localhost:9080/artists^].
 
 // =================================================================================================
 // Guide
