@@ -83,17 +83,11 @@ include::{common-includes}/twyb-end.adoc[]
 
 Navigate to the `start` directory to begin.
 
-This guide is already setup with a general application. As you progress through the guide,
-you will update the code directly and automatically see the results by using development mode.
-
-Start Open Liberty in development mode, which starts the Open Liberty server and listens for file changes:
-
 [role=command]
-----
-mvn liberty:dev
-----
+include::{common-includes}/devmode-start.adoc[]
 
-When the server is running, you can find your service at the http://localhost:9080/artists[http://localhost:9080/artists^] URL.
+The application that you'll build upon was created for you. After your server is
+ready, you can access the service at the http://localhost:9080/artists[http://localhost:9080/artists^] URL.
 
 // =================================================================================================
 // Guide
