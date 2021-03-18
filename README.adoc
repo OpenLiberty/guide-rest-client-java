@@ -45,8 +45,9 @@ the returned JSON resources. The first approach consists of using the Java API f
 to directly convert JSON messages into Java objects. The second approach consists of
 using the Java API for JSON Processing (JSON-P) to process the JSON.
 
+ifndef::cloud-hosted[]
 The REST service that provides the artists and albums resources has already been written
-for you and is accessible at the following link when the server is running http://localhost:9080/artists[http://localhost:9080/artists^], which responds with the [hotspot]`artists.json`.
+for you and is accessible at the following link when the server is running `http://localhost:9080/artists`, which responds with the [hotspot]`artists.json`.
 
 You will implement the following two endpoints using the two deserialization approaches:
 
@@ -68,10 +69,30 @@ include::{common-includes}/gitclone.adoc[]
 [role='command']
 include::{common-includes}/twyb-intro.adoc[]
 
+// static guide instructions:
+ifndef::cloud-hosted[]
 You can find your service at http://localhost:9080/artists.
 
 Now, you can access the endpoint at http://localhost:9080/artists/total to see the total number of artists, and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist’s total number of albums.
 
+endif::[]
+// cloud-hosted guide instructions:
+ifdef::cloud-hosted[]
+You can find your service at `http://localhost:9080/artists`.
+
+Run the following curl command to retrieve the total number of artists.
+```
+curl http://localhost:9080/artists/total
+```
+{: codeblock}
+
+Run the following curl command to retrieve a particular artist's total number of albums.
+```
+curl http://localhost:9080/artists/total/<artist>
+```
+{: codeblock}
+
+endif::[]
 [role='command']
 include::{common-includes}/twyb-end.adoc[]
 
@@ -86,8 +107,21 @@ Navigate to the `start` directory to begin.
 [role=command]
 include::{common-includes}/devmode-start.adoc[]
 
+// static guide instructions:
+ifndef::cloud-hosted[]
 The application that you'll build upon was created for you. After your server is
 ready, you can access the service at the http://localhost:9080/artists[http://localhost:9080/artists^] URL.
+endif::[]
+// cloud-hosted guide instructions:
+ifdef::cloud-hosted[]
+The application that you'll build upon was created for you. After your server is
+ready, run the following curl command to access the service. 
+```
+curl http://localhost:9080/artists
+```
+{: codeblock}
+
+endif::[]
 
 // =================================================================================================
 // Guide
@@ -276,10 +310,29 @@ party service, you should separate your `GET`/`POST` requests from your data con
 
 The Open Liberty server was started in development mode at the beginning of the guide and all the changes were automatically picked up.
 
+// static guide instructions:
+ifndef::cloud-hosted[]
 You can find your service at http://localhost:9080/artists[http://localhost:9080/artists^].
 
 Now, you can access the endpoint at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists,
 and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist's total number of albums. 
+endif::[]
+ifdef::cloud-hosted[]
+You can find your service at `http://localhost:9080/artists`.
+
+Run the following curl command to retrieve the total number of artists.
+```
+curl http://localhost:9080/artists/total
+```
+{: codeblock}
+
+Run the following curl command to retrieve a particular artist's total number of albums.
+```
+curl http://localhost:9080/artists/total/<artist>
+```
+{: codeblock}
+
+endif::[]
 
 // =================================================================================================
 // Testing deserialization
