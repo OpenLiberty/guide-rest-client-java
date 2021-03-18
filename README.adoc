@@ -47,7 +47,7 @@ using the Java API for JSON Processing (JSON-P) to process the JSON.
 
 ifndef::cloud-hosted[]
 The REST service that provides the artists and albums resources has already been written
-for you and is accessible at the following link when the server is running `http://localhost:9080/artists`, which responds with the [hotspot]`artists.json`.
+for you and is accessible at the following link when the server is running `\http://localhost:9080/artists`, which responds with the [hotspot]`artists.json`.
 
 You will implement the following two endpoints using the two deserialization approaches:
 
