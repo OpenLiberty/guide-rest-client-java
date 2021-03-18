@@ -71,9 +71,9 @@ include::{common-includes}/twyb-intro.adoc[]
 
 // static guide instructions:
 ifndef::cloud-hosted[]
-You can find your service at `http://localhost:9080/artists`.
+You can find your service at http://localhost:9080/artists[http://localhost:9080/artists^].
 
-Now, you can access the endpoint at `http://localhost:9080/artists/total` to see the total number of artists, and you can access the endpoint at `http://localhost:9080/artists/total/<artist>` to see a particular artist’s total number of albums.
+Now, you can access the endpoint at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists, and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist’s total number of albums.
 
 endif::[]
 // cloud-hosted guide instructions:
@@ -315,7 +315,7 @@ ifndef::cloud-hosted[]
 You can find your service at http://localhost:9080/artists[http://localhost:9080/artists^].
 
 Now, you can access the endpoint at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists,
-and you can access the endpoint at `http://localhost:9080/artists/total/<artist>` to see a particular artist's total number of albums. 
+and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist's total number of albums. 
 endif::[]
 ifdef::cloud-hosted[]
 You can find your service at `\http://localhost:9080/artists`.
