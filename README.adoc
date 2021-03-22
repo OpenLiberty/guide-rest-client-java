@@ -45,14 +45,8 @@ the returned JSON resources. The first approach consists of using the Java API f
 to directly convert JSON messages into Java objects. The second approach consists of
 using the Java API for JSON Processing (JSON-P) to process the JSON.
 
-ifndef::cloud-hosted[]
 The REST service that provides the artists and albums resources has already been written
 for you and is accessible at the following link when the server is running `\http://localhost:9080/artists`, which responds with the [hotspot]`artists.json`.
-endif::[]
-ifdef::cloud-hosted[]
-The REST service that provides the artists and albums resources has already been written
-for you and is accessible at the following link when the server is running **http://localhost:9080/artists**, which responds with the `artists.json`.
-endif::[]
 
 You will implement the following two endpoints using the two deserialization approaches:
 
@@ -91,12 +85,13 @@ curl http://localhost:9080/artists/total
 ```
 {: codeblock}
 
-Run the following curl command to retrieve a particular artist's total number of albums.
+Run the following curl command to retrieve a particular the artist **bar**'s total number of albums.
 ```
-curl http://localhost:9080/artists/total/<artist>
+curl http://localhost:9080/artists/total/bar
 ```
 {: codeblock}
 
+You can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist’s total number of albums.
 endif::[]
 [role='command']
 include::{common-includes}/twyb-end.adoc[]
@@ -331,11 +326,13 @@ curl http://localhost:9080/artists/total
 ```
 {: codeblock}
 
-Run the following curl command to retrieve a particular artist's total number of albums.
+Run the following curl command to retrieve a particular the artist **bar**'s total number of albums.
 ```
-curl http://localhost:9080/artists/total/<artist>
+curl http://localhost:9080/artists/total/bar
 ```
 {: codeblock}
+
+You can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist’s total number of albums.
 
 endif::[]
 
