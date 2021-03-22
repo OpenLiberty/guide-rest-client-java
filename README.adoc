@@ -92,7 +92,7 @@ curl http://localhost:9080/artists/total
 ```
 {: codeblock}
 
-You can access the endpoint at **http://localhost:9080/artists/total/<artist>** to see a particular artist’s total number of albums.
+You can access the endpoint at **`http://localhost:9080/artists/total/<artist>`** to see a particular artist’s total number of albums.
 Run the following curl command to retrieve the artist **bar**'s total number of albums:
 ```
 curl http://localhost:9080/artists/total/bar
@@ -351,7 +351,7 @@ curl http://localhost:9080/artists/total
 ```
 {: codeblock}
 
-You can access the endpoint at **http://localhost:9080/artists/total/<artist>** to see a particular artist’s total number of albums.
+You can access the endpoint at **`http://localhost:9080/artists/total/<artist>`** to see a particular artist’s total number of albums.
 Run the following curl command to retrieve the artist **bar**'s total number of albums:
 ```
 curl http://localhost:9080/artists/total/bar
