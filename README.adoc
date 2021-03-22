@@ -75,9 +75,16 @@ You can find your service at http://localhost:9080/artists[http://localhost:9080
 Now, you can access the endpoint at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists, and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist’s total number of albums.
 
 endif::[]
+
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-You can find your service at **http://localhost:9080/artists**.
+Open another command-line session by selecting **Terminal** > **New Terminal** from the menu of the IDE.
+
+You can find your service at **http://localhost:9080/artists** by running the following curl command:
+```
+curl http://localhost:9080/artists
+```
+{: codeblock}
 
 Run the following curl command to retrieve the total number of artists:
 ```
@@ -85,14 +92,14 @@ curl http://localhost:9080/artists/total
 ```
 {: codeblock}
 
-Run the following curl command to retrieve a particular the artist **bar**'s total number of albums:
+You can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist’s total number of albums.
+Run the following curl command to retrieve the artist **bar**'s total number of albums:
 ```
 curl http://localhost:9080/artists/total/bar
 ```
 {: codeblock}
-
-You can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist’s total number of albums.
 endif::[]
+
 [role='command']
 include::{common-includes}/twyb-end.adoc[]
 
@@ -102,7 +109,19 @@ include::{common-includes}/twyb-end.adoc[]
 
 == Starting the service
 
+// static guide instructions:
+ifndef::cloud-hosted[]
 Navigate to the `start` directory to begin.
+endif::[]
+
+// cloud-hosted guide instructions:
+ifdef::cloud-hosted[]
+To begin, run the following command to navigate to the **start** directory:
+```
+cd /home/project/guide-rest-client-java/start
+```
+{: codeblock}
+endif::[]
 
 [role=command]
 include::{common-includes}/devmode-start.adoc[]
@@ -112,6 +131,7 @@ ifndef::cloud-hosted[]
 The application that you'll build upon was created for you. After your server is
 ready, you can access the service at the http://localhost:9080/artists[http://localhost:9080/artists^] URL.
 endif::[]
+
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
 The application that you'll build upon was created for you. After your server is
@@ -120,7 +140,6 @@ ready, run the following curl command to access the service:
 curl http://localhost:9080/artists
 ```
 {: codeblock}
-
 endif::[]
 
 // =================================================================================================
@@ -317,8 +336,14 @@ You can find your service at http://localhost:9080/artists[http://localhost:9080
 Now, you can access the endpoint at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists,
 and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist's total number of albums. 
 endif::[]
+
+// cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-You can find your service at **http://localhost:9080/artists**.
+You can find your service at **http://localhost:9080/artists** by running the following curl command:
+```
+curl http://localhost:9080/artists
+```
+{: codeblock}
 
 Run the following curl command to retrieve the total number of artists:
 ```
@@ -326,14 +351,12 @@ curl http://localhost:9080/artists/total
 ```
 {: codeblock}
 
-Run the following curl command to retrieve a particular the artist **bar**'s total number of albums:
+You can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist’s total number of albums.
+Run the following curl command to retrieve the artist **bar**'s total number of albums:
 ```
 curl http://localhost:9080/artists/total/bar
 ```
 {: codeblock}
-
-You can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist’s total number of albums.
-
 endif::[]
 
 // =================================================================================================
