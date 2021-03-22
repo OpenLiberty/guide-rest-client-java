@@ -79,13 +79,13 @@ endif::[]
 ifdef::cloud-hosted[]
 You can find your service at **http://localhost:9080/artists**.
 
-Run the following curl command to retrieve the total number of artists.
+Run the following curl command to retrieve the total number of artists:
 ```
 curl http://localhost:9080/artists/total
 ```
 {: codeblock}
 
-Run the following curl command to retrieve a particular the artist **bar**'s total number of albums.
+Run the following curl command to retrieve a particular the artist **bar**'s total number of albums:
 ```
 curl http://localhost:9080/artists/total/bar
 ```
@@ -115,7 +115,7 @@ endif::[]
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
 The application that you'll build upon was created for you. After your server is
-ready, run the following curl command to access the service. 
+ready, run the following curl command to access the service:
 ```
 curl http://localhost:9080/artists
 ```
@@ -320,13 +320,13 @@ endif::[]
 ifdef::cloud-hosted[]
 You can find your service at **http://localhost:9080/artists**.
 
-Run the following curl command to retrieve the total number of artists.
+Run the following curl command to retrieve the total number of artists:
 ```
 curl http://localhost:9080/artists/total
 ```
 {: codeblock}
 
-Run the following curl command to retrieve a particular the artist **bar**'s total number of albums.
+Run the following curl command to retrieve a particular the artist **bar**'s total number of albums:
 ```
 curl http://localhost:9080/artists/total/bar
 ```
