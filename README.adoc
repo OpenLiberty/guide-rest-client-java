@@ -1,4 +1,4 @@
-// Copyright (c) 2017, 2020 IBM Corporation and others.
+// Copyright (c) 2017, 2021 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -12,7 +12,7 @@
 :page-guide-category: microprofile
 :page-essential: false
 :page-description: Explore how to access a simple RESTful web service and consume its resources in Java using JSON-B and JSON-P.
-:page-tags: ['MicroProfile', 'Java EE', 'Jakarta EE']
+:page-tags: ['MicroProfile', 'Jakarta EE']
 :page-related-guides: ['rest-intro', 'rest-client-angularjs']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
@@ -45,8 +45,9 @@ the returned JSON resources. The first approach consists of using the Java API f
 to directly convert JSON messages into Java objects. The second approach consists of
 using the Java API for JSON Processing (JSON-P) to process the JSON.
 
-The REST service that provides the artists and albums resources has already been written
-for you and is accessible at the following link when the server is running http://localhost:9080/artists[http://localhost:9080/artists^], which responds with the [hotspot]`artists.json`.
+The REST service that provides the artists and albums resources is already written
+for you. When the server is running, this service is accessible at the `\http://localhost:9080/artists` endpoint,
+which responds with the [hotspot]`artists.json` file.
 
 You will implement the following two endpoints using the two deserialization approaches:
 
@@ -68,9 +69,37 @@ include::{common-includes}/gitclone.adoc[]
 [role='command']
 include::{common-includes}/twyb-intro.adoc[]
 
-You can find your service at http://localhost:9080/artists.
+// static guide instructions:
+ifndef::cloud-hosted[]
+You can find your service at the http://localhost:9080/artists[http://localhost:9080/artists^] endpoint.
 
-Now, you can access the endpoint at http://localhost:9080/artists/total to see the total number of artists, and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist’s total number of albums.
+Now, you can access the endpoint at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists, and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist’s total number of albums.
+
+endif::[]
+
+// cloud-hosted guide instructions:
+ifdef::cloud-hosted[]
+Open another command-line session by selecting **Terminal** > **New Terminal** from the menu of the IDE.
+
+You can find your service at the **http://localhost:9080/artists** endpoint by running the following curl command:
+```
+curl http://localhost:9080/artists
+```
+{: codeblock}
+
+Run the following curl command to retrieve the total number of artists:
+```
+curl http://localhost:9080/artists/total
+```
+{: codeblock}
+
+You can access the endpoint at **`http://localhost:9080/artists/total/<artist>`** to see a particular artist’s total number of albums.
+Run the following curl command to retrieve the artist **bar**'s total number of albums:
+```
+curl http://localhost:9080/artists/total/bar
+```
+{: codeblock}
+endif::[]
 
 [role='command']
 include::{common-includes}/twyb-end.adoc[]
@@ -81,13 +110,38 @@ include::{common-includes}/twyb-end.adoc[]
 
 == Starting the service
 
+// static guide instructions:
+ifndef::cloud-hosted[]
 Navigate to the `start` directory to begin.
+endif::[]
+
+// cloud-hosted guide instructions:
+ifdef::cloud-hosted[]
+To begin, run the following command to navigate to the **start** directory:
+```
+cd /home/project/guide-rest-client-java/start
+```
+{: codeblock}
+endif::[]
 
 [role=command]
 include::{common-includes}/devmode-start.adoc[]
 
+// static guide instructions:
+ifndef::cloud-hosted[]
 The application that you'll build upon was created for you. After your server is
 ready, you can access the service at the http://localhost:9080/artists[http://localhost:9080/artists^] URL.
+endif::[]
+
+// cloud-hosted guide instructions:
+ifdef::cloud-hosted[]
+The application that you'll build upon was created for you. After your server is
+ready, run the following curl command to access the service:
+```
+curl http://localhost:9080/artists
+```
+{: codeblock}
+endif::[]
 
 // =================================================================================================
 // Guide
@@ -276,10 +330,35 @@ party service, you should separate your `GET`/`POST` requests from your data con
 
 The Open Liberty server was started in development mode at the beginning of the guide and all the changes were automatically picked up.
 
+// static guide instructions:
+ifndef::cloud-hosted[]
 You can find your service at http://localhost:9080/artists[http://localhost:9080/artists^].
 
 Now, you can access the endpoint at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists,
 and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist's total number of albums. 
+endif::[]
+
+// cloud-hosted guide instructions:
+ifdef::cloud-hosted[]
+You can find your service at the **http://localhost:9080/artists** endpoint by running the following curl command:
+```
+curl http://localhost:9080/artists
+```
+{: codeblock}
+
+Run the following curl command to retrieve the total number of artists:
+```
+curl http://localhost:9080/artists/total
+```
+{: codeblock}
+
+You can access the endpoint at **`http://localhost:9080/artists/total/<artist>`** to see a particular artist’s total number of albums.
+Run the following curl command to retrieve the artist **bar**'s total number of albums:
+```
+curl http://localhost:9080/artists/total/bar
+```
+{: codeblock}
+endif::[]
 
 // =================================================================================================
 // Testing deserialization
