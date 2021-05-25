@@ -125,7 +125,7 @@ cd /home/project/guide-rest-client-java/start
 endif::[]
 
 [role=command]
-include::{common-includes}/devmode-start.adoc[]
+include::{common-includes}/devmode-lmp33-start.adoc[]
 
 // static guide instructions:
 ifndef::cloud-hosted[]
