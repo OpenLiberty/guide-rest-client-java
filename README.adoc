@@ -15,7 +15,7 @@
 :page-tags: ['MicroProfile', 'Jakarta EE']
 :page-related-guides: ['rest-intro', 'rest-client-angularjs']
 :page-permalink: /guides/{projectid}
-:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
+:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
 :source-highlighter: prettify
 :page-seo-title: Consuming a RESTful Java web service
 :page-seo-description: A getting started tutorial with examples on how to access a RESTful Java microservice and consume its resources using the Java API for JSON Binding (JSON-B) and the Java API for JSON Processing (JSON-P).
