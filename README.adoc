@@ -214,7 +214,7 @@ These annotations are required for proper parameter substitution when a custom c
 * The [hotspot=JsonbTransient]`@JsonbTransient` annotation to define an object property that does not map to a JSON
 property. While the use of this annotation is good practice, it is only necessary for serialization.
 
-For more information on customization with JSON-B, see the http://json-b.net[official JSON-B site^].
+For more information on customization with JSON-B, see the https://javaee.github.io/jsonb-spec[official JSON-B site^].
 
 // =================================================================================================
 // Consuming REST resource
@@ -318,7 +318,7 @@ in the JSON for a particular artist. The method returns -1 if this artist does n
 * The [hotspot=getTotalArtists file=1]`getTotalArtists()` method uses JSON-P to return the total number of artists
 present in the JSON.
 
-The methods that you wrote in the [hotspot=Consumer file-0]`Consumer` class could be written directly in the
+The methods that you wrote in the [hotspot=Consumer file=0]`Consumer` class could be written directly in the
 [hotspot=ArtistResource file=1]`ArtistResource` class. However, if you are consuming a REST resource from a third
 party service, you should separate your `GET`/`POST` requests from your data consumption.
 
