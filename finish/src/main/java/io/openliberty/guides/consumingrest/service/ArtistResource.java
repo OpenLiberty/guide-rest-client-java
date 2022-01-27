@@ -1,5 +1,5 @@
-// tag::comment[]
-/*******************************************************************************
+// tag::copyright[]
+ /*******************************************************************************
  * Copyright (c) 2018, 2022 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,9 +7,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     IBM Corporation - initial API and implementation
+ *     IBM Corporation - Initial implementation
  *******************************************************************************/
- // end::comment[]
+// end::copyright[]
 package io.openliberty.guides.consumingrest.service;
 
 import jakarta.json.JsonArray;
@@ -37,7 +37,7 @@ public class ArtistResource {
     @Produces(MediaType.APPLICATION_JSON)
     // tag::getArtists[]
     public JsonArray getArtists() {
-    	return Reader.getArtists();
+      return Reader.getArtists();
     }
     // end::getArtists[]
 
@@ -48,8 +48,8 @@ public class ArtistResource {
     public String getJsonString() {
       Jsonb jsonb = JsonbBuilder.create();
 
-      Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString() +
-        "artists");
+      Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString()
+                                                   + "artists");
       String result = jsonb.toJson(artists);
 
       return result;
@@ -78,8 +78,8 @@ public class ArtistResource {
     @Produces(MediaType.TEXT_PLAIN)
     // tag::getTotalArtists[]
     public int getTotalArtists() {
-      return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString() +
-        "artists").length;
+      return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString()
+                                       + "artists").length;
     }
     // end::getTotalArtists[]
 }

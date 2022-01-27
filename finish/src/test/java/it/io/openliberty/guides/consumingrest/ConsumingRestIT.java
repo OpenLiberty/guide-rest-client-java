@@ -1,5 +1,5 @@
-// tag::comment[]
-/*******************************************************************************
+// tag::copyright[]
+ /*******************************************************************************
  * Copyright (c) 2018, 2022 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,9 +7,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     IBM Corporation - initial API and implementation
+ *     IBM Corporation - Initial implementation
  *******************************************************************************/
- // end::comment[]
+// end::copyright[]
 package it.io.openliberty.guides.consumingrest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -73,9 +73,9 @@ public class ConsumingRestIT {
       Artist expected = jsonb.fromJson(expectedString, Artist.class);
 
       String actualString = response.readEntity(String.class);
-		  Artist[] actual = jsonb.fromJson(actualString, Artist[].class);
+      Artist[] actual = jsonb.fromJson(actualString, Artist[].class);
 
-      assertEquals(expected.name, actual[0].name, 
+      assertEquals(expected.name, actual[0].name,
         "Expected names of artists does not match");
 
       response.close();
@@ -94,7 +94,8 @@ public class ConsumingRestIT {
 
         int expected = i;
         int actual = response.readEntity(int.class);
-        assertEquals(expected, actual, "Album count for " + artists[i] + " does not match");
+        assertEquals(expected, actual, "Album count for "
+                      + artists[i] + " does not match");
 
         response.close();
       }
@@ -102,7 +103,7 @@ public class ConsumingRestIT {
     // end::testJsonBAlbumCount[]
 
     // tag::testAlbumCountForUnknownArtist[]
-    // tag::test-3[] 
+    // tag::test-3[]
     @Test
     // end::test-3[]
     // tag::testJsonBAlbumCountForUnknownArtist[]

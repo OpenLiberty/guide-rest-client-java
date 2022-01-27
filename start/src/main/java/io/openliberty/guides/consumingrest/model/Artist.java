@@ -1,5 +1,5 @@
-// tag::comment[]
-/*******************************************************************************
+// tag::copyright[]
+ /*******************************************************************************
  * Copyright (c) 2017, 2022 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
- // end::comment[]
+// end::copyright[]
 package io.openliberty.guides.consumingrest.model;
 
 import jakarta.json.bind.annotation.JsonbCreator;
@@ -18,7 +18,7 @@ import jakarta.json.bind.annotation.JsonbTransient;
 
 public class Artist {
     public String name;
-    public Album albums[];
+    public Album[] albums;
 
     //does not map to anything
     @JsonbTransient
@@ -33,7 +33,7 @@ public class Artist {
     //or custom constructor can be used
     public Artist(
       @JsonbProperty("name") String name,
-      @JsonbProperty("albums") Album albums[]) {
+      @JsonbProperty("albums") Album[] albums) {
 
       this.name = name;
       this.albums = albums;

@@ -1,5 +1,5 @@
-// tag::comment[]
-/*******************************************************************************
+// tag::copyright[]
+ /*******************************************************************************
  * Copyright (c) 2018, 2022 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
- // end::comment[]
+// end::copyright[]
 package io.openliberty.guides.consumingrest.model;
 
 import jakarta.json.bind.annotation.JsonbCreator;
@@ -47,8 +47,8 @@ public class Album {
 
     @Override
     public String toString() {
-      return "Album titled " + title + " by " + artistName +
-        " contains " + totalTracks + " tracks";
+      return "Album titled " + title + " by " + artistName
+                             + " contains " + totalTracks + " tracks";
     }
 }
 // end::Album[]
