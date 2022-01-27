@@ -22,13 +22,13 @@ import jakarta.json.JsonArray;
 public class Reader {
 
     public static JsonArray getArtists() {
-        final String PATH = "./../../../../../../src/resources/artists.json";
+        final String jsonFile = "./../../../../../../src/resources/artists.json";
         try {
             InputStream fis;
-            fis = new FileInputStream(PATH);
+            fis = new FileInputStream(jsonFile);
             return Json.createReader(fis).readArray();
         } catch (FileNotFoundException e) {
-            System.err.println("File does not exist: " + PATH);
+            System.err.println("File does not exist: " + jsonFile);
             return null;
         }
     }
