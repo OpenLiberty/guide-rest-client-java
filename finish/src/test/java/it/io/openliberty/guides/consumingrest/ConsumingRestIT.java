@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.core.Response;
 
 import org.junit.jupiter.api.AfterEach;
@@ -48,7 +49,7 @@ public class ConsumingRestIT {
     @BeforeEach
     // end::BeforeEach[]
     public void setup() {
-      client = ResteasyClientBuilder.newClient();
+      client = ClientBuilder.newClient();
     }
 
     // tag::AfterEach[]
