@@ -193,12 +193,6 @@ Album.java
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.java[]
 ----
 
-Consumer.java
-[source, java, linenums, role='code_column hide_tags=comment']
-----
-include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[]
-----
-
 The [hotspot=Artist file=0]`Artist` and [hotspot=Album file=1]`Album` POJOs are ready for deserialization. 
 Next, we'll learn to consume the JSON response from your REST service.
 
@@ -206,6 +200,12 @@ Next, we'll learn to consume the JSON response from your REST service.
 ----
 #Create the `Consumer` class.#
 `src/main/java/io/openliberty/guides/consumingrest/Consumer.java`
+----
+
+Consumer.java
+[source, java, linenums, role='code_column hide_tags=comment']
+----
+include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[]
 ----
 
 === Processing JSON using JSON-B
@@ -243,18 +243,18 @@ Consumer.java
 include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[]
 ----
 
-ArtistResource.java
-[source, java, linenums, role='code_column hide_tags=comment']
-----
-include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[]
-----
-
 Now that you can consume a JSON resource you can put that data to use.
 
 [role="code_command hotspot file=1", subs="quotes"]
 ----
 #Replace the `ArtistResource` class.#
 `src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java`
+----
+
+ArtistResource.java
+[source, java, linenums, role='code_column hide_tags=comment']
+----
+include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[]
 ----
 
 * The [hotspot=getArtists file=1]`getArtists()` method provides the raw JSON data service that you accessed at the beginning of this guide.
@@ -306,16 +306,17 @@ endif::[]
 // =================================================================================================
 
 == Testing deserialization
-ConsumingRestIT.java
-[source, java, linenums, role='code_column hide_tags=comment']
-----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[]
-----
 
 [role="code_command hotspot", subs="quotes"]
 ----
 #Create the `ConsumingRestIT` class.#
 `src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java` 
+----
+
+ConsumingRestIT.java
+[source, java, linenums, role='code_column hide_tags=comment']
+----
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[]
 ----
 
 Maven finds and executes all tests under the `src/test/java/it/` directory, and each test method must be marked with the [hotspot=test-1 hotspot=test-2 hotspot=test-3 hotspot=test-4]`@Test` annotation.
