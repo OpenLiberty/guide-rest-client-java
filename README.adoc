@@ -71,25 +71,22 @@ endif::[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-Open another command-line session by selecting **Terminal** > **New Terminal** from the menu of the IDE.
+Open another command-line session by selecting ***Terminal*** > ***New Terminal*** from the menu of the IDE.
 
 You can find your service at the **http://localhost:9080/artists** endpoint by running the following curl command:
-```
+```bash
 curl -s http://localhost:9080/artists | jq
 ```
-{: codeblock}
 
 Run the following curl command to retrieve the total number of artists:
-```
+```bash
 curl http://localhost:9080/artists/total
 ```
-{: codeblock}
 
-You can access the endpoint at ***http://localhost:9080/artists/total/<artist>*** to see a particular artist’s total number of albums. Run the following curl command to retrieve the artist **bar**'s total number of albums:
-```
+You can access the endpoint at ***http://localhost:9080/artists/total/<artist>*** to see a particular artist’s total number of albums. Run the following curl command to retrieve the artist ***bar***'s total number of albums:
+```bash
 curl http://localhost:9080/artists/total/bar
 ```
-{: codeblock}
 endif::[]
 
 [role='command']
@@ -108,11 +105,10 @@ endif::[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-To begin, run the following command to navigate to the **start** directory:
-```
+To begin, run the following command to navigate to the ***start*** directory:
+```bash
 cd /home/project/guide-rest-client-java/start
 ```
-{: codeblock}
 endif::[]
 
 [role=command]
@@ -126,10 +122,9 @@ endif::[]
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
 The application that you'll build upon was created for you. After your server is ready, run the following curl command to access the service:
-```
+```bash
 curl -s http://localhost:9080/artists | jq
 ```
-{: codeblock}
 endif::[]
 
 // =================================================================================================
@@ -289,24 +284,21 @@ endif::[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-You can find your service at the **http://localhost:9080/artists** endpoint by running the following curl command:
-```
+You can find your service at the ***http://localhost:9080/artists*** endpoint by running the following curl command:
+```bash
 curl -s http://localhost:9080/artists | jq
 ```
-{: codeblock}
 
 Run the following curl command to retrieve the total number of artists:
-```
+```bash
 curl http://localhost:9080/artists/total
 ```
-{: codeblock}
 
 You can access the endpoint at ***http://localhost:9080/artists/total/<artist>*** to see a particular artist’s total number of albums.
 Run the following curl command to retrieve the artist **bar**'s total number of albums:
-```
+```bash
 curl http://localhost:9080/artists/total/bar
 ```
-{: codeblock}
 endif::[]
 
 // =================================================================================================
