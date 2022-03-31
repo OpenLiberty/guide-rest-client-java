@@ -1,24 +1,24 @@
-// tag::comment[]
+// tag::copyright[]
 /*******************************************************************************
- * Copyright (c) 2018, 2019 IBM Corporation and others.
+ * Copyright (c) 2018, 2022 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     IBM Corporation - initial API and implementation
+ *     IBM Corporation - Initial implementation
  *******************************************************************************/
- // end::comment[]
+// end::copyright[]
 package it.io.openliberty.guides.consumingrest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.Response;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.core.Response;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -74,9 +74,9 @@ public class ConsumingRestIT {
       Artist expected = jsonb.fromJson(expectedString, Artist.class);
 
       String actualString = response.readEntity(String.class);
-		  Artist[] actual = jsonb.fromJson(actualString, Artist[].class);
+      Artist[] actual = jsonb.fromJson(actualString, Artist[].class);
 
-      assertEquals(expected.name, actual[0].name, 
+      assertEquals(expected.name, actual[0].name,
         "Expected names of artists does not match");
 
       response.close();
@@ -95,7 +95,8 @@ public class ConsumingRestIT {
 
         int expected = i;
         int actual = response.readEntity(int.class);
-        assertEquals(expected, actual, "Album count for " + artists[i] + " does not match");
+        assertEquals(expected, actual, "Album count for "
+                      + artists[i] + " does not match");
 
         response.close();
       }
@@ -103,7 +104,7 @@ public class ConsumingRestIT {
     // end::testJsonBAlbumCount[]
 
     // tag::testAlbumCountForUnknownArtist[]
-    // tag::test-3[] 
+    // tag::test-3[]
     @Test
     // end::test-3[]
     // tag::testJsonBAlbumCountForUnknownArtist[]

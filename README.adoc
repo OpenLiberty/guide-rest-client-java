@@ -1,4 +1,4 @@
-// Copyright (c) 2017, 2021 IBM Corporation and others.
+// Copyright (c) 2017, 2022 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -25,8 +25,7 @@
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
-Explore how to access a simple RESTful web service and consume its resources in Java
-using JSON-B and JSON-P.
+Explore how to access a simple RESTful web service and consume its resources in Java using JSON-B and JSON-P.
 
 // =================================================================================================
 // Introduction
@@ -39,15 +38,9 @@ artists.json
 include::finish/src/resources/artists.json[]
 ----
 
-You will learn how to access a REST service, serialize a Java object that contains a
-list of artists and their albums, and use two different approaches to deserialize
-the returned JSON resources. The first approach consists of using the Java API for JSON Binding (JSON-B)
-to directly convert JSON messages into Java objects. The second approach consists of
-using the Java API for JSON Processing (JSON-P) to process the JSON.
+You will learn how to access a REST service, serialize a Java object that contains a list of artists and their albums, and use two different approaches to deserialize the returned JSON resources. The first approach consists of using the Java API for JSON Binding (JSON-B) to directly convert JSON messages into Java objects. The second approach consists of using the Java API for JSON Processing (JSON-P) to process the JSON.
 
-The REST service that provides the artists and albums resources is already written
-for you. When the server is running, this service is accessible at the `\http://localhost:9080/artists` endpoint,
-which responds with the [hotspot]`artists.json` file.
+The REST service that provides the artists and albums resources is already written for you. When the server is running, this service is accessible at the `\http://localhost:9080/artists` endpoint, which responds with the [hotspot]`artists.json` file.
 
 You will implement the following two endpoints using the two deserialization approaches:
 
@@ -55,8 +48,7 @@ You will implement the following two endpoints using the two deserialization app
 * `.../artists/total/<artist>` to return the total number of albums in the JSON
 for the particular artist
 
-If you are interested in learning more about REST services and how you can write them, read
-https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service^].
+If you are interested in learning more about REST services and how you can write them, read https://openliberty.io/guides/rest-intro.html[Creating a RESTful web service^].
 
 
 // =================================================================================================
@@ -79,26 +71,22 @@ endif::[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-Open another command-line session by selecting **Terminal** > **New Terminal** from the menu of the IDE.
+Open another command-line session by selecting ***Terminal*** > ***New Terminal*** from the menu of the IDE.
 
 You can find your service at the **http://localhost:9080/artists** endpoint by running the following curl command:
-```
+```bash
 curl -s http://localhost:9080/artists | jq
 ```
-{: codeblock}
 
 Run the following curl command to retrieve the total number of artists:
-```
+```bash
 curl http://localhost:9080/artists/total
 ```
-{: codeblock}
 
-You can access the endpoint at **`http://localhost:9080/artists/total/<artist>`** to see a particular artist’s total number of albums.
-Run the following curl command to retrieve the artist **bar**'s total number of albums:
-```
+You can access the endpoint at ***http://localhost:9080/artists/total/<artist>*** to see a particular artist’s total number of albums. Run the following curl command to retrieve the artist ***bar***'s total number of albums:
+```bash
 curl http://localhost:9080/artists/total/bar
 ```
-{: codeblock}
 endif::[]
 
 [role='command']
@@ -117,11 +105,10 @@ endif::[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-To begin, run the following command to navigate to the **start** directory:
-```
+To begin, run the following command to navigate to the ***start*** directory:
+```bash
 cd /home/project/guide-rest-client-java/start
 ```
-{: codeblock}
 endif::[]
 
 [role=command]
@@ -129,18 +116,15 @@ include::{common-includes}/devmode-lmp33-start.adoc[]
 
 // static guide instructions:
 ifndef::cloud-hosted[]
-The application that you'll build upon was created for you. After your server is
-ready, you can access the service at the http://localhost:9080/artists[http://localhost:9080/artists^] URL.
+The application that you'll build upon was created for you. After your server is ready, you can access the service at the http://localhost:9080/artists[http://localhost:9080/artists^] URL.
 endif::[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-The application that you'll build upon was created for you. After your server is
-ready, run the following curl command to access the service:
-```
+The application that you'll build upon was created for you. After your server is ready, run the following curl command to access the service:
+```bash
 curl -s http://localhost:9080/artists | jq
 ```
-{: codeblock}
 endif::[]
 
 // =================================================================================================
@@ -160,25 +144,17 @@ Album.java
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.java[]
 ----
 
-To deserialize a JSON message, start with creating Plain Old Java Objects (POJOs) that represent what
-is in the JSON and whose instance members map to the keys in the JSON.
+To deserialize a JSON message, start with creating Plain Old Java Objects (POJOs) that represent what is in the JSON and whose instance members map to the keys in the JSON.
 
-For the purpose of this guide, you are given two POJOs.
-The [hotspot=Artist file=0]`Artist` object has two instance members [hotspot=name file=0]`name` and [hotspot=Albums file=0]`albums`, 
-which map to the artist name and the collection of the albums they have written. The [hotspot=Album file=1]`Album` object represents a 
-single object within the album collection, and contains three instance members [hotspot=title file=1]`title`, [hotspot=artistName file=1]`artistName`, and [hotspot=totalTracks file=1]`totalTracks`, which map to the album title, the artist who wrote the album, and the number of tracks the album contains.
+For the purpose of this guide, you are given two POJOs. The [hotspot=Artist file=0]`Artist` object has two instance members [hotspot=name file=0]`name` and [hotspot=Albums file=0]`albums`, which map to the artist name and the collection of the albums they have written. The [hotspot=Album file=1]`Album` object represents a single object within the album collection, and contains three instance members [hotspot=title file=1]`title`, [hotspot=artistName file=1]`artistName`, and [hotspot=totalTracks file=1]`totalTracks`, which map to the album title, the artist who wrote the album, and the number of tracks the album contains.
 
 == Introducing JSON-B and JSON-P
 
-JSON-B is a feature introduced with Java EE 8 and strengthens Java support for JSON.
-With JSON-B you directly serialize and deserialize POJOs. This API gives you a
-variety of options for working with JSON resources.
+JSON-B is a feature introduced with Java EE 8 and strengthens Java support for JSON. With JSON-B you directly serialize and deserialize POJOs. This API gives you a variety of options for working with JSON resources.
 
-In contrast, you need to use helper methods with JSON-P to process a JSON response.
-This tactic is more straightforward, but it can be cumbersome with more complex classes.
+In contrast, you need to use helper methods with JSON-P to process a JSON response. This tactic is more straightforward, but it can be cumbersome with more complex classes.
 
-JSON-B is built on top of the existing JSON-P API. JSON-B can do everything that JSON-P can do
-and allows for more customization for serializing and deserializing.
+JSON-B is built on top of the existing JSON-P API. JSON-B can do everything that JSON-P can do and allows for more customization for serializing and deserializing.
 
 === Using JSON-B
 Artist.java
@@ -187,32 +163,15 @@ Artist.java
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Artist.java[]
 ----
 
-JSON-B requires a POJO to have a public default no-argument constructor for deserialization
-and binding to work properly.
+JSON-B requires a POJO to have a public default no-argument constructor for deserialization and binding to work properly.
 
-The JSON-B engine includes a set of default mapping rules, which can be run without
-any customization annotations or custom configuration. In some instances, you might
-find it useful to deserialize a JSON message with only certain fields, specific
-field names, or classes with custom constructors. In these cases,
-annotations are necessary and recommended:
+The JSON-B engine includes a set of default mapping rules, which can be run without any customization annotations or custom configuration. In some instances, you might find it useful to deserialize a JSON message with only certain fields, specific field names, or classes with custom constructors. In these cases, annotations are necessary and recommended:
 
-* The [hotspot=JsonbProperty]`@JsonbProperty` annotation to map JSON keys to class instance members and vice versa.
-Without the use of this annotation, JSON-B will attempt to do POJO mapping, matching the keys in
-the JSON to the class instance members by name. JSON-B will attempt to match the JSON key 
-with a Java field or method annotated with `@JsonbProperty` where the value in the
-annotation exactly matches the JSON key. If no annotation exists with the given JSON key, 
-JSON-B will attempt to find a matching field with the same name. If no match is found, 
-JSON-B attempts to find a matching getter method for serialization or a matching setter 
-method for de-serialization. A match occurs when the property name of the method matches 
-the JSON key. If no matching getter or setter method is found, serialization or 
-de-serialization, respectively, fails with an exception. The Artist POJO does not require 
-this annotation because all instance members match the JSON keys by name.
+* The [hotspot=JsonbProperty]`@JsonbProperty` annotation to map JSON keys to class instance members and vice versa. Without the use of this annotation, JSON-B will attempt to do POJO mapping, matching the keys in the JSON to the class instance members by name. JSON-B will attempt to match the JSON key with a Java field or method annotated with `@JsonbProperty` where the value in the annotation exactly matches the JSON key. If no annotation exists with the given JSON key, JSON-B will attempt to find a matching field with the same name. If no match is found, JSON-B attempts to find a matching getter method for serialization or a matching setter method for de-serialization. A match occurs when the property name of the method matches the JSON key. If no matching getter or setter method is found, serialization or de-serialization, respectively, fails with an exception. The Artist POJO does not require this annotation because all instance members match the JSON keys by name.
 
-* The [hotspot=JsonbCreator]`@JsonbCreator` and [hotspot=JsonbProperty]`@JsonbProperty` annotations to annotate a custom constructor.
-These annotations are required for proper parameter substitution when a custom constructor is used.
+* The [hotspot=JsonbCreator]`@JsonbCreator` and [hotspot=JsonbProperty]`@JsonbProperty` annotations to annotate a custom constructor. These annotations are required for proper parameter substitution when a custom constructor is used.
 
-* The [hotspot=JsonbTransient]`@JsonbTransient` annotation to define an object property that does not map to a JSON
-property. While the use of this annotation is good practice, it is only necessary for serialization.
+* The [hotspot=JsonbTransient]`@JsonbTransient` annotation to define an object property that does not map to a JSON property. While the use of this annotation is good practice, it is only necessary for serialization.
 
 For more information on customization with JSON-B, see the https://javaee.github.io/jsonb-spec[official JSON-B site^].
 
@@ -234,12 +193,6 @@ Album.java
 include::finish/src/main/java/io/openliberty/guides/consumingrest/model/Album.java[]
 ----
 
-Consumer.java
-[source, java, linenums, role='code_column hide_tags=comment']
-----
-include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[]
-----
-
 The [hotspot=Artist file=0]`Artist` and [hotspot=Album file=1]`Album` POJOs are ready for deserialization. 
 Next, we'll learn to consume the JSON response from your REST service.
 
@@ -247,6 +200,12 @@ Next, we'll learn to consume the JSON response from your REST service.
 ----
 #Create the `Consumer` class.#
 `src/main/java/io/openliberty/guides/consumingrest/Consumer.java`
+----
+
+Consumer.java
+[source, java, linenums, role='code_column hide_tags=comment']
+----
+include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[]
 ----
 
 === Processing JSON using JSON-B
@@ -264,13 +223,9 @@ include::finish/pom.xml[]
 
 JSON-B is a Java API that is used to serialize Java objects to JSON messages and vice versa.
 
-Open Liberty's JSON-B feature on Maven Central includes the JSON-B provider through transitive dependencies.
-The JSON-B APIs are provided by the MicroProfile dependency in your [hotspot file=1]`pom.xml` file. 
-Look for the dependency with the [hotspot=microprofile file=1]`microprofile` artifact ID. 
+Open Liberty's JSON-B feature on Maven Central includes the JSON-B provider through transitive dependencies. The JSON-B APIs are provided by the MicroProfile dependency in your [hotspot file=1]`pom.xml` file. Look for the dependency with the [hotspot=microprofile file=1]`microprofile` artifact ID. 
 
-The [hotspot=consumeWithJsonb file=0]`consumeWithJsonb()` method in the [hotspot=Consumer file=0]`Consumer` class makes a [hotspot=get-1 file=0]`GET` request to the
-running artist service and retrieves the JSON. To bind the JSON into an `Artist`
-array, use the [hotspot=readEntity file=0]`Artist[]` entity type in the [hotspot=readEntity file=0]`readEntity` call.
+The [hotspot=consumeWithJsonb file=0]`consumeWithJsonb()` method in the [hotspot=Consumer file=0]`Consumer` class makes a [hotspot=get-1 file=0]`GET` request to the running artist service and retrieves the JSON. To bind the JSON into an `Artist` array, use the [hotspot=readEntity file=0]`Artist[]` entity type in the [hotspot=readEntity file=0]`readEntity` call.
 
 === Processing JSON using JSON-P
 Consumer.java
@@ -279,23 +234,13 @@ Consumer.java
 include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[]
 ----
 
-The [hotspot=consumeWithJsonp]`consumeWithJsonp()` method in the [hotspot=Consumer]`Consumer` class makes a [hotspot=get-2]`GET` request
-to the running artist service and retrieves the JSON. This method then uses the
-[hotspot=collectArtists]`collectArtists` and [hotspot=collectAlbums]`collectAlbums` helper methods. These helper methods will
-parse the JSON and collect its objects into individual POJOs. Notice that you can
-use the custom constructors to create instances of `Artist` and `Album`.
+The [hotspot=consumeWithJsonp]`consumeWithJsonp()` method in the [hotspot=Consumer]`Consumer` class makes a [hotspot=get-2]`GET` request to the running artist service and retrieves the JSON. This method then uses the [hotspot=collectArtists]`collectArtists` and [hotspot=collectAlbums]`collectAlbums` helper methods. These helper methods will parse the JSON and collect its objects into individual POJOs. Notice that you can use the custom constructors to create instances of `Artist` and `Album`.
 
 == Creating additional REST resources
 Consumer.java
 [source, java, linenums, role='code_column hide_tags=comment']
 ----
 include::finish/src/main/java/io/openliberty/guides/consumingrest/Consumer.java[]
-----
-
-ArtistResource.java
-[source, java, linenums, role='code_column hide_tags=comment']
-----
-include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[]
 ----
 
 Now that you can consume a JSON resource you can put that data to use.
@@ -306,21 +251,21 @@ Now that you can consume a JSON resource you can put that data to use.
 `src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java`
 ----
 
-* The [hotspot=getArtists file=1]`getArtists()` method provides the raw JSON data service that you accessed at the
-beginning of this guide.
+ArtistResource.java
+[source, java, linenums, role='code_column hide_tags=comment']
+----
+include::finish/src/main/java/io/openliberty/guides/consumingrest/service/ArtistResource.java[]
+----
 
-* The [hotspot=getJsonString file=1]`getJsonString()` method uses JSON-B to return the JSON as a string that will
-be used later for testing.
+* The [hotspot=getArtists file=1]`getArtists()` method provides the raw JSON data service that you accessed at the beginning of this guide.
 
-* The [hotspot=getTotalAlbums file=1]`getTotalAlbums()` method uses JSON-B to return the total number of albums present
-in the JSON for a particular artist. The method returns -1 if this artist does not exist.
+* The [hotspot=getJsonString file=1]`getJsonString()` method uses JSON-B to return the JSON as a string that will be used later for testing.
 
-* The [hotspot=getTotalArtists file=1]`getTotalArtists()` method uses JSON-P to return the total number of artists
-present in the JSON.
+* The [hotspot=getTotalAlbums file=1]`getTotalAlbums()` method uses JSON-B to return the total number of albums present in the JSON for a particular artist. The method returns -1 if this artist does not exist.
 
-The methods that you wrote in the [hotspot=Consumer file=0]`Consumer` class could be written directly in the
-[hotspot=ArtistResource file=1]`ArtistResource` class. However, if you are consuming a REST resource from a third
-party service, you should separate your `GET`/`POST` requests from your data consumption.
+* The [hotspot=getTotalArtists file=1]`getTotalArtists()` method uses JSON-P to return the total number of artists present in the JSON.
+
+The methods that you wrote in the [hotspot=Consumer file=0]`Consumer` class could be written directly in the [hotspot=ArtistResource file=1]`ArtistResource` class. However, if you are consuming a REST resource from a third party service, you should separate your `GET`/`POST` requests from your data consumption.
 
 // =================================================================================================
 // Running the application
@@ -334,30 +279,26 @@ The Open Liberty server was started in development mode at the beginning of the 
 ifndef::cloud-hosted[]
 You can find your service at http://localhost:9080/artists[http://localhost:9080/artists^].
 
-Now, you can access the endpoint at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists,
-and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist's total number of albums. 
+Now, you can access the endpoint at http://localhost:9080/artists/total[http://localhost:9080/artists/total^] to see the total number of artists, and you can access the endpoint at `\http://localhost:9080/artists/total/<artist>` to see a particular artist's total number of albums. 
 endif::[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-You can find your service at the **http://localhost:9080/artists** endpoint by running the following curl command:
-```
+You can find your service at the ***http://localhost:9080/artists*** endpoint by running the following curl command:
+```bash
 curl -s http://localhost:9080/artists | jq
 ```
-{: codeblock}
 
 Run the following curl command to retrieve the total number of artists:
-```
+```bash
 curl http://localhost:9080/artists/total
 ```
-{: codeblock}
 
-You can access the endpoint at **`http://localhost:9080/artists/total/<artist>`** to see a particular artist’s total number of albums.
+You can access the endpoint at ***http://localhost:9080/artists/total/<artist>*** to see a particular artist’s total number of albums.
 Run the following curl command to retrieve the artist **bar**'s total number of albums:
-```
+```bash
 curl http://localhost:9080/artists/total/bar
 ```
-{: codeblock}
 endif::[]
 
 // =================================================================================================
@@ -365,11 +306,6 @@ endif::[]
 // =================================================================================================
 
 == Testing deserialization
-ConsumingRestIT.java
-[source, java, linenums, role='code_column hide_tags=comment']
-----
-include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[]
-----
 
 [role="code_command hotspot", subs="quotes"]
 ----
@@ -377,12 +313,15 @@ include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRe
 `src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java` 
 ----
 
-Maven finds and executes all tests under the `src/test/java/it/` directory, 
-and each test method must be marked with the [hotspot=test-1 hotspot=test-2 hotspot=test-3 hotspot=test-4]`@Test` annotation.
+ConsumingRestIT.java
+[source, java, linenums, role='code_column hide_tags=comment']
+----
+include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[]
+----
 
-You can use the [hotspot=BeforeAll]`@BeforeAll` and `@AfterAll` annotations to perform any one-time setup and teardown
-tasks before and after all of your tests run. You can also use the [hotspot=BeforeEach]`@BeforeEach` and [hotspot=AfterEach]`@AfterEach` annotations
-to perform setup and teardown tasks for individual test cases.
+Maven finds and executes all tests under the `src/test/java/it/` directory, and each test method must be marked with the [hotspot=test-1 hotspot=test-2 hotspot=test-3 hotspot=test-4]`@Test` annotation.
+
+You can use the [hotspot=BeforeAll]`@BeforeAll` and `@AfterAll` annotations to perform any one-time setup and teardown tasks before and after all of your tests run. You can also use the [hotspot=BeforeEach]`@BeforeEach` and [hotspot=AfterEach]`@AfterEach` annotations to perform setup and teardown tasks for individual test cases.
 
 === Testing the binding process
 ConsumingRestIT.java
@@ -399,8 +338,7 @@ include::finish/pom.xml[]
 
 The [hotspot=Yasson file=1]`yasson` dependency was added in your [hotspot file=1]`pom.xml` file so that your test classes have access to JSON-B.
 
-The [hotspot=testArtistDeserialization file=0]`testArtistDeserialization` test case checks that `Artist` instances created from
-the REST data and those that are hardcoded perform the same.
+The [hotspot=testArtistDeserialization file=0]`testArtistDeserialization` test case checks that `Artist` instances created from the REST data and those that are hardcoded perform the same.
 
 The [hotspot=assertResponse file=0]`assertResponse` helper method ensures that the response code you receive is valid (200).
 
@@ -411,15 +349,11 @@ ConsumingRestIT.java
 include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[]
 ----
 
-The [hotspot=testJsonBAlbumCount]`testJsonBAlbumCount` and [hotspot=testJsonBAlbumCountForUnknownArtist]`testJsonBAlbumCountForUnknownArtist` tests both use the `total/{artist}`
-endpoint which invokes JSON-B.
+The [hotspot=testJsonBAlbumCount]`testJsonBAlbumCount` and [hotspot=testJsonBAlbumCountForUnknownArtist]`testJsonBAlbumCountForUnknownArtist` tests both use the `total/{artist}` endpoint which invokes JSON-B.
 
-The [hotspot=testJsonBAlbumCount]`testJsonBAlbumCount` test case checks that deserialization with JSON-B was done correctly
-and that the correct number of albums is returned for each artist in the JSON.
+The [hotspot=testJsonBAlbumCount]`testJsonBAlbumCount` test case checks that deserialization with JSON-B was done correctly and that the correct number of albums is returned for each artist in the JSON.
 
-The [hotspot=testJsonBAlbumCountForUnknownArtist]`testJsonBAlbumCountForUnknownArtist` test case is similar to [hotspot=testJsonBAlbumCount]`testJsonBAlbumCount`
-but instead checks an artist that does not exist in the JSON and ensures that a
-value of `-1` is returned.
+The [hotspot=testJsonBAlbumCountForUnknownArtist]`testJsonBAlbumCountForUnknownArtist` test case is similar to [hotspot=testJsonBAlbumCount]`testJsonBAlbumCount` but instead checks an artist that does not exist in the JSON and ensures that a value of `-1` is returned.
 
 === Processing with JSON-P test
 ConsumingRestIT.java
@@ -428,9 +362,7 @@ ConsumingRestIT.java
 include::finish/src/test/java/it/io/openliberty/guides/consumingrest/ConsumingRestIT.java[]
 ----
 
-The [hotspot=testJsonPArtistCount]`testJsonPArtistCount` test uses the `total` endpoint which invokes JSON-P. This test
-checks that deserialization with JSON-P was done correctly and that the correct number
-of artists is returned.
+The [hotspot=testJsonPArtistCount]`testJsonPArtistCount` test uses the `total` endpoint which invokes JSON-P. This test checks that deserialization with JSON-P was done correctly and that the correct number of artists is returned.
 
 // =================================================================================================
 // Running the Tests
@@ -438,7 +370,7 @@ of artists is returned.
 
 === Running the tests
 
-Since you started Open Liberty in development mode at the start of the guide, press the `enter/return` key to run the tests.
+Becayse you started Open Liberty in development mode at the start of the guide, press the `enter/return` key to run the tests.
 
 If the tests pass, you see a similar output to the following example:
 
@@ -456,8 +388,7 @@ Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
 ----
 
-When you are done checking out the service, exit development mode by typing `q` in the command-line session where you ran the server, 
-and then press the `enter/return` key.
+When you are done checking out the service, exit development mode by typing `q` in the command-line session where you ran the server, and then press the `enter/return` key.
 
 == Building the application
 

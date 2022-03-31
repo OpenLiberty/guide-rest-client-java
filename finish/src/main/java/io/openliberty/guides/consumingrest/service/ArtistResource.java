@@ -1,27 +1,27 @@
-// tag::comment[]
+// tag::copyright[]
 /*******************************************************************************
- * Copyright (c) 2018 IBM Corporation and others.
+ * Copyright (c) 2018, 2022 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     IBM Corporation - initial API and implementation
+ *     IBM Corporation - Initial implementation
  *******************************************************************************/
- // end::comment[]
+// end::copyright[]
 package io.openliberty.guides.consumingrest.service;
 
-import javax.json.JsonArray;
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriInfo;
+import jakarta.json.JsonArray;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.UriInfo;
 
 import io.openliberty.guides.consumingrest.model.Artist;
 import io.openliberty.guides.consumingrest.Consumer;
@@ -37,7 +37,7 @@ public class ArtistResource {
     @Produces(MediaType.APPLICATION_JSON)
     // tag::getArtists[]
     public JsonArray getArtists() {
-    	return Reader.getArtists();
+      return Reader.getArtists();
     }
     // end::getArtists[]
 
@@ -48,8 +48,8 @@ public class ArtistResource {
     public String getJsonString() {
       Jsonb jsonb = JsonbBuilder.create();
 
-      Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString() +
-        "artists");
+      Artist[] artists = Consumer.consumeWithJsonb(uriInfo.getBaseUri().toString()
+                                                   + "artists");
       String result = jsonb.toJson(artists);
 
       return result;
@@ -78,8 +78,8 @@ public class ArtistResource {
     @Produces(MediaType.TEXT_PLAIN)
     // tag::getTotalArtists[]
     public int getTotalArtists() {
-      return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString() +
-        "artists").length;
+      return Consumer.consumeWithJsonp(uriInfo.getBaseUri().toString()
+                                       + "artists").length;
     }
     // end::getTotalArtists[]
 }
