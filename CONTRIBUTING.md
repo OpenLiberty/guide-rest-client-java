@@ -26,7 +26,7 @@ Signed-off-by: Jane Williams <jane.williams@gmail.com>
 
 The sign-off is just a line at the end of the commit message that certifies that you wrote it or otherwise have the right to pass it on as an open source patch.
 
-Use your real name when you sign. We can't accept pseudonyms or anonymous contributions. 
+Use your real name when you sign. We can't accept pseudonyms or anonymous contributions.
 
 Many Git UI tools have support for adding the `Signed-off-by` line to the end of your commit message. This line can be automatically added by the `git commit` command by using the `-s` option.
 
