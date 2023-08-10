@@ -40,7 +40,7 @@ include::finish/src/resources/artists.json[]
 
 You will learn how to access a REST service, serialize a Java object that contains a list of artists and their albums, and use two different approaches to deserialize the returned JSON resources. The first approach consists of using the Java API for JSON Binding (JSON-B) to directly convert JSON messages into Java objects. The second approach consists of using the Java API for JSON Processing (JSON-P) to process the JSON.
 
-The REST service that provides the artists and albums resources is already written for you. When the server is running, this service is accessible at the `\http://localhost:9080/artists` endpoint, which responds with the [hotspot]`artists.json` file.
+The REST service that provides the artists and albums resources is already written for you. When the Liberty runtime is running, this service is accessible at the `\http://localhost:9080/artists` endpoint, which responds with the [hotspot]`artists.json` file.
 
 You will implement the following two endpoints using the two deserialization approaches:
 
@@ -116,12 +116,12 @@ include::{common-includes}/devmode-lmp33-start.adoc[]
 
 // static guide instructions:
 ifndef::cloud-hosted[]
-The application that you'll build upon was created for you. After your server is ready, you can access the service at the http://localhost:9080/artists[http://localhost:9080/artists^] URL.
+The application that you'll build upon was created for you. After your Liberty instance is ready, you can access the service at the http://localhost:9080/artists[http://localhost:9080/artists^] URL.
 endif::[]
 
 // cloud-hosted guide instructions:
 ifdef::cloud-hosted[]
-The application that you'll build upon was created for you. After your server is ready, run the following curl command to access the service:
+The application that you'll build upon was created for you. After your Liberty instance is ready, run the following curl command to access the service:
 ```bash
 curl -s http://localhost:9080/artists | jq
 ```
@@ -388,7 +388,7 @@ Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
 ----
 
-When you are done checking out the service, exit dev mode by typing `q` in the command-line session where you ran the server, and then press the `enter/return` key.
+When you are done checking out the service, exit dev mode by typing `q` in the command-line session where you ran the Liberty instance, and then press the `enter/return` key.
 
 == Building the application
 
