@@ -273,7 +273,7 @@ The methods that you wrote in the [hotspot=Consumer file=0]`Consumer` class coul
 
 == Running the application
 
-The Open Liberty instance was started in dev mode at the beginning of the guide and all the changes were automatically picked up.
+The Open Liberty was started in dev mode at the beginning of the guide and all the changes were automatically picked up.
 
 // static guide instructions:
 ifndef::cloud-hosted[]
