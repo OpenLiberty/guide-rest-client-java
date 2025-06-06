@@ -1,4 +1,4 @@
-// Copyright (c) 2017, 2023 IBM Corporation and others.
+// Copyright (c) 2017, 2025 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //   https://creativecommons.org/licenses/by-nd/4.0/
@@ -12,7 +12,7 @@
 :page-guide-category: microprofile
 :page-essential: false
 :page-description: Explore how to access a simple RESTful web service and consume its resources in Java using JSON-B and JSON-P.
-:page-tags: ['MicroProfile', 'Jakarta EE']
+:page-tags: ['microprofile', 'jakarta-ee']
 :page-related-guides: ['rest-intro', 'rest-client-angularjs']
 :page-permalink: /guides/{projectid}
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
@@ -59,7 +59,7 @@ include::{common-includes}/gitclone.adoc[]
 
 
 [role='command']
-include::{common-includes}/twyb-intro.adoc[]
+include::{common-includes}/twyb-intro-mvnw.adoc[]
 
 // static guide instructions:
 ifndef::cloud-hosted[]
@@ -90,7 +90,7 @@ curl http://localhost:9080/artists/total/bar
 endif::[]
 
 [role='command']
-include::{common-includes}/twyb-end.adoc[]
+include::{common-includes}/twyb-end-mvnw.adoc[]
 
 // =================================================================================================
 // Starting the service
@@ -112,7 +112,7 @@ cd /home/project/guide-rest-client-java/start
 endif::[]
 
 [role=command]
-include::{common-includes}/devmode-lmp33-start.adoc[]
+include::{common-includes}/devmode-mvnw-start.adoc[]
 
 // static guide instructions:
 ifndef::cloud-hosted[]
@@ -394,10 +394,31 @@ When you are done checking out the service, exit dev mode by pressing `CTRL+C` i
 
 If you are satisfied with your application, run the Maven `package` goal to build the WAR file in the `target` directory:
 
-[role=command]
-----
-mvn package
-----
+include::{common-includes}/os-tabs.adoc[]
+
+[.tab_content.windows_section]
+--
+[role='command']
+```
+mvnw.cmd package
+```
+--
+
+[.tab_content.mac_section]
+--
+[role='command']
+```
+./mvnw package
+```
+--
+
+[.tab_content.linux_section]
+--
+[role='command']
+```
+./mvnw package
+```
+--
 
 == Great work! You're done!
 
